@@ -5,6 +5,8 @@
  */
 package interfaces;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jalej
@@ -16,7 +18,9 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
+    public static String usuario = "";
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,6 +81,11 @@ public class Login extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ingresar.png"))); // NOI18N
         jButton1.setText("Ingresar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -102,23 +111,25 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
-        if(getUser().equals("Cliente ")){
-           if(getPassword().equals("")){
-               System.out.println("exito cliente");
-           }else{
-               System.out.println("contrasenia incorrecta cliente");
-           }
-        }
-        
-        if(!(getUser().equals("Cliente "))){
+       if(getUser().equals("Cliente ")){
+            JOptionPane.showMessageDialog(null, "Bienvenido Cliente");
+        }else if(!(getUser().equals("Cliente "))){
             
             if(getPassword().equals("123456")){
-               System.out.println("exito");
+                usuario = jTextField1.getText();
+                MainEmpresa main = new MainEmpresa(usuario);
+                main.setVisible(true);
+                this.dispose();
+               
            }else{
-               System.out.println("contrasenia incorrecta user");
+                JOptionPane.showMessageDialog(null, "Contraseña de empleado incorrecta.");
            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+       
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
