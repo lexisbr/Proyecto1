@@ -4,14 +4,15 @@
  * and open the template in the editor.
  */
 package com.mycompany.proyecto1;
-import interfaces.Login;
+import interfaces.SeleccionVersion;
+
 /**
  *
  * @author jalej
  */
 public class Main {
     public static void main(String[] arg){
-        Login log = new Login();
+        SeleccionVersion log = new SeleccionVersion();
         log.setVisible(true);
         
     }

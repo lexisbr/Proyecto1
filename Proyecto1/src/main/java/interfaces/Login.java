@@ -5,6 +5,8 @@
  */
 package interfaces;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jalej
@@ -102,22 +104,7 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
-        if(getUser().equals("Cliente ")){
-           if(getPassword().equals("")){
-               System.out.println("exito cliente");
-           }else{
-               System.out.println("contrasenia incorrecta cliente");
-           }
-        }
         
-        if(!(getUser().equals("Cliente "))){
-            
-            if(getPassword().equals("123456")){
-               System.out.println("exito");
-           }else{
-               System.out.println("contrasenia incorrecta user");
-           }
-        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
