@@ -113,7 +113,9 @@ public class Login extends javax.swing.JFrame {
 
        if(!(getUser().equals(" "))){
             if (getPassword().equals("123456")) {
-                // instanciar ventana empleado
+                MainEmpresa me = new MainEmpresa(getUser());
+                me.setVisible(true);
+                this.dispose();
             }else{
                  JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
             }
