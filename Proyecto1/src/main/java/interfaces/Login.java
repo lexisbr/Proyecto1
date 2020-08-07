@@ -104,6 +104,16 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
+        if(!(getUser().equals(" "))){
+            if (getPassword().equals("123456")) {
+                // instanciar ventana empleado
+            }else{
+                 JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+            }
+           
+        }else {
+            JOptionPane.showMessageDialog(null, "Ingrese usuario");
+        }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
