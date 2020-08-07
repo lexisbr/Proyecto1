@@ -41,6 +41,7 @@ public class MainEmpresa extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,7 +66,7 @@ public class MainEmpresa extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 280, 70));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 280, 70));
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Leelawadee UI", 1, 14)); // NOI18N
@@ -92,16 +93,16 @@ public class MainEmpresa extends javax.swing.JFrame {
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 140, 280, 70));
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
-        jButton7.setFont(new java.awt.Font("Leelawadee UI", 1, 14)); // NOI18N
+        jButton7.setFont(new java.awt.Font("Leelawadee UI", 1, 12)); // NOI18N
         jButton7.setForeground(new java.awt.Color(0, 0, 0));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reporte.png"))); // NOI18N
-        jButton7.setText("Reportes");
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/regresar.png"))); // NOI18N
+        jButton7.setText("Regresar");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 280, 60));
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 420, 150, 30));
 
         jButton8.setBackground(new java.awt.Color(255, 255, 255));
         jButton8.setFont(new java.awt.Font("Leelawadee UI", 1, 14)); // NOI18N
@@ -112,7 +113,19 @@ public class MainEmpresa extends javax.swing.JFrame {
                 jButton8ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 280, 70));
+        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 240, 280, 70));
+
+        jButton9.setBackground(new java.awt.Color(255, 255, 255));
+        jButton9.setFont(new java.awt.Font("Leelawadee UI", 1, 14)); // NOI18N
+        jButton9.setForeground(new java.awt.Color(0, 0, 0));
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reporte.png"))); // NOI18N
+        jButton9.setText("Reportes");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 280, 60));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoempresa (1).jpeg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 470));
@@ -135,12 +148,20 @@ public class MainEmpresa extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        Login log = new Login();
+        log.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+        CargarInfo crear = new CargarInfo();
+        crear.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,6 +204,7 @@ public class MainEmpresa extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
