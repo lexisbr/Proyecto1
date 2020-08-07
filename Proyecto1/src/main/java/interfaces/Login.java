@@ -110,21 +110,19 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
-       if(getUser().equals("Cliente ")){
-            JOptionPane.showMessageDialog(null, "Bienvenido Cliente");
-        }else if(!(getUser().equals("Cliente "))){
-            
-            if(getPassword().equals("123456")){
-                usuario = jTextField1.getText();
-                MainEmpresa main = new MainEmpresa(usuario);
-                main.setVisible(true);
-                this.dispose();
-               
-           }else{
-                JOptionPane.showMessageDialog(null, "Contraseña de empleado incorrecta.");
-           }
+
+       if(!(getUser().equals(" "))){
+            if (getPassword().equals("123456")) {
+                // instanciar ventana empleado
+            }else{
+                 JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+            }
+           
+        }else {
+            JOptionPane.showMessageDialog(null, "Ingrese usuario");
         }
+        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
