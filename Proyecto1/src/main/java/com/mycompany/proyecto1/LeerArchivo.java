@@ -36,6 +36,8 @@ public class LeerArchivo {
          //  System.out.println(datos[i]);
            i++;
         }
+        
+        
         for (int e  = 0; e < datos.length; e++) {
             System.out.println(">>>"+datos[e]);
         }
