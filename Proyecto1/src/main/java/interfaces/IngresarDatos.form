@@ -64,17 +64,19 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
-                <StringItem index="0" value="Tienda"/>
-                <StringItem index="1" value="Tiempo entre tiendas"/>
-                <StringItem index="2" value="Producto "/>
-                <StringItem index="3" value="Cliente "/>
-                <StringItem index="4" value="Empleado"/>
+              <StringArray count="6">
+                <StringItem index="0" value=" "/>
+                <StringItem index="1" value="Tienda"/>
+                <StringItem index="2" value="Tiempo entre tiendas"/>
+                <StringItem index="3" value="Producto"/>
+                <StringItem index="4" value="Cliente"/>
+                <StringItem index="5" value="Empleado"/>
               </StringArray>
             </Property>
           </Properties>
           <Events>
             <EventHandler event="componentRemoved" listener="java.awt.event.ContainerListener" parameters="java.awt.event.ContainerEvent" handler="jComboBox1ComponentRemoved"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox1ActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -97,6 +99,7 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Continuar"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
