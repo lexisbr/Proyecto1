@@ -55,6 +55,7 @@ public class SeleccionVersion extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Entrar");
+        jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -84,7 +85,11 @@ public class SeleccionVersion extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
+      if (jComboBox1.getSelectedItem().equals("Seleccione su version")) {
+                   jButton1.setEnabled(false);
+                }else{
+            jButton1.setEnabled(true);
+        }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**

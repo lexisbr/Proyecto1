@@ -50,10 +50,15 @@ public class IngresarDatos extends javax.swing.JFrame {
         jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox1.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tienda", "Tiempo entre tiendas", "Producto ", "Cliente ", "Empleado" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Tienda", "Tiempo entre tiendas", "Producto", "Cliente", "Empleado" }));
         jComboBox1.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentRemoved(java.awt.event.ContainerEvent evt) {
                 jComboBox1ComponentRemoved(evt);
+            }
+        });
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
             }
         });
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 190, -1));
@@ -62,6 +67,7 @@ public class IngresarDatos extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Continuar");
+        jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -99,16 +105,16 @@ public class IngresarDatos extends javax.swing.JFrame {
                    tiempotienda.setVisible(true);
                    this.dispose();
                 }else if(jComboBox1.getSelectedItem().equals("Producto")){
-                   CrearTiempoEntreTiendas tiempotienda = new CrearTiempoEntreTiendas();
-                   tiempotienda.setVisible(true);
+                   CrearProducto a = new CrearProducto();
+                   a.setVisible(true);
                    this.dispose();
                 }else if(jComboBox1.getSelectedItem().equals("Empleado")){
-                   CrearTiempoEntreTiendas tiempotienda = new CrearTiempoEntreTiendas();
-                   tiempotienda.setVisible(true);
+                   CrearEmpleado a = new CrearEmpleado();
+                   a.setVisible(true);
                    this.dispose();
                 }else if(jComboBox1.getSelectedItem().equals("Cliente")){
-                   CrearTiempoEntreTiendas tiempotienda = new CrearTiempoEntreTiendas();
-                   tiempotienda.setVisible(true);
+                   CrearCliente a = new CrearCliente();
+                   a.setVisible(true);
                    this.dispose();
                 }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -122,6 +128,20 @@ public class IngresarDatos extends javax.swing.JFrame {
         main.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        
+        if (jComboBox1.getSelectedItem().equals(" ")) {
+                   jButton1.setEnabled(false);
+                }else{
+            jButton1.setEnabled(true);
+        }
+     /*   if (!(jComboBox1.getSelectedItem().equals(" "))) {
+                   jButton1.setEnabled(true);
+                }*/
+        
+       
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
