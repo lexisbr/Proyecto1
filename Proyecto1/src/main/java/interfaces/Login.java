@@ -5,6 +5,8 @@
  */
 package interfaces;
 
+import conexionDB.Conexion;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,11 +18,26 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    public static String usuario = "";
+    public static String tienda_actual ="";
+   
+    String Query="SELECT CODIGO FROM TIENDA";
+    Conexion a = new Conexion();
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
+         ResultSet Result = a.Seleccionar(Query);
+         try {
+             while (Result.next()) {
+
+            cb_tiendas.addItem(String.valueOf(Result.getObject("codigo")));
+        }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error "+e);
+        }
     }
-    public static String usuario = "";
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,7 +58,7 @@ public class Login extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cb_tiendas = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -114,8 +131,8 @@ public class Login extends javax.swing.JFrame {
         jLabel7.setText("Usuario:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, -1, -1));
 
-        jComboBox1.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 190, 30));
+        cb_tiendas.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jPanel1.add(cb_tiendas, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 190, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/formanag_fondo.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 480));
@@ -137,7 +154,10 @@ public class Login extends javax.swing.JFrame {
 
        if(!(getUser().equals(" "))){
             if (getPassword().equals("123456")) {
-                MainEmpresa me = new MainEmpresa(getUser());
+                tienda_actual = (String) cb_tiendas.getSelectedItem() ;
+                usuario = jTextField1.getText();
+                        
+                MainEmpresa me = new MainEmpresa();
                 me.setVisible(true);
                 this.dispose();
             }else{
@@ -199,14 +219,16 @@ public class Login extends javax.swing.JFrame {
         return jPasswordField1.getText();
     }
     public String getUser(){
-        System.out.println(jTextField1.getText());
         return jTextField1.getText();
+    }
+    public String getTienda(){
+        return (String) cb_tiendas.getSelectedItem();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cb_tiendas;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton7;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -17,12 +17,15 @@ public class MainEmpresa extends javax.swing.JFrame {
     public MainEmpresa() {
         initComponents();
         this.setLocationRelativeTo(null);
+         jLabel3.setText("Bienvenido "+Login.usuario);
+        jLabel4.setText("Tienda: "+Login.tienda_actual);
     }
-    public MainEmpresa(String usuario) {
+   /* public MainEmpresa(String usuario) {
+      
         initComponents();
         this.setLocationRelativeTo(null);
-        jLabel3.setText("Bienvenido "+usuario);
-    }
+       
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,6 +45,7 @@ public class MainEmpresa extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -126,6 +130,11 @@ public class MainEmpresa extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 280, 60));
+
+        jLabel4.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Tienda: ");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoempresa (1).jpeg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 470));
@@ -212,6 +221,7 @@ public class MainEmpresa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

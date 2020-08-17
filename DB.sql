@@ -87,11 +87,24 @@ anticipo FLOAT NOT NULL,
 codigo_producto VARCHAR(45) NOT NULL,
 nit_cliente VARCHAR(13) NOT NULL,
 codigo_tienda VARCHAR(45) NOT NULL,
+codigo_tiempo_de_envio INT NOT NULL,
 PRIMARY KEY(codigo),
 FOREIGN KEY(codigo_producto) REFERENCES PRODUCTO(codigo),
 FOREIGN KEY(nit_cliente) REFERENCES CLIENTE(NIT),
-FOREIGN KEY(codigo_tienda) REFERENCES TIENDA(codigo)
+FOREIGN KEY(codigo_tienda) REFERENCES TIENDA(codigo),
+FOREIGN KEY(codigo_tiempo_de_envio) REFERENCES TIEMPO_DE_ENVIO(ID)
 );
+
+CREATE TABLE IF NOT EXISTS RECIBE(
+ID INT NOT NULL AUTO_INCREMENT,
+fecha_entrega DATE NOT NULL,
+codigo_tienda VARCHAR(45) NOT NULL,
+codigo_pedido INT NOT NULL,
+PRIMARY KEY(ID),
+FOREIGN KEY(codigo_tienda) REFERENCES TIENDA(codigo),
+FOREIGN KEY(codigo_pedido) REFERENCES PEDIDO(codigo)
+);
+
 
 
 
