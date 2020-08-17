@@ -5,6 +5,7 @@
  */
 package interfaces;
 
+import conexionDB.Conexion;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +19,7 @@ public class CrearEmpleado extends javax.swing.JFrame {
      */
     public CrearEmpleado() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -48,6 +50,13 @@ public class CrearEmpleado extends javax.swing.JFrame {
         email_txt = new javax.swing.JTextField();
         dpi_txt = new javax.swing.JTextField();
         nombre_txt = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -68,7 +77,7 @@ public class CrearEmpleado extends javax.swing.JFrame {
                 codigo_txtActionPerformed(evt);
             }
         });
-        jPanel1.add(codigo_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 230, 25));
+        jPanel1.add(codigo_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 230, 30));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cliente.png"))); // NOI18N
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
@@ -86,7 +95,7 @@ public class CrearEmpleado extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("NIT:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
 
         telefono_txt.setBackground(new java.awt.Color(255, 255, 255));
         telefono_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
@@ -96,12 +105,12 @@ public class CrearEmpleado extends javax.swing.JFrame {
                 telefono_txtKeyTyped(evt);
             }
         });
-        jPanel1.add(telefono_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 230, 25));
+        jPanel1.add(telefono_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 230, 30));
 
         jLabel9.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("DPI:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 30, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, 30, -1));
 
         direccion_txt.setBackground(new java.awt.Color(255, 255, 255));
         direccion_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
@@ -111,7 +120,7 @@ public class CrearEmpleado extends javax.swing.JFrame {
                 direccion_txtActionPerformed(evt);
             }
         });
-        jPanel1.add(direccion_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 250, 230, 25));
+        jPanel1.add(direccion_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 250, 230, 30));
 
         jLabel7.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -131,7 +140,7 @@ public class CrearEmpleado extends javax.swing.JFrame {
                 nit_txtKeyTyped(evt);
             }
         });
-        jPanel1.add(nit_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 230, 25));
+        jPanel1.add(nit_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 230, 30));
 
         jLabel8.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -165,7 +174,7 @@ public class CrearEmpleado extends javax.swing.JFrame {
         email_txt.setBackground(new java.awt.Color(255, 255, 255));
         email_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
         email_txt.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(email_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, 230, 25));
+        jPanel1.add(email_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, 230, 30));
 
         dpi_txt.setBackground(new java.awt.Color(255, 255, 255));
         dpi_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
@@ -180,7 +189,7 @@ public class CrearEmpleado extends javax.swing.JFrame {
                 dpi_txtKeyTyped(evt);
             }
         });
-        jPanel1.add(dpi_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 230, 25));
+        jPanel1.add(dpi_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 230, 30));
 
         nombre_txt.setBackground(new java.awt.Color(255, 255, 255));
         nombre_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
@@ -190,7 +199,42 @@ public class CrearEmpleado extends javax.swing.JFrame {
                 nombre_txtKeyTyped(evt);
             }
         });
-        jPanel1.add(nombre_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 230, 25));
+        jPanel1.add(nombre_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 230, 30));
+
+        jLabel13.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setText("*");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 30, -1));
+
+        jLabel14.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("*");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, 20, -1));
+
+        jLabel17.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setText("* Campos Obligatorios");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 470, 140, 20));
+
+        jLabel15.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("*");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 110, 20, -1));
+
+        jLabel16.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setText("*");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 180, 20, -1));
+
+        jLabel18.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setText("*");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 250, 20, -1));
+
+        jLabel19.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel19.setText("*");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, 20, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoempresa(2).jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -216,21 +260,24 @@ public class CrearEmpleado extends javax.swing.JFrame {
     }//GEN-LAST:event_nombre_txtKeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       if ((codigo_txt.getText().equals("")) || (nombre_txt.getText().equals("")) || (direccion_txt.getText().equals("")) || (telefono_txt.getText().equals(""))) {
+       if ((codigo_txt.getText().equals("")) || (nombre_txt.getText().equals("")) || (direccion_txt.getText().equals("")) || (telefono_txt.getText().equals("")) || (email_txt.getText().equals("")) || (dpi_txt.getText().equals(""))) {
             
             javax.swing.JOptionPane.showMessageDialog(this,"Debe llenar todos los campos obligatorios \n","AVISO",javax.swing.JOptionPane.INFORMATION_MESSAGE);
             codigo_txt.requestFocus();
-        }else if((telefono1_txt.getText().length()< 8)){
+        }else if((telefono_txt.getText().length()< 8)){
             JOptionPane.showMessageDialog(null,"El número de telefono debe contener 8 digitos");
+        }else if((dpi_txt.getText().length()< 13)){
+            JOptionPane.showMessageDialog(null,"El número de DPI esta incompleto");
         }
         else {
             System.out.println("entra");
-            insertDB(codigo_txt.getText(),nombre_txt.getText(),direccion_txt.getText(),telefono1_txt.getText(),telefono2_txt.getText(),correo_txt.getText(),horario_txt.getText());
+            insertDB(codigo_txt.getText(),nombre_txt.getText(),telefono_txt.getText(),nit_txt.getText(),dpi_txt.getText(),email_txt.getText(),direccion_txt.getText());
        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void telefono_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefono_txtKeyTyped
         char c = evt.getKeyChar();
+        if (telefono_txt.getText().length()== 8) evt.consume();
         if(c<'0' || c>'9') evt.consume();
     }//GEN-LAST:event_telefono_txtKeyTyped
 
@@ -286,6 +333,31 @@ public class CrearEmpleado extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void insertDB(String cadena1,String cadena2,String cadena3,String cadena4,String cadena5,String cadena6,String cadena7){
+        try {
+             String query = ("INSERT INTO EMPLEADO VALUES('"+cadena1+"','"+cadena2+"','"+cadena3+"','"+cadena4+"','"+cadena5+"','"+cadena6+"','"+cadena7+"')");
+             Conexion c = new Conexion();
+             c.Insertar(query);
+             System.out.println("Los valores han sido agregados a la base de datos ");
+            vaciar();
+             //c.conexionDB();
+             //stmt = c.getConnection().createStatement(); 
+            // stmt.executeUpdate("INSERT INTO TIENDA VALUES('"+cadena1+"','"+cadena2+"','"+cadena3+"','"+cadena4+"','"+cadena5+"','"+cadena6+"','"+cadena7+"')");
+        }catch(Exception e) {
+                JOptionPane.showMessageDialog(null,"Error "+e);
+         
+        }
+    }
+      public void vaciar(){
+        codigo_txt.setText(null);
+        nombre_txt.setText(null);
+        direccion_txt.setText(null);
+        telefono_txt.setText(null);
+        nit_txt.setText(null);
+        dpi_txt.setText(null);
+        email_txt.setText(null);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField codigo_txt;
@@ -298,6 +370,13 @@ public class CrearEmpleado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

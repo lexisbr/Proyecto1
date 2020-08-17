@@ -5,6 +5,9 @@
  */
 package interfaces;
 
+import conexionDB.Conexion;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jalej
@@ -31,21 +34,25 @@ public class CrearCliente extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        telefono_txt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        email_txt = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        nit_txt = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
+        direccion_txt = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
+        credito_txt = new javax.swing.JFormattedTextField();
+        dpi_txt = new javax.swing.JTextField();
+        nombre_txt = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,15 +73,20 @@ public class CrearCliente extends javax.swing.JFrame {
         jLabel6.setText("Nombre:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
-        jTextField8.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField8.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        telefono_txt.setBackground(new java.awt.Color(255, 255, 255));
+        telefono_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        telefono_txt.setForeground(new java.awt.Color(0, 0, 0));
+        telefono_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                telefono_txtActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 230, -1));
+        telefono_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                telefono_txtKeyTyped(evt);
+            }
+        });
+        jPanel1.add(telefono_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 230, 30));
 
         jLabel5.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -91,10 +103,10 @@ public class CrearCliente extends javax.swing.JFrame {
         jLabel8.setText("Credito de Compra:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, -1, -1));
 
-        jTextField6.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField6.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, 230, 25));
+        email_txt.setBackground(new java.awt.Color(255, 255, 255));
+        email_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        email_txt.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(email_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, 230, 30));
 
         jLabel9.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -106,20 +118,25 @@ public class CrearCliente extends javax.swing.JFrame {
         jLabel11.setText("Telefono:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
-        jTextField10.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField10.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField10.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 230, 25));
+        nit_txt.setBackground(new java.awt.Color(255, 255, 255));
+        nit_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        nit_txt.setForeground(new java.awt.Color(0, 0, 0));
+        nit_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nit_txtKeyTyped(evt);
+            }
+        });
+        jPanel1.add(nit_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 230, 30));
 
         jLabel12.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Email:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, -1, -1));
 
-        jTextField12.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField12.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField12.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, 230, 25));
+        direccion_txt.setBackground(new java.awt.Color(255, 255, 255));
+        direccion_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        direccion_txt.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(direccion_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, 230, 30));
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setFont(new java.awt.Font("Leelawadee UI", 1, 12)); // NOI18N
@@ -138,32 +155,67 @@ public class CrearCliente extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cargar (1).png"))); // NOI18N
         jButton1.setText("Cargar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 400, 170, 40));
 
-        jFormattedTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jFormattedTextField2.setForeground(new java.awt.Color(0, 0, 0));
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        jPanel1.add(jFormattedTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, 230, 25));
+        credito_txt.setBackground(new java.awt.Color(255, 255, 255));
+        credito_txt.setForeground(new java.awt.Color(0, 0, 0));
+        credito_txt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        jPanel1.add(credito_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, 230, 30));
 
-        jTextField9.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField9.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField9.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        dpi_txt.setBackground(new java.awt.Color(255, 255, 255));
+        dpi_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        dpi_txt.setForeground(new java.awt.Color(0, 0, 0));
+        dpi_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                dpi_txtActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 230, 25));
-
-        jTextField11.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField11.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField11.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField11ActionPerformed(evt);
+        dpi_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                dpi_txtKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 230, 25));
+        jPanel1.add(dpi_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 230, 30));
+
+        nombre_txt.setBackground(new java.awt.Color(255, 255, 255));
+        nombre_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        nombre_txt.setForeground(new java.awt.Color(0, 0, 0));
+        nombre_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombre_txtActionPerformed(evt);
+            }
+        });
+        nombre_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombre_txtKeyTyped(evt);
+            }
+        });
+        jPanel1.add(nombre_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 230, 30));
+
+        jLabel13.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setText("*");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, 30, -1));
+
+        jLabel17.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setText("* Campos Obligatorios");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 470, 140, 20));
+
+        jLabel14.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("*");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, 30, -1));
+
+        jLabel15.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("*");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 30, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoempresa(2).jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 490));
@@ -173,9 +225,9 @@ public class CrearCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void telefono_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefono_txtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_telefono_txtActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         IngresarDatos a = new IngresarDatos();
@@ -183,13 +235,54 @@ public class CrearCliente extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void dpi_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpi_txtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_dpi_txtActionPerformed
 
-    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+    private void nombre_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombre_txtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField11ActionPerformed
+    }//GEN-LAST:event_nombre_txtActionPerformed
+
+    private void nombre_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombre_txtKeyTyped
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z')&& (c<' '||c>' ')) evt.consume();
+    }//GEN-LAST:event_nombre_txtKeyTyped
+
+    private void telefono_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefono_txtKeyTyped
+       char c = evt.getKeyChar();
+       if (telefono_txt.getText().length()== 8) evt.consume();
+       if(c<'0' || c>'9') evt.consume();
+    }//GEN-LAST:event_telefono_txtKeyTyped
+
+    private void nit_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nit_txtKeyTyped
+      if (nit_txt.getText().length()== 13) evt.consume();
+    }//GEN-LAST:event_nit_txtKeyTyped
+
+    private void dpi_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dpi_txtKeyTyped
+       char c = evt.getKeyChar();
+        if (dpi_txt.getText().length()== 13) evt.consume();
+        if(c<'0' || c>'9') evt.consume();
+    }//GEN-LAST:event_dpi_txtKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Double credito;
+       
+        if ((nombre_txt.getText().equals("")) || (telefono_txt.getText().equals("")) || (nit_txt.getText().equals(""))) {
+            javax.swing.JOptionPane.showMessageDialog(this,"Debe llenar todos los campos obligatorios \n","AVISO",javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            nombre_txt.requestFocus();
+        }else if((telefono_txt.getText().length()< 8)){
+            JOptionPane.showMessageDialog(null,"El número de telefono debe contener 8 digitos");
+        }
+        else {
+            System.out.println("entra");
+            if(credito_txt.getText().length() == 0){
+                credito = 0.00;
+            }else{
+                credito = Double.parseDouble(credito_txt.getText());
+            }
+            insertDB(nit_txt.getText(),nombre_txt.getText(),telefono_txt.getText(),dpi_txt.getText(),email_txt.getText(),direccion_txt.getText(),credito);
+       }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,15 +318,47 @@ public class CrearCliente extends javax.swing.JFrame {
             }
         });
     }
+    public void insertDB(String cadena1,String cadena2,String cadena3,String cadena4,String cadena5,String cadena6,Double cadena7){
+        try {
+             String query = ("INSERT INTO CLIENTE VALUES('"+cadena1+"','"+cadena2+"','"+cadena3+"','"+cadena4+"','"+cadena5+"','"+cadena6+"','"+cadena7+"')");
+             Conexion c = new Conexion();
+             c.Insertar(query);
+             System.out.println("Los valores han sido agregados a la base de datos ");
+            vaciar();
+             //c.conexionDB();
+             //stmt = c.getConnection().createStatement(); 
+            // stmt.executeUpdate("INSERT INTO TIENDA VALUES('"+cadena1+"','"+cadena2+"','"+cadena3+"','"+cadena4+"','"+cadena5+"','"+cadena6+"','"+cadena7+"')");
+        }catch(Exception e) {
+                JOptionPane.showMessageDialog(null,"Error "+e);
+         
+        }
+    }
+    
+     public void vaciar(){
+        credito_txt.setText(null);
+        nombre_txt.setText(null);
+        direccion_txt.setText(null);
+        telefono_txt.setText(null);
+        nit_txt.setText(null);
+        dpi_txt.setText(null);
+        email_txt.setText(null);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFormattedTextField credito_txt;
+    private javax.swing.JTextField direccion_txt;
+    private javax.swing.JTextField dpi_txt;
+    private javax.swing.JTextField email_txt;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton7;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -241,11 +366,8 @@ public class CrearCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField nit_txt;
+    private javax.swing.JTextField nombre_txt;
+    private javax.swing.JTextField telefono_txt;
     // End of variables declaration//GEN-END:variables
 }

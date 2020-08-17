@@ -50,7 +50,7 @@ public class Conexion {
             JOptionPane.showMessageDialog(null,"Los valores han sido agregados a la base de datos");
         } catch (SQLException e) {
              if(e.getErrorCode() == MYSQL_DUPLICATE_PK ){
-                JOptionPane.showMessageDialog(null,"Error, el codigo de tienda ya existe.");
+                JOptionPane.showMessageDialog(null,"Error, el codigo ya existe.");
              }else{
              JOptionPane.showMessageDialog(null,"Error "+e);
              }

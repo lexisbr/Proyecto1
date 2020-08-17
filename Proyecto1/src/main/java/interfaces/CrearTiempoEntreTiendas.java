@@ -87,7 +87,7 @@ public class CrearTiempoEntreTiendas extends javax.swing.JFrame {
                 cb_tiendasActionPerformed(evt);
             }
         });
-        jPanel1.add(cb_tiendas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 250, 25));
+        jPanel1.add(cb_tiendas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 250, 30));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Reloj (1).png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
@@ -123,7 +123,7 @@ public class CrearTiempoEntreTiendas extends javax.swing.JFrame {
                 txt_tiempoKeyTyped(evt);
             }
         });
-        jPanel1.add(txt_tiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 250, 25));
+        jPanel1.add(txt_tiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 250, 30));
 
         jLabel11.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
@@ -207,7 +207,7 @@ public class CrearTiempoEntreTiendas extends javax.swing.JFrame {
              Conexion c = new Conexion();
              c.Insertar(query);
              System.out.println("Los valores han sido agregados a la base de datos ");
-            
+            vaciar();
              //c.conexionDB();
              //stmt = c.getConnection().createStatement(); 
             // stmt.executeUpdate("INSERT INTO TIENDA VALUES('"+cadena1+"','"+cadena2+"','"+cadena3+"','"+cadena4+"','"+cadena5+"','"+cadena6+"','"+cadena7+"')");
@@ -216,6 +216,10 @@ public class CrearTiempoEntreTiendas extends javax.swing.JFrame {
          
         }
         
+    }
+    public void vaciar(){
+          txt_tiempo.setText(null);
+       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
