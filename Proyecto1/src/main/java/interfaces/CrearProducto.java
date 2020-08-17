@@ -5,6 +5,9 @@
  */
 package interfaces;
 
+import conexionDB.Conexion;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jalej
@@ -16,6 +19,7 @@ public class CrearProducto extends javax.swing.JFrame {
      */
     public CrearProducto() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -36,16 +40,22 @@ public class CrearProducto extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
+        fabricante_txt = new javax.swing.JTextField();
+        codigo_txt = new javax.swing.JTextField();
+        garantia_txt = new javax.swing.JTextField();
+        descripcion_txt = new javax.swing.JTextField();
+        nombre_txt = new javax.swing.JTextField();
+        precio_txt = new javax.swing.JFormattedTextField();
+        cantidad_txt = new javax.swing.JFormattedTextField();
         jLabel10 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -81,57 +91,67 @@ public class CrearProducto extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Precio:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Garantia:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, -1, -1));
+        jLabel8.setText("Garantia: (Meses)");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Descripcion:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, -1, -1));
 
-        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField4.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 230, 25));
+        fabricante_txt.setBackground(new java.awt.Color(255, 255, 255));
+        fabricante_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        fabricante_txt.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(fabricante_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 230, 30));
 
-        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField5.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 230, 25));
+        codigo_txt.setBackground(new java.awt.Color(255, 255, 255));
+        codigo_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        codigo_txt.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(codigo_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 230, 30));
 
-        jTextField6.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField6.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, 230, 25));
+        garantia_txt.setBackground(new java.awt.Color(255, 255, 255));
+        garantia_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        garantia_txt.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(garantia_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, 230, 30));
 
-        jTextField7.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField7.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, 230, 25));
+        descripcion_txt.setBackground(new java.awt.Color(255, 255, 255));
+        descripcion_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        descripcion_txt.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(descripcion_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, 230, 30));
 
-        jTextField8.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField8.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        nombre_txt.setBackground(new java.awt.Color(255, 255, 255));
+        nombre_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        nombre_txt.setForeground(new java.awt.Color(0, 0, 0));
+        nombre_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                nombre_txtActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 230, 25));
+        nombre_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombre_txtKeyTyped(evt);
+            }
+        });
+        jPanel1.add(nombre_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 230, 30));
 
-        jFormattedTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jFormattedTextField2.setForeground(new java.awt.Color(0, 0, 0));
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        jPanel1.add(jFormattedTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, 230, 25));
+        precio_txt.setBackground(new java.awt.Color(255, 255, 255));
+        precio_txt.setForeground(new java.awt.Color(0, 0, 0));
+        precio_txt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        jPanel1.add(precio_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, 230, 30));
 
-        jFormattedTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jFormattedTextField3.setForeground(new java.awt.Color(0, 0, 0));
-        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        jPanel1.add(jFormattedTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 230, 25));
+        cantidad_txt.setBackground(new java.awt.Color(255, 255, 255));
+        cantidad_txt.setForeground(new java.awt.Color(0, 0, 0));
+        cantidad_txt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        cantidad_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cantidad_txtKeyTyped(evt);
+            }
+        });
+        jPanel1.add(cantidad_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 230, 30));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/producto.png"))); // NOI18N
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
@@ -153,7 +173,42 @@ public class CrearProducto extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cargar (1).png"))); // NOI18N
         jButton1.setText("Cargar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 330, 170, 40));
+
+        jLabel13.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setText("*");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, 30, -1));
+
+        jLabel19.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel19.setText("*");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 20, -1));
+
+        jLabel14.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("*");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 20, -1));
+
+        jLabel17.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setText("* Campos Obligatorios");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 370, 140, 20));
+
+        jLabel15.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("*");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 90, 30, -1));
+
+        jLabel16.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setText("*");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, 30, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoempresa(2).jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 400));
@@ -163,15 +218,50 @@ public class CrearProducto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void nombre_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombre_txtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_nombre_txtActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         IngresarDatos a = new IngresarDatos();
         a.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void nombre_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombre_txtKeyTyped
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z')&& (c<' '||c>' ')) evt.consume();
+    }//GEN-LAST:event_nombre_txtKeyTyped
+
+    private void cantidad_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cantidad_txtKeyTyped
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+    }//GEN-LAST:event_cantidad_txtKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         int garantia = 0;
+         int cantidad = 0;
+         double precio = 0;
+        
+        
+        if ((codigo_txt.getText().equals("")) || (nombre_txt.getText().equals("")) || (fabricante_txt.getText().equals("")) || (cantidad_txt.getText().length()==0) || (precio_txt.getText().length()==0)) {
+            
+            javax.swing.JOptionPane.showMessageDialog(this,"Debe llenar todos los campos obligatorios \n","AVISO",javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            nombre_txt.requestFocus();
+        }
+        else {
+            System.out.println("entra");
+            cantidad = Integer.parseInt(cantidad_txt.getText());
+            precio  = Double.parseDouble(precio_txt.getText());
+            if(garantia_txt.getText().length() == 0){
+                garantia = 0;
+            }else{
+                 garantia = Integer.parseInt(garantia_txt.getText());
+            }
+           
+            insertDB(codigo_txt.getText(),nombre_txt.getText(),fabricante_txt.getText(),cantidad,precio,descripcion_txt.getText(),garantia,Login.tienda_actual);
+       }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,14 +298,47 @@ public class CrearProducto extends javax.swing.JFrame {
             }
         });
     }
+    public void insertDB(String cadena1,String cadena2,String cadena3,int cadena4,double cadena5,String cadena6,int cadena7, String cadena8){
+        try {
+             String query = ("INSERT INTO PRODUCTO VALUES('"+cadena1+"','"+cadena2+"','"+cadena3+"','"+cadena4+"','"+cadena5+"','"+cadena6+"','"+cadena7+"','"+cadena8+"')");
+             Conexion c = new Conexion();
+             c.Insertar(query);
+             System.out.println("Los valores han sido agregados a la base de datos ");
+            vaciar();
+             //c.conexionDB();
+             //stmt = c.getConnection().createStatement(); 
+            // stmt.executeUpdate("INSERT INTO TIENDA VALUES('"+cadena1+"','"+cadena2+"','"+cadena3+"','"+cadena4+"','"+cadena5+"','"+cadena6+"','"+cadena7+"')");
+        }catch(Exception e) {
+                JOptionPane.showMessageDialog(null,"Error "+e);
+         
+        }
+    }
+    public void vaciar(){
+        codigo_txt.setText(null);
+        nombre_txt.setText(null);
+        cantidad_txt.setText(null);
+        descripcion_txt.setText(null);
+        fabricante_txt.setText(null);
+        garantia_txt.setText(null);
+        precio_txt.setText(null);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFormattedTextField cantidad_txt;
+    private javax.swing.JTextField codigo_txt;
+    private javax.swing.JTextField descripcion_txt;
+    private javax.swing.JTextField fabricante_txt;
+    private javax.swing.JTextField garantia_txt;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton7;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -225,10 +348,7 @@ public class CrearProducto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField nombre_txt;
+    private javax.swing.JFormattedTextField precio_txt;
     // End of variables declaration//GEN-END:variables
 }

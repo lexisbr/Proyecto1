@@ -17,6 +17,7 @@ public class CrearTienda extends javax.swing.JFrame {
    
     public CrearTienda() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -126,12 +127,12 @@ public class CrearTienda extends javax.swing.JFrame {
                 telefono1_txtKeyTyped(evt);
             }
         });
-        jPanel1.add(telefono1_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 230, 25));
+        jPanel1.add(telefono1_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 230, 30));
 
         correo_txt.setBackground(new java.awt.Color(255, 255, 255));
         correo_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
         correo_txt.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(correo_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 230, 25));
+        jPanel1.add(correo_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 230, 30));
 
         horario_txt.setBackground(new java.awt.Color(255, 255, 255));
         horario_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
@@ -141,7 +142,7 @@ public class CrearTienda extends javax.swing.JFrame {
                 horario_txtActionPerformed(evt);
             }
         });
-        jPanel1.add(horario_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 200, 230, 25));
+        jPanel1.add(horario_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 200, 230, 30));
 
         nombre_txt.setBackground(new java.awt.Color(255, 255, 255));
         nombre_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
@@ -151,7 +152,7 @@ public class CrearTienda extends javax.swing.JFrame {
                 nombre_txtKeyTyped(evt);
             }
         });
-        jPanel1.add(nombre_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 230, 25));
+        jPanel1.add(nombre_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 230, 30));
 
         jLabel9.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -161,7 +162,7 @@ public class CrearTienda extends javax.swing.JFrame {
         codigo_txt.setBackground(new java.awt.Color(255, 255, 255));
         codigo_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
         codigo_txt.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(codigo_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 230, 25));
+        jPanel1.add(codigo_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 230, 30));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tienda.png"))); // NOI18N
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
@@ -174,12 +175,12 @@ public class CrearTienda extends javax.swing.JFrame {
                 telefono2_txtKeyTyped(evt);
             }
         });
-        jPanel1.add(telefono2_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 230, 25));
+        jPanel1.add(telefono2_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 230, 30));
 
         direccion_txt.setBackground(new java.awt.Color(255, 255, 255));
         direccion_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
         direccion_txt.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(direccion_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 230, 25));
+        jPanel1.add(direccion_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 230, 30));
 
         jLabel11.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
@@ -227,7 +228,6 @@ public class CrearTienda extends javax.swing.JFrame {
     private void telefono1_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefono1_txtKeyTyped
         char c = evt.getKeyChar();
         if (telefono1_txt.getText().length()== 8) evt.consume();
-
         if(c<'0' || c>'9') evt.consume();
     }//GEN-LAST:event_telefono1_txtKeyTyped
 
@@ -298,7 +298,7 @@ public class CrearTienda extends javax.swing.JFrame {
              Conexion c = new Conexion();
              c.Insertar(query);
              System.out.println("Los valores han sido agregados a la base de datos ");
-            
+            vaciar();
              //c.conexionDB();
              //stmt = c.getConnection().createStatement(); 
             // stmt.executeUpdate("INSERT INTO TIENDA VALUES('"+cadena1+"','"+cadena2+"','"+cadena3+"','"+cadena4+"','"+cadena5+"','"+cadena6+"','"+cadena7+"')");
@@ -309,6 +309,16 @@ public class CrearTienda extends javax.swing.JFrame {
         
     
         
+    }
+    
+    public void vaciar(){
+        codigo_txt.setText(null);
+        nombre_txt.setText(null);
+        direccion_txt.setText(null);
+        telefono1_txt.setText(null);
+        telefono2_txt.setText(null);
+        correo_txt.setText(null);
+        horario_txt.setText(null);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

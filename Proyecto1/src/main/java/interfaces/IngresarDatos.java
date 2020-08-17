@@ -18,7 +18,7 @@ public class IngresarDatos extends javax.swing.JFrame {
      */
     public IngresarDatos() {
         initComponents();
-         this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
     }
 
     /**
