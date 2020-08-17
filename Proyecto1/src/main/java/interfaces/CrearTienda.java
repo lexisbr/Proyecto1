@@ -4,16 +4,17 @@
  * and open the template in the editor.
  */
 package interfaces;
-
+import conexionDB.Conexion;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 /**
  *
  * @author jalej
  */
 public class CrearTienda extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CrearTienda
-     */
+   
     public CrearTienda() {
         initComponents();
     }
@@ -37,15 +38,20 @@ public class CrearTienda extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        telefono1_txt = new javax.swing.JTextField();
+        correo_txt = new javax.swing.JTextField();
+        horario_txt = new javax.swing.JTextField();
+        nombre_txt = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        codigo_txt = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        telefono2_txt = new javax.swing.JTextField();
+        direccion_txt = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -93,6 +99,11 @@ public class CrearTienda extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cargar (1).png"))); // NOI18N
         jButton1.setText("Cargar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 170, 40));
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
@@ -107,53 +118,93 @@ public class CrearTienda extends javax.swing.JFrame {
         });
         jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 170, 40));
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 230, 25));
-
-        jTextField6.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField6.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 230, 25));
-
-        jTextField7.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField7.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+        telefono1_txt.setBackground(new java.awt.Color(255, 255, 255));
+        telefono1_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        telefono1_txt.setForeground(new java.awt.Color(0, 0, 0));
+        telefono1_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                telefono1_txtKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 200, 230, 25));
+        jPanel1.add(telefono1_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 230, 25));
 
-        jTextField8.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField8.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 230, 25));
+        correo_txt.setBackground(new java.awt.Color(255, 255, 255));
+        correo_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        correo_txt.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(correo_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 230, 25));
+
+        horario_txt.setBackground(new java.awt.Color(255, 255, 255));
+        horario_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        horario_txt.setForeground(new java.awt.Color(0, 0, 0));
+        horario_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                horario_txtActionPerformed(evt);
+            }
+        });
+        jPanel1.add(horario_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 200, 230, 25));
+
+        nombre_txt.setBackground(new java.awt.Color(255, 255, 255));
+        nombre_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        nombre_txt.setForeground(new java.awt.Color(0, 0, 0));
+        nombre_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombre_txtKeyTyped(evt);
+            }
+        });
+        jPanel1.add(nombre_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 230, 25));
 
         jLabel9.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Codigo:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
-        jTextField9.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField9.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField9.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 230, 25));
+        codigo_txt.setBackground(new java.awt.Color(255, 255, 255));
+        codigo_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        codigo_txt.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(codigo_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 230, 25));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tienda.png"))); // NOI18N
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 230, 25));
+        telefono2_txt.setBackground(new java.awt.Color(255, 255, 255));
+        telefono2_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        telefono2_txt.setForeground(new java.awt.Color(0, 0, 0));
+        telefono2_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                telefono2_txtKeyTyped(evt);
+            }
+        });
+        jPanel1.add(telefono2_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 230, 25));
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 230, 25));
+        direccion_txt.setBackground(new java.awt.Color(255, 255, 255));
+        direccion_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        direccion_txt.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(direccion_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 230, 25));
+
+        jLabel11.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("*");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 5, -1));
+
+        jLabel12.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setText("*");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, 5, -1));
+
+        jLabel13.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setText("*");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 5, -1));
+
+        jLabel14.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("*");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, 5, -1));
+
+        jLabel15.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("* Campos Obligatorios");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 375, 140, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoempresa(2).jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 730, 410));
@@ -169,9 +220,42 @@ public class CrearTienda extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void horario_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horario_txtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_horario_txtActionPerformed
+
+    private void telefono1_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefono1_txtKeyTyped
+        char c = evt.getKeyChar();
+        if (telefono1_txt.getText().length()== 8) evt.consume();
+
+        if(c<'0' || c>'9') evt.consume();
+    }//GEN-LAST:event_telefono1_txtKeyTyped
+
+    private void nombre_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombre_txtKeyTyped
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z')&& (c<' '||c>' ')) evt.consume();
+    }//GEN-LAST:event_nombre_txtKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       if ((codigo_txt.getText().equals("")) || (nombre_txt.getText().equals("")) || (direccion_txt.getText().equals("")) || (telefono1_txt.getText().equals(""))) {
+            
+            javax.swing.JOptionPane.showMessageDialog(this,"Debe llenar todos los campos obligatorios \n","AVISO",javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            codigo_txt.requestFocus();
+        }else if((telefono1_txt.getText().length()< 8)){
+            JOptionPane.showMessageDialog(null,"El número de telefono debe contener 8 digitos");
+        }
+        else {
+            System.out.println("entra");
+            insertDB(codigo_txt.getText(),nombre_txt.getText(),direccion_txt.getText(),telefono1_txt.getText(),telefono2_txt.getText(),correo_txt.getText(),horario_txt.getText());
+       }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void telefono2_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefono2_txtKeyTyped
+           char c = evt.getKeyChar();
+            if (telefono2_txt.getText().length()== 8) evt.consume();
+        if(c<'0' || c>'9') evt.consume();
+    }//GEN-LAST:event_telefono2_txtKeyTyped
 
     /**
      * @param args the command line arguments
@@ -207,12 +291,40 @@ public class CrearTienda extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void insertDB(String cadena1,String cadena2,String cadena3,String cadena4,String cadena5,String cadena6,String cadena7){
+        try {
+             String query = ("INSERT INTO TIENDA VALUES('"+cadena1+"','"+cadena2+"','"+cadena3+"','"+cadena4+"','"+cadena5+"','"+cadena6+"','"+cadena7+"')");
+             Conexion c = new Conexion();
+             c.Insertar(query);
+             System.out.println("Los valores han sido agregados a la base de datos ");
+            
+             //c.conexionDB();
+             //stmt = c.getConnection().createStatement(); 
+            // stmt.executeUpdate("INSERT INTO TIENDA VALUES('"+cadena1+"','"+cadena2+"','"+cadena3+"','"+cadena4+"','"+cadena5+"','"+cadena6+"','"+cadena7+"')");
+        }catch(Exception e) {
+                JOptionPane.showMessageDialog(null,"Error "+e);
+         
+        }
+        
+    
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField codigo_txt;
+    private javax.swing.JTextField correo_txt;
+    private javax.swing.JTextField direccion_txt;
+    private javax.swing.JTextField horario_txt;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -222,12 +334,8 @@ public class CrearTienda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField nombre_txt;
+    private javax.swing.JTextField telefono1_txt;
+    private javax.swing.JTextField telefono2_txt;
     // End of variables declaration//GEN-END:variables
 }

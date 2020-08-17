@@ -5,6 +5,10 @@
  */
 package interfaces;
 
+import conexionDB.Conexion;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jalej
@@ -14,9 +18,22 @@ public class CrearTiempoEntreTiendas extends javax.swing.JFrame {
     /**
      * Creates new form CrearTiempoEntreTiendas
      */
+    String Query="SELECT CODIGO FROM TIENDA";
+    Conexion a = new Conexion();
     public CrearTiempoEntreTiendas() {
         initComponents();
          this.setLocationRelativeTo(null);
+         
+        ResultSet Result = a.Seleccionar(Query);
+         try {
+             while (Result.next()) {
+                if(!(Login.tienda_actual.equals(Result.getObject("codigo")))){
+                  cb_tiendas.addItem(String.valueOf(Result.getObject("codigo")));
+                }
+        }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error "+e);
+        }
     }
 
     /**
@@ -32,11 +49,13 @@ public class CrearTiempoEntreTiendas extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        cb_tiendas = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        txt_tiempo = new javax.swing.JFormattedTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,20 +78,16 @@ public class CrearTiempoEntreTiendas extends javax.swing.JFrame {
         jLabel8.setText("Tiempo:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 60, 20));
 
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 250, 25));
-
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        cb_tiendas.setBackground(new java.awt.Color(255, 255, 255));
+        cb_tiendas.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        cb_tiendas.setForeground(new java.awt.Color(0, 0, 0));
+        cb_tiendas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione tienda" }));
+        cb_tiendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                cb_tiendasActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 250, 25));
+        jPanel1.add(cb_tiendas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 250, 25));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Reloj (1).png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
@@ -82,6 +97,11 @@ public class CrearTiempoEntreTiendas extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cargar (1).png"))); // NOI18N
         jButton1.setText("Cargar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 170, 40));
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
@@ -96,6 +116,25 @@ public class CrearTiempoEntreTiendas extends javax.swing.JFrame {
         });
         jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 170, 40));
 
+        txt_tiempo.setBackground(new java.awt.Color(255, 255, 255));
+        txt_tiempo.setForeground(new java.awt.Color(0, 0, 0));
+        txt_tiempo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_tiempoKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txt_tiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 250, 25));
+
+        jLabel11.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("*");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 170, 5, -1));
+
+        jLabel15.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("* Tiempo en días");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 320, 140, 20));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoempresa(2).jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 340));
 
@@ -104,15 +143,28 @@ public class CrearTiempoEntreTiendas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         IngresarDatos a = new IngresarDatos();
         a.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void cb_tiendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_tiendasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_tiendasActionPerformed
+
+    private void txt_tiempoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_tiempoKeyTyped
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+    }//GEN-LAST:event_txt_tiempoKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         if((txt_tiempo.getText().equals("")) || (cb_tiendas.getSelectedItem().equals("Seleccione tienda"))){
+              JOptionPane.showMessageDialog(null,"Llene todos los campos");
+         }else{
+             insertarDB((String) cb_tiendas.getSelectedItem(), txt_tiempo.getText());
+         }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,17 +200,36 @@ public class CrearTiempoEntreTiendas extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void insertarDB(String cadena1, String cadena2){
+        try {
+             String query = ("INSERT INTO TIEMPO_DE_ENVIO VALUES('"+0+"','"+cadena1+"','"+cadena2+"','"+Login.tienda_actual+"')");
+             Conexion c = new Conexion();
+             c.Insertar(query);
+             System.out.println("Los valores han sido agregados a la base de datos ");
+            
+             //c.conexionDB();
+             //stmt = c.getConnection().createStatement(); 
+            // stmt.executeUpdate("INSERT INTO TIENDA VALUES('"+cadena1+"','"+cadena2+"','"+cadena3+"','"+cadena4+"','"+cadena5+"','"+cadena6+"','"+cadena7+"')");
+        }catch(Exception e) {
+                JOptionPane.showMessageDialog(null,"Error "+e);
+         
+        }
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cb_tiendas;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton7;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JFormattedTextField txt_tiempo;
     // End of variables declaration//GEN-END:variables
 }

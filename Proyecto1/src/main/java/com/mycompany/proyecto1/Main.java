@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.mycompany.proyecto1;
+import conexionDB.Conexion;
 import interfaces.SeleccionVersion;
 
 /**
@@ -12,6 +13,8 @@ import interfaces.SeleccionVersion;
  */
 public class Main {
     public static void main(String[] arg){
+        Conexion c = new Conexion();
+        c.conexionDB();
         SeleccionVersion log = new SeleccionVersion();
         log.setVisible(true);
         

@@ -5,6 +5,8 @@
  */
 package interfaces;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jalej
@@ -29,23 +31,23 @@ public class CrearEmpleado extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        codigo_txt = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        telefono_txt = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
+        direccion_txt = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        nit_txt = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
+        email_txt = new javax.swing.JTextField();
+        dpi_txt = new javax.swing.JTextField();
+        nombre_txt = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,15 +60,15 @@ public class CrearEmpleado extends javax.swing.JFrame {
         jLabel6.setText("Nombre:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
-        jTextField8.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField8.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        codigo_txt.setBackground(new java.awt.Color(255, 255, 255));
+        codigo_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        codigo_txt.setForeground(new java.awt.Color(0, 0, 0));
+        codigo_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                codigo_txtActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 230, 25));
+        jPanel1.add(codigo_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 230, 25));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cliente.png"))); // NOI18N
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
@@ -84,37 +86,52 @@ public class CrearEmpleado extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("NIT:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, -1, -1));
 
-        jTextField10.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField10.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField10.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 230, 25));
+        telefono_txt.setBackground(new java.awt.Color(255, 255, 255));
+        telefono_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        telefono_txt.setForeground(new java.awt.Color(0, 0, 0));
+        telefono_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                telefono_txtKeyTyped(evt);
+            }
+        });
+        jPanel1.add(telefono_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 230, 25));
 
         jLabel9.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("DPI:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 30, -1));
 
-        jTextField12.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField12.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField12.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 250, 230, 25));
+        direccion_txt.setBackground(new java.awt.Color(255, 255, 255));
+        direccion_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        direccion_txt.setForeground(new java.awt.Color(0, 0, 0));
+        direccion_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                direccion_txtActionPerformed(evt);
+            }
+        });
+        jPanel1.add(direccion_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 250, 230, 25));
 
         jLabel7.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Direccion:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Email:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, -1, -1));
 
-        jTextField6.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField6.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 230, 25));
+        nit_txt.setBackground(new java.awt.Color(255, 255, 255));
+        nit_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        nit_txt.setForeground(new java.awt.Color(0, 0, 0));
+        nit_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nit_txtKeyTyped(evt);
+            }
+        });
+        jPanel1.add(nit_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 230, 25));
 
         jLabel8.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -131,29 +148,49 @@ public class CrearEmpleado extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, 170, 40));
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, 170, 40));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cargar (1).png"))); // NOI18N
         jButton1.setText("Cargar");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 400, 170, 40));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 410, 170, 40));
 
-        jTextField7.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField7.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, 230, 25));
+        email_txt.setBackground(new java.awt.Color(255, 255, 255));
+        email_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        email_txt.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(email_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, 230, 25));
 
-        jTextField11.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField11.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField11.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 230, 25));
+        dpi_txt.setBackground(new java.awt.Color(255, 255, 255));
+        dpi_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        dpi_txt.setForeground(new java.awt.Color(0, 0, 0));
+        dpi_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dpi_txtActionPerformed(evt);
+            }
+        });
+        dpi_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                dpi_txtKeyTyped(evt);
+            }
+        });
+        jPanel1.add(dpi_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 230, 25));
 
-        jTextField13.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField13.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField13.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 230, 25));
+        nombre_txt.setBackground(new java.awt.Color(255, 255, 255));
+        nombre_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        nombre_txt.setForeground(new java.awt.Color(0, 0, 0));
+        nombre_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombre_txtKeyTyped(evt);
+            }
+        });
+        jPanel1.add(nombre_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 230, 25));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoempresa(2).jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -163,15 +200,57 @@ public class CrearEmpleado extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void codigo_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigo_txtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_codigo_txtActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         IngresarDatos a = new IngresarDatos();
         a.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void nombre_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombre_txtKeyTyped
+       char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z')&& (c<' '||c>' ')) evt.consume();
+    }//GEN-LAST:event_nombre_txtKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       if ((codigo_txt.getText().equals("")) || (nombre_txt.getText().equals("")) || (direccion_txt.getText().equals("")) || (telefono_txt.getText().equals(""))) {
+            
+            javax.swing.JOptionPane.showMessageDialog(this,"Debe llenar todos los campos obligatorios \n","AVISO",javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            codigo_txt.requestFocus();
+        }else if((telefono1_txt.getText().length()< 8)){
+            JOptionPane.showMessageDialog(null,"El número de telefono debe contener 8 digitos");
+        }
+        else {
+            System.out.println("entra");
+            insertDB(codigo_txt.getText(),nombre_txt.getText(),direccion_txt.getText(),telefono1_txt.getText(),telefono2_txt.getText(),correo_txt.getText(),horario_txt.getText());
+       }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void telefono_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefono_txtKeyTyped
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+    }//GEN-LAST:event_telefono_txtKeyTyped
+
+    private void dpi_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dpi_txtKeyTyped
+       char c = evt.getKeyChar();
+       if (dpi_txt.getText().length()== 13) evt.consume();
+       if(c<'0' || c>'9') evt.consume();
+    }//GEN-LAST:event_dpi_txtKeyTyped
+
+    private void dpi_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpi_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dpi_txtActionPerformed
+
+    private void nit_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nit_txtKeyTyped
+         if (nit_txt.getText().length()== 13) evt.consume();
+    }//GEN-LAST:event_nit_txtKeyTyped
+
+    private void direccion_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direccion_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_direccion_txtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,6 +288,10 @@ public class CrearEmpleado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField codigo_txt;
+    private javax.swing.JTextField direccion_txt;
+    private javax.swing.JTextField dpi_txt;
+    private javax.swing.JTextField email_txt;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
@@ -222,12 +305,8 @@ public class CrearEmpleado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField nit_txt;
+    private javax.swing.JTextField nombre_txt;
+    private javax.swing.JTextField telefono_txt;
     // End of variables declaration//GEN-END:variables
 }
