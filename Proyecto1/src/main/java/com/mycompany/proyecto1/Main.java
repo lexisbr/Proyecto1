@@ -14,7 +14,6 @@ import interfaces.SeleccionVersion;
 public class Main {
     public static void main(String[] arg){
         Conexion c = new Conexion();
-        c.conexionDB();
         SeleccionVersion log = new SeleccionVersion();
         log.setVisible(true);
         

@@ -26,10 +26,9 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
-         ResultSet Result = a.Seleccionar(Query);
+         ResultSet Result = a.SeleccionarCB(Query);
          try {
              while (Result.next()) {
-
             cb_tiendas.addItem(String.valueOf(Result.getObject("codigo")));
         }
 

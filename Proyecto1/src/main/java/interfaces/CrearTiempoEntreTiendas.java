@@ -24,7 +24,7 @@ public class CrearTiempoEntreTiendas extends javax.swing.JFrame {
         initComponents();
          this.setLocationRelativeTo(null);
          
-        ResultSet Result = a.Seleccionar(Query);
+        ResultSet Result = a.SeleccionarCB(Query);
          try {
              while (Result.next()) {
                 if(!(Login.tienda_actual.equals(Result.getObject("codigo")))){
