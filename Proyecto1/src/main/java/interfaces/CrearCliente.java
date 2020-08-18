@@ -165,6 +165,11 @@ public class CrearCliente extends javax.swing.JFrame {
         credito_txt.setBackground(new java.awt.Color(255, 255, 255));
         credito_txt.setForeground(new java.awt.Color(0, 0, 0));
         credito_txt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        credito_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                credito_txtActionPerformed(evt);
+            }
+        });
         jPanel1.add(credito_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, 230, 30));
 
         dpi_txt.setBackground(new java.awt.Color(255, 255, 255));
@@ -283,6 +288,10 @@ public class CrearCliente extends javax.swing.JFrame {
             insertDB(nit_txt.getText(),nombre_txt.getText(),telefono_txt.getText(),dpi_txt.getText(),email_txt.getText(),direccion_txt.getText(),credito);
        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void credito_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_credito_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_credito_txtActionPerformed
 
     /**
      * @param args the command line arguments

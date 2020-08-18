@@ -8,6 +8,7 @@ package conexionDB;
 
 import java.sql.DriverManager;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,11 +24,11 @@ public class Conexion {
     private static String password = "5200fcb1";
     private static String url = "jdbc:mysql://localhost/INTELAF?useSSL=false";
     public static final int MYSQL_DUPLICATE_PK = 1062;
-    
-    
- 
- 
 
+    public Conexion() {
+        conexionDB();
+    }
+    
     public void conexionDB() {
         conexion = null;
         try {
@@ -44,7 +45,7 @@ public class Conexion {
     public void Insertar(String query) {
         Statement stmt = null;
         try {
-            conexionDB();
+            getConnection();
             stmt = getConnection().createStatement();
             stmt.executeUpdate(query);
             JOptionPane.showMessageDialog(null,"Los valores han sido agregados a la base de datos");
@@ -57,10 +58,37 @@ public class Conexion {
         }
     }
     
-    public ResultSet Seleccionar(String query){
+    
+    public int InsertFactura(String query) {
+        int resultado = 0;
+        try {
+ 
+            Statement stmt = null;
+            stmt = getConnection().createStatement();
+            stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) {
+                resultado = rs.getInt(1);
+            }
+            rs.close();
+
+            stmt.close();
+            disconnectDB();
+        } catch (SQLException e) {
+            if (e.getErrorCode() == MYSQL_DUPLICATE_PK) {
+                JOptionPane.showMessageDialog(null, "Error el ID o codigo ya existe");
+            } else {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+        return resultado;
+    }
+    
+    public ResultSet SeleccionarCB(String query){
         Statement stmt = null;
         try {
-            conexionDB();
+            getConnection();
             stmt = getConnection().createStatement();
             ResultSet resultado = stmt.executeQuery(query);
             return resultado;
@@ -68,6 +96,20 @@ public class Conexion {
             return null;
 
         }
+    }
+    
+    public ResultSet SeleccionarJT(String query){
+         PreparedStatement ps = null;
+         ResultSet rs = null;
+         try {
+            Connection con = getConnection();
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+            return rs;
+        } catch (Exception e) {
+             return null;
+        }
+         
     }
 
     public Connection getConnection() {
@@ -83,9 +125,9 @@ public class Conexion {
     }
    
      public static void main(String[] args){
-   
          Conexion c = new Conexion();
          c.conexionDB();
+       
      }
     
 }
