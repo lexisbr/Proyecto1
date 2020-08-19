@@ -297,6 +297,7 @@ public class CrearTienda extends javax.swing.JFrame {
              String query = ("INSERT INTO TIENDA VALUES('"+cadena1+"','"+cadena2+"','"+cadena3+"','"+cadena4+"','"+cadena5+"','"+cadena6+"','"+cadena7+"')");
              Conexion c = new Conexion();
              c.Insertar(query);
+            
              System.out.println("Los valores han sido agregados a la base de datos ");
             vaciar();
              //c.conexionDB();
