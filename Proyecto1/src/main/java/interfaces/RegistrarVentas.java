@@ -426,9 +426,15 @@ public class RegistrarVentas extends javax.swing.JFrame {
     }//GEN-LAST:event_jt_productoMouseClicked
 
     private void venta_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venta_botonActionPerformed
+        double credito_ingresado=0;
+        System.out.println("ola");
+        if((credito_txt.getText().equals(""))){  
+            credito_ingresado=0;
+        }
+        else credito_ingresado = Double.parseDouble(credito_txt.getText());
         double total = Double.parseDouble(total_lbl.getText());
         double credito_cliente = Double.parseDouble(credito_lbl.getText());
-        double credito_ingresado = Double.parseDouble(credito_txt.getText());
+       
         String query = ("INSERT INTO FACTURA VALUES('"+0+"','"+fecha+"','"+total+"','"+Login.tienda_actual+"','"+lbl_nit.getText()+"')");
         String Datos[] = new String[3];
         int codigofactura =0;
@@ -496,17 +502,29 @@ public class RegistrarVentas extends javax.swing.JFrame {
     }//GEN-LAST:event_credito_txtActionPerformed
 
     private void calcular_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcular_botonActionPerformed
-          double total = Double.parseDouble(total_lbl.getText());
+        try {
+            double total = Double.parseDouble(total_lbl.getText());
         double credito_cliente = Double.parseDouble(credito_lbl.getText());
-        double credito_ingresado = Double.parseDouble(credito_txt.getText());
+        double credito_ingresado;
         double efectivo = 0;
+        
+        if(credito_txt.getText().equals("")){
+            credito_ingresado=0;
+            efectivo = total;
+            efectivo_txt.setText(String.valueOf(efectivo));
+        }else{
+           credito_ingresado = Double.parseDouble(credito_txt.getText());
           if(verificarCredito(credito_cliente, credito_ingresado)){
             efectivo = total-credito_ingresado;
             efectivo_txt.setText(String.valueOf(efectivo));
-       }else{
+            }else{
            JOptionPane.showMessageDialog(null, "Su credito es insuficiente");
-       }
-       
+            }
+        }
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, "No ha seleccionado todos los items");
+        }
+        
     }//GEN-LAST:event_calcular_botonActionPerformed
 
     /**
@@ -760,7 +778,7 @@ public class RegistrarVentas extends javax.swing.JFrame {
              stmt = a.getConnection().createStatement();
              stmt.executeUpdate(query);
              stmt.close();
-            CargarTablaProducto();
+            CargarTablaCliente();
         }catch (SQLException e) {
              if(e.getErrorCode() == MYSQL_DUPLICATE_PK ){
                 JOptionPane.showMessageDialog(null,"Error, el codigo ya existe.");
