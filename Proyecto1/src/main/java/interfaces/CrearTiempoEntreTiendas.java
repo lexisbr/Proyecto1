@@ -28,12 +28,17 @@ public class CrearTiempoEntreTiendas extends javax.swing.JFrame {
          try {
              while (Result.next()) {
                 if(!(Login.tienda_actual.equals(Result.getObject("codigo")))){
-                  cb_tiendas.addItem(String.valueOf(Result.getObject("codigo")));
+                  cb_tiendas.addItem(String.valueOf(Result.getObject("codigo"))); 
                 }
-        }
+              }
+         Result.close();
+         a.disconnectDB();
+             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error "+e);
         }
+         
+      
     }
 
     /**
@@ -208,6 +213,7 @@ public class CrearTiempoEntreTiendas extends javax.swing.JFrame {
              c.Insertar(query);
              System.out.println("Los valores han sido agregados a la base de datos ");
             vaciar();
+           
              //c.conexionDB();
              //stmt = c.getConnection().createStatement(); 
             // stmt.executeUpdate("INSERT INTO TIENDA VALUES('"+cadena1+"','"+cadena2+"','"+cadena3+"','"+cadena4+"','"+cadena5+"','"+cadena6+"','"+cadena7+"')");

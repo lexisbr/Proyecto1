@@ -19,7 +19,7 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     public static String usuario = "";
-    public static String tienda_actual ="";
+    public static String tienda_actual ="DORIME";
    
     String Query="SELECT CODIGO FROM TIENDA";
     Conexion a = new Conexion();

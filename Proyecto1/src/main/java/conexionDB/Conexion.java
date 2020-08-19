@@ -45,10 +45,12 @@ public class Conexion {
     public void Insertar(String query) {
         Statement stmt = null;
         try {
-            getConnection();
+            
             stmt = getConnection().createStatement();
             stmt.executeUpdate(query);
             JOptionPane.showMessageDialog(null,"Los valores han sido agregados a la base de datos");
+            stmt.close();
+            disconnectDB();
         } catch (SQLException e) {
              if(e.getErrorCode() == MYSQL_DUPLICATE_PK ){
                 JOptionPane.showMessageDialog(null,"Error, el codigo ya existe.");
@@ -57,6 +59,7 @@ public class Conexion {
              }
         }
     }
+    
     
     
     public int InsertFactura(String query) {
@@ -91,7 +94,10 @@ public class Conexion {
             getConnection();
             stmt = getConnection().createStatement();
             ResultSet resultado = stmt.executeQuery(query);
+            
             return resultado;
+    
+         
         } catch (Exception e) {
             return null;
 

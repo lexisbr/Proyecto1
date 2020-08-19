@@ -304,7 +304,8 @@ public class CrearProducto extends javax.swing.JFrame {
              Conexion c = new Conexion();
              c.Insertar(query);
              System.out.println("Los valores han sido agregados a la base de datos ");
-            vaciar();
+             vaciar();
+            
              //c.conexionDB();
              //stmt = c.getConnection().createStatement(); 
             // stmt.executeUpdate("INSERT INTO TIENDA VALUES('"+cadena1+"','"+cadena2+"','"+cadena3+"','"+cadena4+"','"+cadena5+"','"+cadena6+"','"+cadena7+"')");
