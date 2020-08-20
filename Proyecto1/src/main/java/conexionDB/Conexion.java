@@ -25,9 +25,11 @@ public class Conexion {
     private static String url = "jdbc:mysql://localhost/INTELAF?useSSL=false";
     public static final int MYSQL_DUPLICATE_PK = 1062;
     public static boolean verificar;
+    public static boolean mensaje;
 
     public Conexion() {
         conexionDB();
+        
     }
     
     public void conexionDB() {
@@ -62,6 +64,7 @@ public class Conexion {
     }
     public void InsertarArchivo(String query) {
         Statement stmt = null;
+        verificar=true;
         try {
             
             stmt = getConnection().createStatement();
@@ -71,7 +74,7 @@ public class Conexion {
             disconnectDB();
         } catch (SQLException e) {
              if(e.getErrorCode() == MYSQL_DUPLICATE_PK ){
-                 JOptionPane.showMessageDialog(null,"Error "+stmt.toString());
+               //  JOptionPane.showMessageDialog(null,"Error");
                  verificar = false;
              }else{
              JOptionPane.showMessageDialog(null,"Error "+e);
@@ -147,6 +150,10 @@ public class Conexion {
         if (conexion == null) {
             System.out.println("Conexion terminada");
         }
+    }
+    
+    public static void setMensaje(boolean a){
+        mensaje = a;
     }
    
      public static void main(String[] args){

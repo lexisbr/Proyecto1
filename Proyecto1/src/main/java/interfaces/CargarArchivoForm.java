@@ -136,6 +136,7 @@ public class CargarArchivoForm extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
             File fichero = file.getSelectedFile();
             LeerArchivo leer = new LeerArchivo();
+            
               try {
                 leer.muestraContenido(fichero);
             } catch (Exception e) {
