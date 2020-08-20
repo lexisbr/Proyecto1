@@ -5,6 +5,7 @@
  */
 package com.mycompany.proyecto1;
 import conexionDB.Conexion;
+import interfaces.Login;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,6 +26,8 @@ public class LeerArchivo {
      static String [] datos;
      String[] enviar = new String[10];
      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+     int contlineas =0;
+     int continsert =0;
     public void muestraContenido(File archivo) throws FileNotFoundException, IOException {
         int i=0;
         String cadena;
@@ -35,7 +38,7 @@ public class LeerArchivo {
             //System.out.println(cadena);
             cadena = cadena + ",";
             dato = dato + cadena;
-            
+            contlineas++;
         }
         StringTokenizer tokens = new StringTokenizer(dato,",");
         datos = new String [tokens.countTokens()];
@@ -54,8 +57,7 @@ public class LeerArchivo {
     }
     
     public void Tablas(){
-        boolean tienda=false,tiempo=false,producto=false,empleado=false,cliente=false,pedido=false;
-//        String[] insert = new String[10];
+        
         int cuenta=1;
         try {
              for (int i = 0; i < datos.length; i++) {
@@ -112,6 +114,10 @@ public class LeerArchivo {
             
             
         }
+             if(continsert==contlineas&&Conexion.mensaje){
+                 JOptionPane.showMessageDialog(null,"Los datos correctos se agregaron efectivamente.");
+                 Conexion.setMensaje(false);
+             }
               
         } catch (Exception e) {
              JOptionPane.showMessageDialog(null,"Error "+e);
@@ -224,7 +230,11 @@ public class LeerArchivo {
         }
         
     }
-    
+     
+    /////////////////////////////////////////// 
+    /* METODOS PARA INSERTAR EN BASE DE DATOS*/
+    ///////////////////////////////////////////
+     
     public void insertTienda(String nombre,String direccion,String codigo,String telefono){
         System.out.println("entra a db");
         
@@ -232,6 +242,12 @@ public class LeerArchivo {
              String query = ("INSERT INTO TIENDA(codigo,nombre,direccion,telefono_1) VALUES('"+codigo+"','"+nombre+"','"+direccion+"','"+telefono+"')");
              Conexion c = new Conexion();
              c.InsertarArchivo(query);
+             continsert++;
+             if(c.verificar){
+                  c.setMensaje(true);
+             }else{
+                 JOptionPane.showMessageDialog(null,"Hay un error en Tienda: "+codigo+". Verifica e intenta de nuevo.");
+             }
         }catch(Exception e) {
                 JOptionPane.showMessageDialog(null,"Error "+e);
          
@@ -247,6 +263,12 @@ public class LeerArchivo {
              String query = ("INSERT INTO TIEMPO_DE_ENVIO(tiempo,codigo_tienda1,codigo_tienda2) VALUES('"+tiempo+"','"+tienda1+"','"+tienda2+"')");
              Conexion c = new Conexion();
              c.InsertarArchivo(query);
+             continsert++;
+             if(c.verificar){              
+                  c.setMensaje(true);
+             }else{
+                 JOptionPane.showMessageDialog(null,"Hay un error en Tiempo entre tiendas: "+tienda1+" y "+tienda2+". Verifica e intenta de nuevo.");
+             }
         }catch(Exception e) {
                 JOptionPane.showMessageDialog(null,"Error "+e);
          
@@ -260,7 +282,14 @@ public class LeerArchivo {
         try {
              String query = ("INSERT INTO PRODUCTO(nombre,fabricante,codigo,cantidad,precio,codigo_tienda) VALUES('"+nombre+"','"+fabricante+"','"+codigo+"','"+cantidad+"','"+precio+"','"+tienda+"')");
              Conexion c = new Conexion();
-             c.InsertarArchivo(query);
+             c.InsertarArchivo(query); 
+             continsert++;
+             if(c.verificar){    
+                  c.setMensaje(true);
+                 
+             }else{
+                 JOptionPane.showMessageDialog(null,"Hay un error en Producto: "+codigo+". Verifica e intenta de nuevo.");
+             }
         }catch(Exception e) {
                 JOptionPane.showMessageDialog(null,"Error "+e);
          
@@ -275,6 +304,12 @@ public class LeerArchivo {
              String query = ("INSERT INTO EMPLEADO(nombre,codigo,telefono,DPI,email,direccion) VALUES('"+nombre+"','"+codigo+"','"+telefono+"','"+dpi+"',' ',' ')");
              Conexion c = new Conexion();
              c.InsertarArchivo(query);
+             System.out.println("variable verificar: "+c.verificar);
+             if(c.verificar){     
+                 c.setMensaje(true);
+             }else{
+                 JOptionPane.showMessageDialog(null,"Hay un error en Empleado: "+codigo+". Verifica e intenta de nuevo.");
+             }
         }catch(Exception e) {
                 JOptionPane.showMessageDialog(null,"Error "+e);
          
@@ -289,10 +324,10 @@ public class LeerArchivo {
              String query = ("INSERT INTO CLIENTE(nombre,NIT,telefono,credito_compra) VALUES('"+nombre+"','"+nit+"','"+telefono+"','"+credito+"')");
              Conexion c = new Conexion();
              c.InsertarArchivo(query);
-             if(c.verificar==true){
-                 JOptionPane.showMessageDialog(null,"Se agrego a base datos");
+             if(c.verificar){         
+                 c.setMensaje(true);        
              }else{
-                 JOptionPane.showMessageDialog(null,"Hay un error en Cliente "+nit+". Verifica e intenta de nuevo.");
+                 JOptionPane.showMessageDialog(null,"Hay un error en Cliente: "+nit+". Verifica e intenta de nuevo.");
              }
         }catch(Exception e) {
                 JOptionPane.showMessageDialog(null,"Error "+e);
@@ -307,6 +342,11 @@ public class LeerArchivo {
              String query = ("INSERT INTO PEDIDO(codigo,codigo_tienda_destino,codigo_tienda_origen,fecha,nit_cliente,codigo_producto,cantidad,total,anticipo) VALUES('"+codigo+"','"+tienda1+"','"+tienda2+"','"+fecha+"','"+cliente+"','"+producto+"','"+cantidad+"','"+total+"','"+anticipo+"')");
              Conexion c = new Conexion();
              c.InsertarArchivo(query);
+             if(c.verificar){
+                 c.setMensaje(true);
+             }else{
+                 JOptionPane.showMessageDialog(null,"Hay un error en Pedido: "+codigo+". Verifica e intenta de nuevo.");
+             }
         }catch(Exception e) {
                 JOptionPane.showMessageDialog(null,"Error "+e);
          
