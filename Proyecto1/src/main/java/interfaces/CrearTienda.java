@@ -232,8 +232,8 @@ public class CrearTienda extends javax.swing.JFrame {
     }//GEN-LAST:event_telefono1_txtKeyTyped
 
     private void nombre_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombre_txtKeyTyped
-        char c = evt.getKeyChar();
-        if((c<'a' || c>'z') && (c<'A' || c>'Z')&& (c<' '||c>' ')) evt.consume();
+       /* char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z')&& (c<' '||c>' ')) evt.consume();*/
     }//GEN-LAST:event_nombre_txtKeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

@@ -208,7 +208,7 @@ public class CrearTiempoEntreTiendas extends javax.swing.JFrame {
     
     public void insertarDB(String cadena1, String cadena2){
         try {
-             String query = ("INSERT INTO TIEMPO_DE_ENVIO VALUES('"+0+"','"+cadena1+"','"+cadena2+"','"+Login.tienda_actual+"')");
+             String query = ("INSERT INTO TIEMPO_DE_ENVIO VALUES('"+0+"','"+cadena2+"','"+Login.tienda_actual+"','"+cadena1+"')");
              Conexion c = new Conexion();
              c.Insertar(query);
              System.out.println("Los valores han sido agregados a la base de datos ");

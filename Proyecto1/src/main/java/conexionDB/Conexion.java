@@ -24,6 +24,7 @@ public class Conexion {
     private static String password = "5200fcb1";
     private static String url = "jdbc:mysql://localhost/INTELAF?useSSL=false";
     public static final int MYSQL_DUPLICATE_PK = 1062;
+    public static boolean verificar;
 
     public Conexion() {
         conexionDB();
@@ -54,6 +55,24 @@ public class Conexion {
         } catch (SQLException e) {
              if(e.getErrorCode() == MYSQL_DUPLICATE_PK ){
                 JOptionPane.showMessageDialog(null,"Error, el codigo ya existe.");
+             }else{
+             JOptionPane.showMessageDialog(null,"Error "+e);
+             }
+        }
+    }
+    public void InsertarArchivo(String query) {
+        Statement stmt = null;
+        try {
+            
+            stmt = getConnection().createStatement();
+            stmt.executeUpdate(query);
+            System.out.println("Se agrego dato ");
+            stmt.close();
+            disconnectDB();
+        } catch (SQLException e) {
+             if(e.getErrorCode() == MYSQL_DUPLICATE_PK ){
+                 JOptionPane.showMessageDialog(null,"Error "+stmt.toString());
+                 verificar = false;
              }else{
              JOptionPane.showMessageDialog(null,"Error "+e);
              }
