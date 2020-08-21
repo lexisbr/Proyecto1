@@ -512,7 +512,7 @@ public class RegistrarPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_calcular_botonActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        MainEmpresa a = new MainEmpresa();
+        OpcionesPedido a = new OpcionesPedido();
         a.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
