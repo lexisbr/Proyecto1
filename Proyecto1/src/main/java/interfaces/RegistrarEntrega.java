@@ -30,9 +30,25 @@ public class RegistrarEntrega extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        regresar_bt = new javax.swing.JButton();
+        registrar_bt = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        pedido_txt = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        pedido_jt = new javax.swing.JTable();
+        pedido_bt = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        estado_lbl = new javax.swing.JLabel();
+        fecha_lbl = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        marco2 = new javax.swing.JLabel();
+        tiempo_lbl = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        pedido_lbl = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        marco1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -45,34 +61,119 @@ public class RegistrarEntrega extends javax.swing.JFrame {
         jLabel2.setText("Registrar pedido ingresado.");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
 
-        jButton8.setBackground(new java.awt.Color(255, 255, 255));
-        jButton8.setFont(new java.awt.Font("Leelawadee UI", 1, 12)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(0, 0, 0));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/regresar.png"))); // NOI18N
-        jButton8.setText("Regresar");
-        jButton8.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        regresar_bt.setBackground(new java.awt.Color(255, 255, 255));
+        regresar_bt.setFont(new java.awt.Font("Leelawadee UI", 1, 12)); // NOI18N
+        regresar_bt.setForeground(new java.awt.Color(0, 0, 0));
+        regresar_bt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/regresar.png"))); // NOI18N
+        regresar_bt.setText("Regresar");
+        regresar_bt.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
+        regresar_bt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                regresar_btActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, 130, 30));
+        jPanel1.add(regresar_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, 130, 30));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cargar (1).png"))); // NOI18N
-        jButton1.setText("Cargar");
-        jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        registrar_bt.setBackground(new java.awt.Color(255, 255, 255));
+        registrar_bt.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        registrar_bt.setForeground(new java.awt.Color(0, 0, 0));
+        registrar_bt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cargar (1).png"))); // NOI18N
+        registrar_bt.setText("Registrar");
+        registrar_bt.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
+        registrar_bt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                registrar_btActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 410, 280, 40));
+        jPanel1.add(registrar_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 410, 280, 40));
 
         jLabel22.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
         jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 407, 285, 45));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pedidoingresado.png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 60));
+
+        pedido_txt.setBackground(new java.awt.Color(255, 255, 255));
+        pedido_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        pedido_txt.setForeground(new java.awt.Color(0, 0, 0));
+        pedido_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pedido_txtActionPerformed(evt);
+            }
+        });
+        jPanel1.add(pedido_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 240, 30));
+
+        jLabel14.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Estado:");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, -1, 30));
+
+        jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane3.setForeground(new java.awt.Color(0, 0, 0));
+
+        pedido_jt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        jScrollPane3.setViewportView(pedido_jt);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 380, 120));
+
+        pedido_bt.setBackground(new java.awt.Color(255, 255, 255));
+        pedido_bt.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        pedido_bt.setForeground(new java.awt.Color(0, 0, 0));
+        pedido_bt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pedido3.1.png"))); // NOI18N
+        pedido_bt.setText("Seleccionar Pedido");
+        pedido_bt.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
+        pedido_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pedido_btActionPerformed(evt);
+            }
+        });
+        jPanel1.add(pedido_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 190, 40));
+
+        jLabel15.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Pedido:");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, 30));
+
+        estado_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        estado_lbl.setForeground(new java.awt.Color(0, 0, 0));
+        estado_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
+        jPanel1.add(estado_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 280, 200, 30));
+
+        fecha_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        fecha_lbl.setForeground(new java.awt.Color(0, 0, 0));
+        fecha_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
+        jPanel1.add(fecha_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 130, 200, 30));
+
+        jLabel16.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Fecha:");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, -1, 30));
+
+        marco2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
+        jPanel1.add(marco2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 400, 225));
+
+        tiempo_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        tiempo_lbl.setForeground(new java.awt.Color(0, 0, 0));
+        tiempo_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
+        jPanel1.add(tiempo_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, 200, 30));
+
+        jLabel17.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("Tiempo:");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, -1, 30));
+
+        pedido_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        pedido_lbl.setForeground(new java.awt.Color(0, 0, 0));
+        pedido_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
+        jPanel1.add(pedido_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, 200, 30));
+
+        jLabel18.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel18.setText("Pedido:");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, 30));
+
+        marco1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
+        jPanel1.add(marco1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 290, 220));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoventas.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
@@ -83,13 +184,13 @@ public class RegistrarEntrega extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void regresar_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresar_btActionPerformed
         OpcionesPedido a = new OpcionesPedido();
         a.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_regresar_btActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void registrar_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrar_btActionPerformed
 /*        if ((codigo_txt.getText().equals("")) || (nombre_txt.getText().equals("")) || (direccion_txt.getText().equals("")) || (telefono_txt.getText().equals("")) || (email_txt.getText().equals("")) || (dpi_txt.getText().equals(""))) {
 
             javax.swing.JOptionPane.showMessageDialog(this,"Debe llenar todos los campos obligatorios \n","AVISO",javax.swing.JOptionPane.INFORMATION_MESSAGE);
@@ -103,7 +204,28 @@ public class RegistrarEntrega extends javax.swing.JFrame {
             System.out.println("entra");
             insertDB(codigo_txt.getText(),nombre_txt.getText(),telefono_txt.getText(),nit_txt.getText(),dpi_txt.getText(),email_txt.getText(),direccion_txt.getText());
         }*/
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_registrar_btActionPerformed
+
+    private void pedido_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedido_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pedido_txtActionPerformed
+
+    private void pedido_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedido_btActionPerformed
+/*        int FilaSeleccionada = pedido_jt.getSelectedRow();
+        String nit = "";
+        String name = "";
+        String credito = "";
+
+        if(FilaSeleccionada>=0){
+            nit=pedido_jt.getValueAt(FilaSeleccionada,0).toString();
+            name=pedido_jt.getValueAt(FilaSeleccionada, 1).toString();
+            credito = pedido_jt.getValueAt(FilaSeleccionada, 2).toString();
+        }
+        lbl_nit.setText(nit);
+        lbl_nombre.setText(name);
+        estado_lbl.setText(credito);
+        pedido_bt.setEnabled(false);*/
+    }//GEN-LAST:event_pedido_btActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,11 +264,27 @@ public class RegistrarEntrega extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JLabel estado_lbl;
+    private javax.swing.JLabel fecha_lbl;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel marco1;
+    private javax.swing.JLabel marco2;
+    private javax.swing.JButton pedido_bt;
+    private javax.swing.JTable pedido_jt;
+    private javax.swing.JLabel pedido_lbl;
+    private javax.swing.JTextField pedido_txt;
+    private javax.swing.JButton registrar_bt;
+    private javax.swing.JButton regresar_bt;
+    private javax.swing.JLabel tiempo_lbl;
     // End of variables declaration//GEN-END:variables
 }

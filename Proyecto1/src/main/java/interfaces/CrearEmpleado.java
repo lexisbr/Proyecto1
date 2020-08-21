@@ -80,6 +80,11 @@ public class CrearEmpleado extends javax.swing.JFrame {
                 codigo_txtActionPerformed(evt);
             }
         });
+        codigo_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                codigo_txtKeyTyped(evt);
+            }
+        });
         jPanel1.add(codigo_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 230, 30));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cliente.png"))); // NOI18N
@@ -313,6 +318,11 @@ public class CrearEmpleado extends javax.swing.JFrame {
         a.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void codigo_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codigo_txtKeyTyped
+         char c = evt.getKeyChar(); 
+       if(c<'0' || c>'9') evt.consume();
+    }//GEN-LAST:event_codigo_txtKeyTyped
 
     /**
      * @param args the command line arguments
