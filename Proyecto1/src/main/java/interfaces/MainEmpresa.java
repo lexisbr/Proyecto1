@@ -155,7 +155,7 @@ public class MainEmpresa extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        RegistrarPedido log = new RegistrarPedido();
+        OpcionesPedido log = new OpcionesPedido();
         log.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed

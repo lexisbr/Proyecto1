@@ -63,6 +63,7 @@ public class LeerArchivo {
              for (int i = 0; i < datos.length; i++) {
             
             if (datos[i].equals("TIENDA")) {
+                continsert++;
                 System.out.println(">>>"+datos[i]+" "+(cuenta++));
 //                tienda = true;
 //                System.out.println("boolean "+tienda);
@@ -74,6 +75,7 @@ public class LeerArchivo {
 
 //                }
             }else if (datos[i].equals("TIEMPO")){
+                continsert++;
                 System.out.println(">>>"+datos[i]+" "+(cuenta++));
                 for (int j = (i+1); j < (i+4); j++) {
                         System.out.println("==== "+datos[j]);
@@ -82,6 +84,7 @@ public class LeerArchivo {
                 
                 
             }else if(datos[i].equals("PRODUCTO")){
+                continsert++;
                  System.out.println(">>>"+datos[i]+" "+(cuenta++));
                 for (int j = (i+1); j < (i+7); j++) {
                         System.out.println("==== "+datos[j]);
@@ -91,6 +94,7 @@ public class LeerArchivo {
                 
             }else if(datos[i].equals("EMPLEADO")){
                  System.out.println(">>>"+datos[i]+" "+(cuenta++));
+                 continsert++;
                 for (int j = (i+1); j < (i+5); j++) {
                         System.out.println("==== "+datos[j]);
                         guardarEmpleado(datos[j]);
@@ -98,6 +102,7 @@ public class LeerArchivo {
                 
                 
             }else if(datos[i].equals("CLIENTE")){
+                continsert++;
                  System.out.println(">>>"+datos[i]+" "+(cuenta++));
                 for (int j = (i+1); j < (i+5); j++) {
                         System.out.println("==== "+datos[j]);
@@ -105,6 +110,7 @@ public class LeerArchivo {
                     }
 
             }else if(datos[i].equals("PEDIDO")){
+                continsert++;
                 System.out.println(">>>"+datos[i]+" "+(cuenta++));
                 for (int j = (i+1); j < (i+10); j++) {
                         System.out.println("==== "+datos[j]);
@@ -114,7 +120,7 @@ public class LeerArchivo {
             
             
         }
-             if(continsert==contlineas&&Conexion.mensaje){
+             if(Conexion.mensaje){
                  JOptionPane.showMessageDialog(null,"Los datos correctos se agregaron efectivamente.");
                  Conexion.setMensaje(false);
              }
@@ -164,11 +170,16 @@ public class LeerArchivo {
         cont++;
         
         if(cont==6){
-            precio = Double.parseDouble(enviar[4]);
-            cantidad = Integer.parseInt(enviar[3]);
-            /*System.out.println("entra");
-            System.out.println(">>>>>>>>>>> "+enviar[0]+" "+enviar[1]+" "+enviar[2]+" "+enviar[3]);*/
-            insertProducto(enviar[0],enviar[1],enviar[2],cantidad,precio,enviar[5]);
+          
+             try {
+                 precio = Double.parseDouble(enviar[4]);
+                 cantidad = Integer.parseInt(enviar[3]);           
+                 insertProducto(enviar[0],enviar[1],enviar[2],cantidad,precio,enviar[5]);
+          
+            } catch (Exception e) {
+                 JOptionPane.showMessageDialog(null,"Hay un error en Producto: "+enviar[2]+" En la linea "+continsert+". Verifica e intenta de nuevo.");
+            }
+            
             cont=0;
         }
         
@@ -193,18 +204,20 @@ public class LeerArchivo {
         enviar[cont]=cadenas;
         System.out.println("cliente "+cont+"- "+enviar[cont]);
         cont++;
-         try {
+         
+             System.out.println("+++++++entra");  
               if(cont==4){
-            credito = Double.parseDouble(enviar[3]);
-            /*System.out.println("entra");
-            System.out.println(">>>>>>>>>>> "+enviar[0]+" "+enviar[1]+" "+enviar[2]+" "+enviar[3]);*/
-            insertCliente(enviar[0],enviar[1],enviar[2],credito);
-            cont=0;
+                  try {
+                    System.out.println("+++++++entra");  
+                    credito = Double.parseDouble(enviar[3]);        
+                    insertCliente(enviar[0],enviar[1],enviar[2],credito);
+                 } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null,"Hay un error en Cliente: "+enviar[1]+" En la linea "+continsert+". Verifica e intenta de nuevo.");
+                 }
+                  cont=0;
             }
              
-         } catch (Exception e) {
-             JOptionPane.showMessageDialog(null, e);
-         }
+        
         
     }
      
@@ -218,14 +231,17 @@ public class LeerArchivo {
         cont++;
         
         if(cont==9){
-            date = enviar[3];
-            LocalDate fecha = LocalDate.parse(date, formatter);
-            total = Double.parseDouble(enviar[7]);
-            anticipo = Double.parseDouble(enviar[8]);
-            cantidad = Integer.parseInt(enviar[6]);
-            /*System.out.println("entra");
-            System.out.println(">>>>>>>>>>> "+enviar[0]+" "+enviar[1]+" "+enviar[2]+" "+enviar[3]);*/
-            insertPedido(enviar[0],enviar[1],enviar[2],fecha,enviar[4],enviar[5],cantidad,total,anticipo);
+            try {
+                date = enviar[3];
+                LocalDate fecha = LocalDate.parse(date, formatter);
+                total = Double.parseDouble(enviar[7]);
+                anticipo = Double.parseDouble(enviar[8]);
+                cantidad = Integer.parseInt(enviar[6]);   
+                insertPedido(enviar[0],enviar[1],enviar[2],fecha,enviar[4],enviar[5],cantidad,total,anticipo);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,"Hay un error en Cliente: "+enviar[1]+" En la linea "+continsert+". Verifica e intenta de nuevo.");
+            }
+           
             cont=0;
         }
         
@@ -241,15 +257,14 @@ public class LeerArchivo {
         try {
              String query = ("INSERT INTO TIENDA(codigo,nombre,direccion,telefono_1) VALUES('"+codigo+"','"+nombre+"','"+direccion+"','"+telefono+"')");
              Conexion c = new Conexion();
-             c.InsertarArchivo(query);
-             continsert++;
+             c.InsertarArchivo(query);    
              if(c.verificar){
                   c.setMensaje(true);
              }else{
-                 JOptionPane.showMessageDialog(null,"Hay un error en Tienda: "+codigo+". Verifica e intenta de nuevo.");
+                 JOptionPane.showMessageDialog(null,"Hay un error en Tienda: "+codigo+" En la linea "+continsert+". Verifica e intenta de nuevo.");
              }
         }catch(Exception e) {
-                JOptionPane.showMessageDialog(null,"Error "+e);
+                JOptionPane.showMessageDialog(null,"Hay un error en Tienda: "+codigo+" En la linea "+continsert+". Verifica e intenta de nuevo.");
          
         }
 
@@ -263,14 +278,13 @@ public class LeerArchivo {
              String query = ("INSERT INTO TIEMPO_DE_ENVIO(tiempo,codigo_tienda1,codigo_tienda2) VALUES('"+tiempo+"','"+tienda1+"','"+tienda2+"')");
              Conexion c = new Conexion();
              c.InsertarArchivo(query);
-             continsert++;
              if(c.verificar){              
                   c.setMensaje(true);
              }else{
-                 JOptionPane.showMessageDialog(null,"Hay un error en Tiempo entre tiendas: "+tienda1+" y "+tienda2+". Verifica e intenta de nuevo.");
+                 JOptionPane.showMessageDialog(null,"Hay un error en Tiempo entre tiendas: "+tienda1+" y "+tienda2+" En la linea "+continsert+". Verifica e intenta de nuevo.");
              }
         }catch(Exception e) {
-                JOptionPane.showMessageDialog(null,"Error "+e);
+                 JOptionPane.showMessageDialog(null,"Hay un error en Tiempo entre tiendas: "+tienda1+" y "+tienda2+" En la linea "+continsert+". Verifica e intenta de nuevo.");
          
         }
 
@@ -283,15 +297,14 @@ public class LeerArchivo {
              String query = ("INSERT INTO PRODUCTO(nombre,fabricante,codigo,cantidad,precio,codigo_tienda) VALUES('"+nombre+"','"+fabricante+"','"+codigo+"','"+cantidad+"','"+precio+"','"+tienda+"')");
              Conexion c = new Conexion();
              c.InsertarArchivo(query); 
-             continsert++;
              if(c.verificar){    
                   c.setMensaje(true);
                  
              }else{
-                 JOptionPane.showMessageDialog(null,"Hay un error en Producto: "+codigo+". Verifica e intenta de nuevo.");
+                 JOptionPane.showMessageDialog(null,"Hay un error en Producto: "+codigo+" En la linea "+continsert+". Verifica e intenta de nuevo.");
              }
         }catch(Exception e) {
-                JOptionPane.showMessageDialog(null,"Error "+e);
+               JOptionPane.showMessageDialog(null,"Hay un error en Producto: "+codigo+" En la linea "+continsert+". Verifica e intenta de nuevo.");
          
         }
 
@@ -303,15 +316,14 @@ public class LeerArchivo {
         try {
              String query = ("INSERT INTO EMPLEADO(nombre,codigo,telefono,DPI,email,direccion) VALUES('"+nombre+"','"+codigo+"','"+telefono+"','"+dpi+"',' ',' ')");
              Conexion c = new Conexion();
-             c.InsertarArchivo(query);
-             System.out.println("variable verificar: "+c.verificar);
+             c.InsertarArchivo(query);  
              if(c.verificar){     
                  c.setMensaje(true);
              }else{
-                 JOptionPane.showMessageDialog(null,"Hay un error en Empleado: "+codigo+". Verifica e intenta de nuevo.");
+                 JOptionPane.showMessageDialog(null,"Hay un error en Empleado: "+codigo+" En la linea "+continsert+". Verifica e intenta de nuevo.");
              }
         }catch(Exception e) {
-                JOptionPane.showMessageDialog(null,"Error "+e);
+                JOptionPane.showMessageDialog(null,"Hay un error en Empleado: "+codigo+" En la linea "+continsert+". Verifica e intenta de nuevo.");
          
         }
 
@@ -327,10 +339,10 @@ public class LeerArchivo {
              if(c.verificar){         
                  c.setMensaje(true);        
              }else{
-                 JOptionPane.showMessageDialog(null,"Hay un error en Cliente: "+nit+". Verifica e intenta de nuevo.");
+                 JOptionPane.showMessageDialog(null,"Hay un error en Cliente: "+nit+" En la linea "+continsert+". Verifica e intenta de nuevo.");
              }
         }catch(Exception e) {
-                JOptionPane.showMessageDialog(null,"Error "+e);
+                JOptionPane.showMessageDialog(null,"Hay un error en Cliente: "+nit+" En la linea "+continsert+". Verifica e intenta de nuevo.");
          
         }
 
@@ -345,10 +357,10 @@ public class LeerArchivo {
              if(c.verificar){
                  c.setMensaje(true);
              }else{
-                 JOptionPane.showMessageDialog(null,"Hay un error en Pedido: "+codigo+". Verifica e intenta de nuevo.");
+                 JOptionPane.showMessageDialog(null,"Hay un error en Pedido: "+codigo+" En la linea "+continsert+". Verifica e intenta de nuevo.");
              }
         }catch(Exception e) {
-                JOptionPane.showMessageDialog(null,"Error "+e);
+               JOptionPane.showMessageDialog(null,"Hay un error en Pedido: "+codigo+" En la linea "+continsert+". Verifica e intenta de nuevo.");
          
         }
 
