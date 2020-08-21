@@ -5,28 +5,18 @@
  */
 package interfaces;
 
-import conexionDB.Conexion;
-import static interfaces.Login.cont;
-
 /**
  *
  * @author jalej
  */
-public class CargarInfo extends javax.swing.JFrame {
+public class OpcionesPedido extends javax.swing.JFrame {
 
     /**
-     * Creates new form CargarInfo
+     * Creates new form OpcionesPedido
      */
-    public CargarInfo() {
+    public OpcionesPedido() {
         initComponents();
         this.setLocationRelativeTo(null);
-        verificar();
-        if(Conexion.vacia){ 
-            jButton3.setEnabled(true);
-        }else{
-            jButton3.setEnabled(false);
-        }
-        
     }
 
     /**
@@ -40,9 +30,10 @@ public class CargarInfo extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,32 +43,20 @@ public class CargarInfo extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Leelawadee", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Nueva Informacion ");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, -1, -1));
-
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Leelawadee", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/datos nuevos.png"))); // NOI18N
-        jButton2.setText("Ingresar datos");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 410, 80));
+        jLabel2.setText("Opciones de pedido.");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Leelawadee", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(0, 0, 0));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/archivoTxt.png"))); // NOI18N
-        jButton3.setText("Cargar archivo de texto");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pedido2.png"))); // NOI18N
+        jButton3.setText("Registrar entrega");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 410, 80));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 300, 60));
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setFont(new java.awt.Font("Leelawadee UI", 1, 12)); // NOI18N
@@ -89,33 +68,57 @@ public class CargarInfo extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 360, 150, 30));
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 370, 150, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoempresa(2).jpg"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 760, 490));
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
+        jButton4.setFont(new java.awt.Font("Leelawadee", 1, 18)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(0, 0, 0));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/supermercado (1).png"))); // NOI18N
+        jButton4.setText("Registrar venta");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 300, 60));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 400));
+        jButton5.setBackground(new java.awt.Color(255, 255, 255));
+        jButton5.setFont(new java.awt.Font("Leelawadee", 1, 18)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(0, 0, 0));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pedido1.png"))); // NOI18N
+        jButton5.setText("Realizar pedido");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 300, 60));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoventas.jpg"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 410));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      IngresarDatos ing = new IngresarDatos();
-      ing.setVisible(true);
-      this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       CargarArchivoForm form = new CargarArchivoForm();
-       form.setVisible(true);
-       this.dispose();
+       
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        MainEmpresa main = new MainEmpresa();
-        main.setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        RegistrarPedido a = new RegistrarPedido();
+        a.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,40 +137,28 @@ public class CargarInfo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CargarInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OpcionesPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CargarInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OpcionesPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CargarInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OpcionesPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CargarInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OpcionesPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CargarInfo().setVisible(true);
+                new OpcionesPedido().setVisible(true);
             }
         });
     }
-    
-    public void verificar(){
-       String[] tabla = {"CLIENTE","EMPLEADO","PRODUCTO","TIEMPO_DE_ENVIO","TIENDA","VENTA","FACTURA","RECIBO","PEDIDO"};        
-       Conexion a = new Conexion();
-       
-        for (int i = 0; i < tabla.length; i++) {
-            a.verificarEsquema("*", tabla[i]);
-            cont++;
-        } 
-       a.disconnectDB();
-       
-       
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

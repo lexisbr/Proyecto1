@@ -6,6 +6,7 @@
 package conexionDB;
 
 
+import interfaces.Login;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,6 +27,8 @@ public class Conexion {
     public static final int MYSQL_DUPLICATE_PK = 1062;
     public static boolean verificar;
     public static boolean mensaje;
+    public static boolean vacia;
+     
 
     public Conexion() {
         conexionDB();
@@ -73,12 +76,7 @@ public class Conexion {
             stmt.close();
             disconnectDB();
         } catch (SQLException e) {
-             if(e.getErrorCode() == MYSQL_DUPLICATE_PK ){
-               //  JOptionPane.showMessageDialog(null,"Error");
-                 verificar = false;
-             }else{
-             JOptionPane.showMessageDialog(null,"Error "+e);
-             }
+                     verificar = false;
         }
     }
     
@@ -126,6 +124,22 @@ public class Conexion {
         }
     }
     
+      public  ResultSet consulta(String query){
+        Statement stmt = null;
+        try {
+            getConnection();
+            stmt = getConnection().createStatement();
+            ResultSet resultado = stmt.executeQuery(query);
+            
+            return resultado;
+    
+         
+        } catch (Exception e) {
+            return null;
+
+        }
+    }
+  
     public ResultSet SeleccionarJT(String query){
          PreparedStatement ps = null;
          ResultSet rs = null;
@@ -155,11 +169,24 @@ public class Conexion {
     public static void setMensaje(boolean a){
         mensaje = a;
     }
-   
-     public static void main(String[] args){
-         Conexion c = new Conexion();
-         c.conexionDB();
-       
-     }
     
+    public void verificarEsquema(String campo, String tabla){
+        Conexion a = new Conexion();
+        ResultSet rs = a.consulta("SELECT "+campo+" FROM "+tabla);
+        try{
+             if (rs != null && rs.next()) {
+             System.out.println("Encontre: " + rs.getString(1) ); // te da el valor de el primer campo
+             vacia=false;
+             
+             } else if(Login.cont==4) {
+                 vacia=true;
+                JOptionPane.showMessageDialog(null, "Base de datos esta vacia!");
+             } 
+        
+        } catch (Exception e){
+                JOptionPane.showMessageDialog(null, "Error "+e);
+        }
+        
+      
+    }
 }
