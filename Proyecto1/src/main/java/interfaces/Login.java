@@ -19,7 +19,7 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     public static String usuario = "";
-    public static String tienda_actual ="";
+    public static String tienda_actual ="ABC-1";
     public static int cont =0;
    
     String Query="SELECT CODIGO FROM TIENDA";
@@ -59,6 +59,7 @@ public class Login extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         cb_tiendas = new javax.swing.JComboBox<>();
+        jLabel20 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -118,7 +119,7 @@ public class Login extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, 160, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, 190, 40));
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setFont(new java.awt.Font("Leelawadee UI", 1, 12)); // NOI18N
@@ -131,7 +132,7 @@ public class Login extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 430, 160, 30));
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 130, 30));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
@@ -140,6 +141,9 @@ public class Login extends javax.swing.JFrame {
 
         cb_tiendas.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
         jPanel1.add(cb_tiendas, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 190, 30));
+
+        jLabel20.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 310, 180));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/formanag_fondo.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 0)));
@@ -163,7 +167,7 @@ public class Login extends javax.swing.JFrame {
        if(verificarUsuario(usuario)){
             if (getPassword().equals("123456")) {
                 tienda_actual = (String) cb_tiendas.getSelectedItem() ;
-                usuario = txt_usuario.getText();
+                
                         
                 MainEmpresa me = new MainEmpresa();
                 me.setVisible(true);
@@ -238,11 +242,12 @@ public class Login extends javax.swing.JFrame {
     }
     
     public boolean verificarUsuario(String codigo){
-         ResultSet Result = a.consulta("SELECT codigo FROM EMPLEADO WHERE codigo LIKE '"+codigo+"'");
+         ResultSet Result = a.consulta("SELECT nombre FROM EMPLEADO WHERE codigo LIKE '"+codigo+"'");
          try {
              if(Result.next()&&Result!=null){
                 //  Result.close();
                //    a.disconnectDB();
+                 usuario = String.valueOf(Result.getObject("nombre"));
                    return true;
              }else{
                 // Result.close();
@@ -266,6 +271,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
