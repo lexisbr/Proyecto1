@@ -56,7 +56,6 @@ public class CrearProducto extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -68,7 +67,7 @@ public class CrearProducto extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Leelawadee", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Ingresar nuevo Producto:");
+        jLabel2.setText("Ingresar nuevo producto.");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
@@ -208,9 +207,6 @@ public class CrearProducto extends javax.swing.JFrame {
         jLabel21.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
         jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 240, 730, 120));
 
-        jLabel11.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102)));
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 68, 760, -1));
-
         jLabel18.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 407, 285, 45));
 
@@ -225,10 +221,10 @@ public class CrearProducto extends javax.swing.JFrame {
                 jButton8ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 30, 130, 30));
+        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, 130, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoempresa(2).jpg"))); // NOI18N
-        jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 0)));
+        jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 490));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 490));
@@ -356,7 +352,6 @@ public class CrearProducto extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;

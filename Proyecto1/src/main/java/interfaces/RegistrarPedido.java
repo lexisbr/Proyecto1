@@ -5,6 +5,8 @@
  */
 package interfaces;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jalej
@@ -14,8 +16,15 @@ public class RegistrarPedido extends javax.swing.JFrame {
     /**
      * Creates new form RegistrarPedido
      */
+     public DefaultTableModel modelo2 = new DefaultTableModel(){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                return false;
+                }
+           };
     public RegistrarPedido() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -30,31 +39,48 @@ public class RegistrarPedido extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jList5 = new javax.swing.JList<>();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jList6 = new javax.swing.JList<>();
-        jLabel8 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jList4 = new javax.swing.JList<>();
-        jLabel4 = new javax.swing.JLabel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
+        tienda_cb = new javax.swing.JComboBox<>();
+        registrarpedido = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        nit_txt = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jt_cliente = new javax.swing.JTable();
+        seleccionar_cliente = new javax.swing.JButton();
+        codigo_txt = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        cantidad_txt = new javax.swing.JFormattedTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jt_producto = new javax.swing.JTable();
+        agregar_carrito = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        pedido_jt = new javax.swing.JTable();
+        lbl_nit = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        lbl_nombre = new javax.swing.JLabel();
+        credito_lbl = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        total_lbl1 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        total_lbl2 = new javax.swing.JLabel();
+        total_lbl = new javax.swing.JLabel();
+        credito_txt = new javax.swing.JFormattedTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        calcular_boton = new javax.swing.JButton();
+        efectivo_txt = new javax.swing.JFormattedTextField();
+        jLabel19 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
+        lbl_tiempo = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -70,148 +96,420 @@ public class RegistrarPedido extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/producto.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 260, -1));
-
         jLabel7.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Tiempo de llegada:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 230, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, -1, 30));
 
-        jList5.setBackground(new java.awt.Color(255, 255, 255));
-        jList5.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
-        jList5.setForeground(new java.awt.Color(0, 0, 0));
-        jScrollPane5.setViewportView(jList5);
+        tienda_cb.setBackground(new java.awt.Color(255, 255, 255));
+        tienda_cb.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(tienda_cb, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 100, 180, 30));
 
-        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 310, 110));
+        registrarpedido.setBackground(new java.awt.Color(255, 255, 255));
+        registrarpedido.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        registrarpedido.setForeground(new java.awt.Color(0, 0, 0));
+        registrarpedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pedido1.png"))); // NOI18N
+        registrarpedido.setText("Registrar Pedido");
+        registrarpedido.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
+        registrarpedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarpedidoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(registrarpedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(725, 520, 180, 60));
+
+        jLabel13.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Tienda Origen:");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, -1, 30));
+
+        jLabel14.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("NIT:");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, 30));
+
+        nit_txt.setBackground(new java.awt.Color(255, 255, 255));
+        nit_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        nit_txt.setForeground(new java.awt.Color(0, 0, 0));
+        nit_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nit_txtActionPerformed(evt);
+            }
+        });
+        jPanel1.add(nit_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 240, 30));
+
+        jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane3.setForeground(new java.awt.Color(0, 0, 0));
+
+        jt_cliente.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        jScrollPane3.setViewportView(jt_cliente);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 380, 120));
+
+        seleccionar_cliente.setBackground(new java.awt.Color(255, 255, 255));
+        seleccionar_cliente.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        seleccionar_cliente.setForeground(new java.awt.Color(0, 0, 0));
+        seleccionar_cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/usuario (1).png"))); // NOI18N
+        seleccionar_cliente.setText("Seleccionar Cliente");
+        seleccionar_cliente.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
+        seleccionar_cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seleccionar_clienteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(seleccionar_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 190, 40));
+
+        codigo_txt.setBackground(new java.awt.Color(255, 255, 255));
+        codigo_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        codigo_txt.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(codigo_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 240, 30));
 
         jLabel6.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Producto:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
-
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 110, 25));
-
-        jLabel5.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Anticipo:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 270, -1, -1));
-
-        jList6.setBackground(new java.awt.Color(255, 255, 255));
-        jList6.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
-        jList6.setForeground(new java.awt.Color(0, 0, 0));
-        jScrollPane6.setViewportView(jList6);
-
-        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 310, 150));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, 30));
 
         jLabel8.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("NIT:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+        jLabel8.setText("Cantidad:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, 30));
 
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, 160, -1));
-
-        jFormattedTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jFormattedTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        jPanel1.add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 270, 180, -1));
-
-        jList4.setBackground(new java.awt.Color(255, 255, 255));
-        jList4.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
-        jList4.setForeground(new java.awt.Color(0, 0, 0));
-        jScrollPane4.setViewportView(jList4);
-
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, 270, 80));
-
-        jLabel4.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Pedido:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, -1, -1));
-
-        jFormattedTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jFormattedTextField2.setForeground(new java.awt.Color(0, 0, 0));
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
-        jPanel1.add(jFormattedTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 50, 25));
-
-        jLabel9.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Cantidad:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, -1, -1));
-
-        jLabel10.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Total:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 150, -1, -1));
-
-        jLabel11.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Q.");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, -1, -1));
-
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pedido1.png"))); // NOI18N
-        jButton1.setText("Registrar Pedidos");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        cantidad_txt.setBackground(new java.awt.Color(255, 255, 255));
+        cantidad_txt.setForeground(new java.awt.Color(0, 0, 0));
+        cantidad_txt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+        cantidad_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cantidad_txtKeyTyped(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 360, 220, 60));
+        jPanel1.add(cantidad_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 90, 30));
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setForeground(new java.awt.Color(0, 0, 0));
+
+        jt_producto.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        jt_producto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Codigo", "Nombre", "Precio"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jt_producto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jt_productoMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jt_producto);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 380, 130));
+
+        agregar_carrito.setBackground(new java.awt.Color(255, 255, 255));
+        agregar_carrito.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        agregar_carrito.setForeground(new java.awt.Color(0, 0, 0));
+        agregar_carrito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/supermercado (1).png"))); // NOI18N
+        agregar_carrito.setText("Agregar a carrito");
+        agregar_carrito.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
+        agregar_carrito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregar_carritoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(agregar_carrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 580, 190, 40));
+
+        jLabel22.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel22.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 400, 290));
+
+        pedido_jt.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Cantidad", "Codigo", "Nombre", "Precio"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(pedido_jt);
+
+        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 220, 440, 90));
+
+        lbl_nit.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        lbl_nit.setForeground(new java.awt.Color(0, 0, 0));
+        lbl_nit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
+        jPanel1.add(lbl_nit, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 350, 150, 30));
+
+        jLabel11.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(51, 51, 0));
+        jLabel11.setText("NIT:");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 350, -1, 30));
+
+        lbl_nombre.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        lbl_nombre.setForeground(new java.awt.Color(0, 0, 0));
+        lbl_nombre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
+        jPanel1.add(lbl_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 350, 150, 30));
+
+        credito_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        credito_lbl.setForeground(new java.awt.Color(0, 0, 0));
+        credito_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
+        jPanel1.add(credito_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 410, 140, 30));
+
+        jLabel9.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(51, 51, 0));
+        jLabel9.setText("Nombre:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 350, -1, 30));
+
+        jLabel15.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(51, 51, 0));
+        jLabel15.setText("Credito:");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 410, -1, 30));
+
+        total_lbl1.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        total_lbl1.setForeground(new java.awt.Color(0, 0, 0));
+        total_lbl1.setText("Q.");
+        jPanel1.add(total_lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 410, -1, 30));
+
+        jLabel10.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(51, 51, 0));
+        jLabel10.setText("Total:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(695, 410, -1, 30));
+
+        total_lbl2.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        total_lbl2.setForeground(new java.awt.Color(0, 0, 0));
+        total_lbl2.setText("Q.");
+        jPanel1.add(total_lbl2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 410, 20, 30));
+
+        total_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        total_lbl.setForeground(new java.awt.Color(0, 0, 0));
+        total_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
+        jPanel1.add(total_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 410, 150, 30));
+
+        credito_txt.setBackground(new java.awt.Color(255, 255, 255));
+        credito_txt.setForeground(new java.awt.Color(0, 0, 0));
+        credito_txt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        credito_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                credito_txtActionPerformed(evt);
+            }
+        });
+        credito_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                credito_txtKeyTyped(evt);
+            }
+        });
+        jPanel1.add(credito_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 510, 150, 30));
+
+        jLabel16.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(51, 51, 0));
+        jLabel16.setText("Credito:");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 510, -1, 30));
+
+        jLabel17.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(51, 0, 51));
+        jLabel17.setText("Anticipo");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 470, -1, 30));
+
+        jLabel18.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(51, 51, 0));
+        jLabel18.setText("Efectivo:");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 590, -1, 30));
+
+        calcular_boton.setBackground(new java.awt.Color(255, 255, 255));
+        calcular_boton.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        calcular_boton.setForeground(new java.awt.Color(0, 0, 0));
+        calcular_boton.setText("Calcular pago");
+        calcular_boton.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
+        calcular_boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calcular_botonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(calcular_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 550, 110, 30));
+
+        efectivo_txt.setBackground(new java.awt.Color(255, 255, 255));
+        efectivo_txt.setForeground(new java.awt.Color(0, 0, 0));
+        efectivo_txt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        jPanel1.add(efectivo_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 590, 150, 30));
+
+        jLabel19.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setText("Pedido.");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 190, -1, 30));
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setFont(new java.awt.Font("Leelawadee UI", 1, 12)); // NOI18N
         jButton7.setForeground(new java.awt.Color(0, 0, 0));
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/regresar.png"))); // NOI18N
         jButton7.setText("Regresar");
+        jButton7.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 440, 170, 40));
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 30, 130, 30));
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 0, 0));
-        jButton3.setText("Usar Credito");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 300, -1, -1));
+        jLabel23.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255))));
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 340, 460, 290));
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 0, 0));
-        jButton4.setText("Usar Credito");
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 300, -1, -1));
+        lbl_tiempo.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        lbl_tiempo.setForeground(new java.awt.Color(0, 0, 0));
+        lbl_tiempo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
+        jPanel1.add(lbl_tiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 180, 30));
 
-        jLabel12.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("###");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 230, -1, -1));
+        jLabel24.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 400, 225));
 
-        jLabel13.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Tienda Origen:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, -1, -1));
+        jLabel21.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 460, 225));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoventas.jpg"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 500));
+        jLabel25.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel25.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(255, 255, 255))));
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 460, 450, 170));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 500));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondopedido.jpg"))); // NOI18N
+        jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 650));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 650));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void registrarpedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarpedidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_registrarpedidoActionPerformed
+
+    private void nit_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nit_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nit_txtActionPerformed
+
+    private void seleccionar_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionar_clienteActionPerformed
+        int FilaSeleccionada = jt_cliente.getSelectedRow();
+        String nit = "";
+        String name = "";
+        String credito = "";
+
+        if(FilaSeleccionada>=0){
+            nit=jt_cliente.getValueAt(FilaSeleccionada,0).toString();
+            name=jt_cliente.getValueAt(FilaSeleccionada, 1).toString();
+            credito = jt_cliente.getValueAt(FilaSeleccionada, 2).toString();
+        }
+        lbl_nit.setText(nit);
+        lbl_nombre.setText(name);
+        credito_lbl.setText(credito);
+        seleccionar_cliente.setEnabled(false);
+
+    }//GEN-LAST:event_seleccionar_clienteActionPerformed
+
+    private void cantidad_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cantidad_txtKeyTyped
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+    }//GEN-LAST:event_cantidad_txtKeyTyped
+
+    private void jt_productoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_productoMouseClicked
+
+    }//GEN-LAST:event_jt_productoMouseClicked
+
+    private void agregar_carritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_carritoActionPerformed
+      /*  int FilaSeleccionada = jt_producto.getSelectedRow();
+        int cantidad_existencia=0;
+        int cantidad_compra=0;
+        pedido_jt.setModel(modelo2);
+
+        if(FilaSeleccionada>=0){
+            if((!(cantidad_txt.getText().equals("")))){
+                cantidad_existencia = Integer.parseInt(jt_producto.getValueAt(FilaSeleccionada,3).toString());
+                cantidad_compra= Integer.parseInt(cantidad_txt.getText());
+                if(verificarExistencia(cantidad_existencia, cantidad_compra)){
+                    String Datos[] = new String[4];
+                    Datos[0]=cantidad_txt.getText();
+                    Datos[1]=jt_producto.getValueAt(FilaSeleccionada,0).toString();
+                    Datos[2]=jt_producto.getValueAt(FilaSeleccionada,1).toString();
+                    Datos[3]=jt_producto.getValueAt(FilaSeleccionada,2).toString();
+                    modelo2.addRow(Datos);
+                    sumartotal();
+                    updateProducto(cantidad_existencia, cantidad_compra, Datos[1]);
+                }else{
+                    JOptionPane.showMessageDialog(null,"No hay cantidad suficiente de productos.");
+                }
+
+            }else{
+                JOptionPane.showMessageDialog(null,"Ingrese cantidad de producto");
+            }
+        }else{JOptionPane.showMessageDialog(null,"Seleccione producto");}
+        cantidad_txt.setText(null);*/
+    }//GEN-LAST:event_agregar_carritoActionPerformed
+
+    private void credito_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_credito_txtActionPerformed
+
+    }//GEN-LAST:event_credito_txtActionPerformed
+
+    private void credito_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_credito_txtKeyTyped
+
+    }//GEN-LAST:event_credito_txtKeyTyped
+
+    private void calcular_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcular_botonActionPerformed
+       /* try {
+            double total = Double.parseDouble(total_lbl.getText());
+            double credito_cliente = Double.parseDouble(credito_lbl.getText());
+            double credito_ingresado;
+            double efectivo = 0;
+
+            if(credito_txt.getText().equals("")){
+                credito_ingresado=0;
+                efectivo = total;
+                efectivo_txt.setText(String.valueOf(efectivo));
+            }else{
+                credito_ingresado = Double.parseDouble(credito_txt.getText());
+                if(verificarCredito(credito_cliente, credito_ingresado)){
+                    efectivo = total-credito_ingresado;
+                    efectivo_txt.setText(String.valueOf(efectivo));
+                }else{
+                    JOptionPane.showMessageDialog(null, "Su credito es insuficiente");
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No ha seleccionado todos los items");
+        }*/
+
+    }//GEN-LAST:event_calcular_botonActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         MainEmpresa a = new MainEmpresa();
@@ -255,34 +553,51 @@ public class RegistrarPedido extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton agregar_carrito;
+    private javax.swing.JButton calcular_boton;
+    private javax.swing.JFormattedTextField cantidad_txt;
+    private javax.swing.JTextField codigo_txt;
+    private javax.swing.JLabel credito_lbl;
+    private javax.swing.JFormattedTextField credito_txt;
+    private javax.swing.JFormattedTextField efectivo_txt;
     private javax.swing.JButton jButton7;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList4;
-    private javax.swing.JList<String> jList5;
-    private javax.swing.JList<String> jList6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTable jt_cliente;
+    private javax.swing.JTable jt_producto;
+    private javax.swing.JLabel lbl_nit;
+    private javax.swing.JLabel lbl_nombre;
+    private javax.swing.JLabel lbl_tiempo;
+    private javax.swing.JTextField nit_txt;
+    private javax.swing.JTable pedido_jt;
+    private javax.swing.JButton registrarpedido;
+    private javax.swing.JButton seleccionar_cliente;
+    private javax.swing.JComboBox<String> tienda_cb;
+    private javax.swing.JLabel total_lbl;
+    private javax.swing.JLabel total_lbl1;
+    private javax.swing.JLabel total_lbl2;
     // End of variables declaration//GEN-END:variables
 }

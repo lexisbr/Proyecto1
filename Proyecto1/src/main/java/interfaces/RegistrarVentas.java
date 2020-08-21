@@ -104,6 +104,11 @@ public class RegistrarVentas extends javax.swing.JFrame {
         efectivo_txt = new javax.swing.JFormattedTextField();
         credito_txt = new javax.swing.JFormattedTextField();
         calcular_boton = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
@@ -128,21 +133,23 @@ public class RegistrarVentas extends javax.swing.JFrame {
         seleccionar_cliente.setForeground(new java.awt.Color(0, 0, 0));
         seleccionar_cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/usuario (1).png"))); // NOI18N
         seleccionar_cliente.setText("Seleccionar Cliente");
+        seleccionar_cliente.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
         seleccionar_cliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 seleccionar_clienteActionPerformed(evt);
             }
         });
-        jPanel1.add(seleccionar_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 190, 30));
+        jPanel1.add(seleccionar_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 190, 40));
 
         jLabel4.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Carrito:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, -1, -1));
+        jLabel4.setText("Factura.");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 318, -1, 30));
 
         lbl_nit.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         lbl_nit.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(lbl_nit, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, 140, 20));
+        lbl_nit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
+        jPanel1.add(lbl_nit, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 350, 150, 30));
 
         nit_txt.setBackground(new java.awt.Color(255, 255, 255));
         nit_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
@@ -152,22 +159,22 @@ public class RegistrarVentas extends javax.swing.JFrame {
                 nit_txtActionPerformed(evt);
             }
         });
-        jPanel1.add(nit_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 280, 30));
+        jPanel1.add(nit_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 240, 30));
 
         jLabel6.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Producto:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, 30));
 
         codigo_txt.setBackground(new java.awt.Color(255, 255, 255));
         codigo_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
         codigo_txt.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(codigo_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 240, 30));
+        jPanel1.add(codigo_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 240, 30));
 
         jLabel7.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("NIT:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, 30));
 
         cantidad_txt.setBackground(new java.awt.Color(255, 255, 255));
         cantidad_txt.setForeground(new java.awt.Color(0, 0, 0));
@@ -177,28 +184,30 @@ public class RegistrarVentas extends javax.swing.JFrame {
                 cantidad_txtKeyTyped(evt);
             }
         });
-        jPanel1.add(cantidad_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 90, 30));
+        jPanel1.add(cantidad_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 90, 30));
 
         jLabel8.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Cantidad:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, 30));
 
         jLabel9.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(51, 51, 0));
         jLabel9.setText("Nombre:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 330, -1, 20));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 350, -1, 30));
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setFont(new java.awt.Font("Leelawadee UI", 1, 12)); // NOI18N
         jButton7.setForeground(new java.awt.Color(0, 0, 0));
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/regresar.png"))); // NOI18N
+        jButton7.setText("Regresar");
+        jButton7.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, 60, 20));
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 30, 130, 30));
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setForeground(new java.awt.Color(0, 0, 0));
@@ -237,7 +246,7 @@ public class RegistrarVentas extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jt_producto);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 380, 130));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 380, 130));
 
         jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane3.setForeground(new java.awt.Color(0, 0, 0));
@@ -245,7 +254,7 @@ public class RegistrarVentas extends javax.swing.JFrame {
         jt_cliente.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
         jScrollPane3.setViewportView(jt_cliente);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 360, 110));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 380, 120));
 
         jt_carrito.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -275,91 +284,96 @@ public class RegistrarVentas extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(jt_carrito);
 
-        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, 450, 260));
+        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 450, 230));
 
         venta_boton.setBackground(new java.awt.Color(255, 255, 255));
         venta_boton.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
         venta_boton.setForeground(new java.awt.Color(0, 0, 0));
         venta_boton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/venta3.png"))); // NOI18N
         venta_boton.setText("Registrar Venta");
+        venta_boton.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
         venta_boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 venta_botonActionPerformed(evt);
             }
         });
-        jPanel1.add(venta_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 460, 190, 70));
+        jPanel1.add(venta_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 510, 160, 70));
 
         jLabel10.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 51, 0));
         jLabel10.setText("Total:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 410, -1, 20));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(688, 400, -1, 30));
 
         total_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         total_lbl.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(total_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 410, 130, 20));
+        total_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
+        jPanel1.add(total_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 400, 150, 30));
 
         agregar_carrito.setBackground(new java.awt.Color(255, 255, 255));
         agregar_carrito.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
         agregar_carrito.setForeground(new java.awt.Color(0, 0, 0));
         agregar_carrito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/supermercado (1).png"))); // NOI18N
         agregar_carrito.setText("Agregar a carrito");
+        agregar_carrito.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
         agregar_carrito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 agregar_carritoActionPerformed(evt);
             }
         });
-        jPanel1.add(agregar_carrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 530, 190, 50));
+        jPanel1.add(agregar_carrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 580, 190, 40));
 
         total_lbl1.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         total_lbl1.setForeground(new java.awt.Color(0, 0, 0));
         total_lbl1.setText("Q.");
-        jPanel1.add(total_lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(495, 375, -1, 20));
+        jPanel1.add(total_lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 400, -1, 30));
 
         jLabel11.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(51, 51, 0));
         jLabel11.setText("NIT:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 350, -1, 30));
 
         lbl_nombre.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         lbl_nombre.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(lbl_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 330, 140, 20));
+        lbl_nombre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
+        jPanel1.add(lbl_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 350, 150, 30));
 
         jLabel12.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(51, 51, 0));
         jLabel12.setText("Credito:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 470, -1, 20));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 490, -1, 30));
 
         total_lbl2.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         total_lbl2.setForeground(new java.awt.Color(0, 0, 0));
         total_lbl2.setText("Q.");
-        jPanel1.add(total_lbl2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, 20, 20));
+        jPanel1.add(total_lbl2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 400, 20, 30));
 
         credito_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         credito_lbl.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(credito_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(515, 375, 130, 20));
+        credito_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
+        jPanel1.add(credito_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 400, 130, 30));
 
         jLabel13.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(51, 51, 0));
         jLabel13.setText("Credito:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 375, -1, 20));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 400, -1, 30));
 
         jLabel14.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(51, 51, 0));
         jLabel14.setText("Efectivo:");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 550, -1, -1));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 580, -1, 30));
 
         jLabel15.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(51, 0, 51));
         jLabel15.setText("Metodo de pago:");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 440, -1, -1));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 455, -1, 30));
 
-        efectivo_txt.setBackground(new java.awt.Color(0, 0, 0));
-        efectivo_txt.setForeground(new java.awt.Color(255, 255, 255));
+        efectivo_txt.setBackground(new java.awt.Color(255, 255, 255));
+        efectivo_txt.setForeground(new java.awt.Color(0, 0, 0));
         efectivo_txt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        jPanel1.add(efectivo_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 550, 150, 30));
+        jPanel1.add(efectivo_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 580, 150, 30));
 
-        credito_txt.setBackground(new java.awt.Color(0, 0, 0));
-        credito_txt.setForeground(new java.awt.Color(255, 255, 255));
+        credito_txt.setBackground(new java.awt.Color(255, 255, 255));
+        credito_txt.setForeground(new java.awt.Color(0, 0, 0));
         credito_txt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         credito_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -371,24 +385,45 @@ public class RegistrarVentas extends javax.swing.JFrame {
                 credito_txtKeyTyped(evt);
             }
         });
-        jPanel1.add(credito_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 470, 150, 30));
+        jPanel1.add(credito_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 490, 150, 30));
 
         calcular_boton.setBackground(new java.awt.Color(255, 255, 255));
         calcular_boton.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
         calcular_boton.setForeground(new java.awt.Color(0, 0, 0));
         calcular_boton.setText("Calcular pago");
+        calcular_boton.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
         calcular_boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 calcular_botonActionPerformed(evt);
             }
         });
-        jPanel1.add(calcular_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 510, 110, 30));
+        jPanel1.add(calcular_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 535, 110, 30));
+
+        jLabel21.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 400, 225));
+
+        jLabel22.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel22.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(255, 255, 255))));
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 450, 450, 180));
+
+        jLabel23.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255))));
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 340, 450, 290));
+
+        jLabel5.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Carrito.");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 66, -1, 30));
+
+        jLabel24.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel24.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 400, 290));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoventa2.jpg"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 900, 630));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoventas3.jpg"))); // NOI18N
+        jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 650));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 600));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 650));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -808,8 +843,13 @@ public class RegistrarVentas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
