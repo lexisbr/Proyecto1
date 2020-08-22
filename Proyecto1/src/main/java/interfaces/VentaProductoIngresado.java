@@ -6,13 +6,17 @@
 package interfaces;
 
 import conexionDB.Conexion;
+import static conexionDB.Conexion.MYSQL_DUPLICATE_PK;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import static java.time.temporal.ChronoUnit.DAYS;
 
 /**
  *
@@ -24,6 +28,9 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
      * Creates new form VentaProductoIngresado
      */
     Conexion a = new Conexion();
+    double credito_actualizado=0;
+    public LocalDate fecha = LocalDate.now();
+     String pedido = "";String id = "";
     public VentaProductoIngresado() {
         initComponents();
          this.setLocationRelativeTo(null);
@@ -64,15 +71,12 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         nit_lbl = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        creditoactual_lbl = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         anticipo_lbl = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
         total_lbl = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         totalapagar_lbl = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        producto_jt = new javax.swing.JTable();
         jLabel22 = new javax.swing.JLabel();
         venta_boton = new javax.swing.JButton();
         jLabel23 = new javax.swing.JLabel();
@@ -84,6 +88,10 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
         creditoretraso_lbl = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
+        creditoactual_lbl = new javax.swing.JLabel();
+        cantidad_txt = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        producto_lbl = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
@@ -218,77 +226,42 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Anticipo:");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 150, -1, 30));
-
-        creditoactual_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
-        creditoactual_lbl.setForeground(new java.awt.Color(0, 0, 0));
-        creditoactual_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
-        jPanel1.add(creditoactual_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 250, 100, 30));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 160, -1, 30));
 
         jLabel19.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Credito actual:");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(705, 250, -1, 30));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 280, -1, 30));
 
         anticipo_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         anticipo_lbl.setForeground(new java.awt.Color(0, 0, 0));
         anticipo_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
-        jPanel1.add(anticipo_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 150, 160, 30));
-
-        jLabel20.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel20.setText("Total:");
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, -1, 30));
+        jPanel1.add(anticipo_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 160, 160, 30));
 
         total_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         total_lbl.setForeground(new java.awt.Color(0, 0, 0));
         total_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
-        jPanel1.add(total_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 160, 30));
+        jPanel1.add(total_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, 160, 30));
+
+        jLabel20.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel20.setText("Total:");
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, -1, 30));
 
         jLabel21.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Total a pagar: ");
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, -1, 30));
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, -1, 30));
 
         totalapagar_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         totalapagar_lbl.setForeground(new java.awt.Color(0, 0, 0));
         totalapagar_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
-        jPanel1.add(totalapagar_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 200, 210, 30));
-
-        producto_jt.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Cantidad", "Codigo", "Nombre", "Precio"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, true, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane5.setViewportView(producto_jt);
-
-        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 330, -1, 90));
+        jPanel1.add(totalapagar_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 220, 210, 30));
 
         jLabel22.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setText("Producto.");
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, 70, 30));
+        jLabel22.setText("Cantidad:");
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 340, 70, 30));
 
         venta_boton.setBackground(new java.awt.Color(255, 255, 255));
         venta_boton.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
@@ -353,16 +326,36 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
         creditoretraso_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         creditoretraso_lbl.setForeground(new java.awt.Color(0, 0, 0));
         creditoretraso_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
-        jPanel1.add(creditoretraso_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 250, 100, 30));
+        jPanel1.add(creditoretraso_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 280, 100, 30));
 
         jLabel29.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(255, 255, 255));
         jLabel29.setText("Credito por retraso:");
-        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, -1, 30));
+        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, -1, 30));
 
         jLabel30.setForeground(new java.awt.Color(204, 204, 204));
         jLabel30.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(255, 255, 255))));
-        jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 430, 480, 180));
+        jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 410, 480, 200));
+
+        creditoactual_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        creditoactual_lbl.setForeground(new java.awt.Color(0, 0, 0));
+        creditoactual_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
+        jPanel1.add(creditoactual_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 280, 100, 30));
+
+        cantidad_txt.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        cantidad_txt.setForeground(new java.awt.Color(0, 0, 0));
+        cantidad_txt.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
+        jPanel1.add(cantidad_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 340, 150, 30));
+
+        jLabel31.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel31.setText("Producto: ");
+        jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 340, 70, 30));
+
+        producto_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        producto_lbl.setForeground(new java.awt.Color(0, 0, 0));
+        producto_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
+        jPanel1.add(producto_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 340, 150, 30));
 
         jLabel26.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
         jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 90, 480, 520));
@@ -387,40 +380,74 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
     }//GEN-LAST:event_pedido_txtActionPerformed
 
     private void seleccionar_pedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionar_pedidoActionPerformed
-     
+        int FilaSeleccionada = pedido_jt.getSelectedRow();
+        
+        String fecha = "";
+       
+        String tiempo = "";
+       
+
+        if(FilaSeleccionada>=0){
+            id =pedido_jt.getValueAt(FilaSeleccionada,0).toString();
+            fecha=pedido_jt.getValueAt(FilaSeleccionada, 1).toString();
+            pedido= pedido_jt.getValueAt(FilaSeleccionada, 2).toString();
+            tiempo= pedido_jt.getValueAt(FilaSeleccionada, 3).toString();
+          
+        }
+       // cargarTiempo(Login.tienda_actual,origen);
+        fechaingreso_lbl.setText(fecha);
+       // pedido_lbl.setText(codigo);
+       //tienda_origen.setText(origen);
+        cargarDataPedidos(pedido);
+        cargarDataTiempo(tiempo);
+        LocalDate fechapedido = LocalDate.parse(fechapedido_lbl.getText());
+        LocalDate fechaingreso = LocalDate.parse(fechaingreso_lbl.getText());
+        int dias = (int) calcularEstado(fechapedido,fechaingreso);
+        int tiempodias = Integer.parseInt(tiempoenvio_lbl.getText());
+        if(dias>tiempodias){
+            estado_lbl.setText("Con retraso");
+        }else{
+            estado_lbl.setText("A tiempo");
+        }
+        double anticipo = Double.parseDouble(anticipo_lbl.getText());
+        double total = Double.parseDouble(total_lbl.getText());
+        totalapagar_lbl.setText(totalPagar(anticipo, total));
+        
+        calcularCredito(Double.parseDouble(totalPagar(anticipo, total)),estado_lbl.getText(),nit_lbl.getText(),total);
         
     }//GEN-LAST:event_seleccionar_pedidoActionPerformed
 
     private void venta_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venta_botonActionPerformed
-/*        double credito_ingresado=0;
-        System.out.println("ola");
-        if((credito_txt.getText().equals(""))){
-            credito_ingresado=0;
-        }
-        else credito_ingresado = Double.parseDouble(credito_txt.getText());
-        double total = Double.parseDouble(total_lbl.getText());
-        double credito_cliente = Double.parseDouble(credito_lbl.getText());
 
-        String query = ("INSERT INTO FACTURA VALUES('"+0+"','"+fecha+"','"+total+"','"+Login.tienda_actual+"','"+lbl_nit.getText()+"')");
-        String Datos[] = new String[3];
+        try {
+            
+           
+        double total = Double.parseDouble(total_lbl.getText());
+
+        String query = ("INSERT INTO FACTURA VALUES('"+0+"','"+fecha+"','"+total+"','"+Login.tienda_actual+"','"+nit_lbl.getText()+"')");  
         int codigofactura =0;
 
-        if(!(lbl_nit.getText().equals(null))&&(total!=0)&&(verificarCredito(credito_cliente, credito_ingresado))){
+        if(!(nit_lbl.getText().equals(null))&&(total!=0)){
             codigofactura=a.InsertFactura(query);
         }else{
             JOptionPane.showMessageDialog(null, "ERROR");
         }
-        for(int i=0; i< jt_carrito.getRowCount(); i++){
-            Datos[0]=jt_carrito.getValueAt(i,0).toString();
-            Datos[1]=jt_carrito.getValueAt(i,1).toString();
-            Datos[2]=jt_carrito.getValueAt(i,3).toString();
-            double precio = Double.parseDouble(Datos[2]);
-            int cantidad = Integer.parseInt(Datos[0]);
-            insertDBVENTA(precio,cantidad,Datos[1],codigofactura);
-            updateCliente(credito_cliente, credito_ingresado, lbl_nit.getText());
+       
+            double precio = Double.parseDouble(total_lbl.getText());
+           
+            int cantidad = Integer.parseInt(cantidad_txt.getText());
+            insertDBVENTA(precio,cantidad,producto_lbl.getText(),codigofactura);
+            updateCliente(credito_actualizado, nit_lbl.getText());
+            JOptionPane.showMessageDialog(null, "Se registro la venta.");
+            deleteRecibo(id);
+            deletePedido(pedido);
+            
+
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Hubo un error inesperado.");
         }
-        JOptionPane.showMessageDialog(null, "Se registro la venta.");
-*/
+        
     }//GEN-LAST:event_venta_botonActionPerformed
 
     private void credito_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_credito_txtActionPerformed
@@ -432,9 +459,8 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
     }//GEN-LAST:event_credito_txtKeyTyped
 
     private void calcular_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcular_botonActionPerformed
-        /*try {
-            double total = Double.parseDouble(total_lbl.getText());
-            double credito_cliente = Double.parseDouble(credito_lbl.getText());
+        try {
+            double total = Double.parseDouble(totalapagar_lbl.getText());      
             double credito_ingresado;
             double efectivo = 0;
 
@@ -444,16 +470,19 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
                 efectivo_txt.setText(String.valueOf(efectivo));
             }else{
                 credito_ingresado = Double.parseDouble(credito_txt.getText());
-                if(verificarCredito(credito_cliente, credito_ingresado)){
-                    efectivo = total-credito_ingresado;
+                if(verificarCredito(credito_actualizado, credito_ingresado)&&credito_ingresado<=total){
+                    efectivo = total-credito_ingresado;                
                     efectivo_txt.setText(String.valueOf(efectivo));
+                    credito_actualizado = credito_actualizado - credito_ingresado; 
+                }else if(credito_ingresado>total){
+                    JOptionPane.showMessageDialog(null, "Sobrepasa el total.");
                 }else{
                     JOptionPane.showMessageDialog(null, "Su credito es insuficiente");
                 }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No ha seleccionado todos los items");
-        }*/
+        }
 
     }//GEN-LAST:event_calcular_botonActionPerformed
 
@@ -535,7 +564,8 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
            modelo_pedido.addColumn("Codigo ingreso");
            modelo_pedido.addColumn("Fecha ingreso");
             modelo_pedido.addColumn("Codigo pedido");
-           String query_pedido = "SELECT ID,fecha_entrega,codigo_tienda FROM RECIBE WHERE codigo_tienda='"+Login.tienda_actual+"' "+where;
+             modelo_pedido.addColumn("Codigo tiempo");
+           String query_pedido = "SELECT ID,fecha_entrega,codigo_pedido,codigo_tiempo_de_envio FROM RECIBE WHERE codigo_tienda='"+Login.tienda_actual+"' "+where;
            System.out.println(query_pedido);
            ResultSet rs = a.SeleccionarJT(query_pedido);
            ResultSetMetaData rsMd = rs.getMetaData();
@@ -555,9 +585,232 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
         }
     }
 
+    public void cargarDataPedidos(String codigo){
+        String[] datos;
+        String query ="SELECT fecha,nit_cliente,codigo_producto,total,anticipo,cantidad FROM PEDIDO WHERE codigo='"+codigo+"'";
+        
+        try {
+             System.out.println("++"+codigo);
+            System.out.println(query);
+            ResultSet rs = a.SeleccionarCB(query);
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int cantidadColumnas = rsMd.getColumnCount();
+            datos = new String[cantidadColumnas];
+            
+
+            while (rs.next()) {    
+                System.out.println(cantidadColumnas);
+                for(int i=0;i<cantidadColumnas;i++)
+                {
+                    datos[i] = String.valueOf(rs.getObject(i + 1));
+                    System.out.println(">>"+datos[i]);
+                }
+            }
+            
+            fechapedido_lbl.setText(datos[0]);
+            nit_lbl.setText(datos[1]);
+            producto_lbl.setText(datos[2]);
+            total_lbl.setText(datos[3]);
+            anticipo_lbl.setText(datos[4]);
+            cantidad_txt.setText(datos[5]);
+            cargarDataCliente(datos[1]);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+       
+    }
+    
+     public void cargarDataCliente(String nit){
+        String[] datos;
+        String query ="SELECT nombre,credito_compra FROM CLIENTE WHERE NIT='"+nit+"'";
+        
+        try {     
+            System.out.println(query);
+            ResultSet rs = a.SeleccionarCB(query);
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int cantidadColumnas = rsMd.getColumnCount();
+            datos = new String[cantidadColumnas];
+            
+
+            while (rs.next()) {    
+                System.out.println(cantidadColumnas);
+                for(int i=0;i<cantidadColumnas;i++)
+                {
+                    datos[i] = String.valueOf(rs.getObject(i + 1));
+                    System.out.println(">>"+datos[i]);
+                }
+            }
+            
+            cliente_lbl.setText(datos[0]);
+            creditoactual_lbl.setText(datos[1]);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+       
+    }
+     
+    public void cargarDataTiempo(String tiempo){
+        String[] datos;
+        String query ="SELECT tiempo FROM TIEMPO_DE_ENVIO WHERE ID='"+tiempo+"'";
+        
+        try {     
+            System.out.println(query);
+            ResultSet rs = a.SeleccionarCB(query);
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int cantidadColumnas = rsMd.getColumnCount();
+            datos = new String[cantidadColumnas];
+            
+
+            while (rs.next()) {    
+                System.out.println(cantidadColumnas);
+                for(int i=0;i<cantidadColumnas;i++)
+                {
+                    datos[i] = String.valueOf(rs.getObject(i + 1));
+                    System.out.println(">>"+datos[i]);
+                }
+            }
+                  
+            tiempoenvio_lbl.setText(datos[0]);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+       
+    }
+    
+    public void updateCliente(double nuevocredito, String nit){    
+          String query ="UPDATE CLIENTE SET credito_compra=credito_compra+"+nuevocredito+" WHERE NIT='"+nit+"'";
+          Statement stmt = null;
+        try {    
+             a.conexionDB();
+             stmt = a.getConnection().createStatement();
+             stmt.executeUpdate(query);
+             creditoretraso_lbl.setText("+"+nuevocredito);
+             
+             stmt.close();
+        }catch (SQLException e) {
+             JOptionPane.showMessageDialog(null,"Error "+e);
+        }
+        
+    }
+     public void insertDBFACTURA(LocalDate cadena2,double cadena3,String cadena4,String cadena5){
+        try {
+             String query = ("INSERT INTO FACTURA VALUES('"+0+"','"+cadena2+"','"+cadena3+"','"+cadena4+"','"+cadena5+"')");
+             Conexion c = new Conexion();
+             c.Insertar(query);
+             System.out.println("Los valores han sido agregados a la base de datos ");
+          
+             //c.conexionDB();
+             //stmt = c.getConnection().createStatement(); 
+            // stmt.executeUpdate("INSERT INTO TIENDA VALUES('"+cadena1+"','"+cadena2+"','"+cadena3+"','"+cadena4+"','"+cadena5+"','"+cadena6+"','"+cadena7+"')");
+        }catch(Exception e) {
+                JOptionPane.showMessageDialog(null,"Error "+e);
+         
+        }
+        
+    
+        
+    }
+     
+    public void insertDBVENTA(double precio,int cantidad,String producto,int factura){
+           Statement stmt = null;
+        try {
+             String query = ("INSERT INTO VENTA VALUES('"+0+"','"+precio+"','"+cantidad+"','"+producto+"','"+factura+"')");
+             a.conexionDB();
+             stmt = a.getConnection().createStatement();
+             stmt.executeUpdate(query);
+             stmt.close();
+            
+        } catch (SQLException e) {
+             if(e.getErrorCode() == MYSQL_DUPLICATE_PK ){
+                JOptionPane.showMessageDialog(null,"Error, el codigo ya existe.");
+             }else{
+             JOptionPane.showMessageDialog(null,"Error "+e);
+             }
+        }
+        }
+    
+    public long calcularEstado(LocalDate fechapedido, LocalDate fechaactual){
+        long diasdiferencia = DAYS.between(fechapedido, fechaactual);
+        return diasdiferencia;
+        
+    }
+    public String totalPagar(double anticipo, double total){
+        double totalP = total - anticipo;
+        String totalPP = String.valueOf(totalP);
+        return totalPP;
+    }
+    public boolean verificarCredito(double credito_cliente, double credito_ingresado){
+         if((credito_cliente-credito_ingresado)>=0) return true;
+         else return false;
+     }
+    
+    public void calcularCredito(double totalP,String estado,String nit,double total){
+        double creditoextra=0;
+        double credito = Double.parseDouble(creditoactual_lbl.getText());
+      if(estado=="Con retraso"){
+          if(totalP==0){
+              creditoextra = (total*0.05);
+            //  creditoretraso_lbl.setText(String.valueOf(creditoextra));
+              updateCliente(creditoextra,nit);
+              
+              credito_actualizado = creditoextra + credito;
+          }else{
+              creditoextra = (total*0.02);
+              // creditoretraso_lbl.setText(String.valueOf(creditoextra));
+              updateCliente(creditoextra,nit);
+              
+              credito_actualizado = creditoextra + credito;
+               
+          }
+      }else{
+          credito_actualizado=credito;
+          creditoretraso_lbl.setText("");
+      }
+        
+    }
+    
+    public void deletePedido(String pedido){
+         String query ="DELETE FROM PEDIDO WHERE codigo ='"+pedido+"'";
+          Statement stmt = null;
+        try {    
+             a.conexionDB();
+             stmt = a.getConnection().createStatement();
+             stmt.executeUpdate(query);          
+             JOptionPane.showMessageDialog(null,"Pedido borrado");
+             stmt.close();
+        }catch (SQLException e) {
+             JOptionPane.showMessageDialog(null,"Error "+e);
+        }
+        
+    }
+    public void deleteRecibo(String id){
+        String query ="DELETE FROM RECIBE WHERE ID ='"+id+"'";
+          Statement stmt = null;
+        try {    
+             a.conexionDB();
+             stmt = a.getConnection().createStatement();
+             stmt.executeUpdate(query);          
+             JOptionPane.showMessageDialog(null,"Recibo borrado");
+             stmt.close();
+        }catch (SQLException e) {
+             JOptionPane.showMessageDialog(null,"Error "+e);
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel anticipo_lbl;
     private javax.swing.JButton calcular_boton;
+    private javax.swing.JLabel cantidad_txt;
     private javax.swing.JLabel cliente_lbl;
     private javax.swing.JFormattedTextField credito_txt;
     private javax.swing.JLabel creditoactual_lbl;
@@ -589,13 +842,13 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel nit_lbl;
     private javax.swing.JTable pedido_jt;
     private javax.swing.JTextField pedido_txt;
-    private javax.swing.JTable producto_jt;
+    private javax.swing.JLabel producto_lbl;
     private javax.swing.JButton regresar_bt;
     private javax.swing.JButton seleccionar_pedido;
     private javax.swing.JLabel tiempoenvio_lbl;
