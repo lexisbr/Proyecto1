@@ -5,6 +5,17 @@
  */
 package interfaces;
 
+import conexionDB.Conexion;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jalej
@@ -14,9 +25,13 @@ public class RegistrarEntrega extends javax.swing.JFrame {
     /**
      * Creates new form RegistrarVenta
      */
+    Conexion a = new Conexion();
+    public LocalDate fecha = LocalDate.now();
     public RegistrarEntrega() {
         initComponents();
         this.setLocationRelativeTo(null);
+        KeyListenerPedido();
+        CargarTablaPedidos();
     }
 
     /**
@@ -48,6 +63,12 @@ public class RegistrarEntrega extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         pedido_lbl = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        codigo_lb = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        estado_lbl1 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        tienda_origen = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         marco1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -155,12 +176,12 @@ public class RegistrarEntrega extends javax.swing.JFrame {
         tiempo_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         tiempo_lbl.setForeground(new java.awt.Color(0, 0, 0));
         tiempo_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
-        jPanel1.add(tiempo_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, 200, 30));
+        jPanel1.add(tiempo_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, 60, 30));
 
         jLabel17.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("Tiempo:");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, -1, 30));
+        jLabel17.setText("Codigo:");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 230, -1, 30));
 
         pedido_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         pedido_lbl.setForeground(new java.awt.Color(0, 0, 0));
@@ -172,8 +193,38 @@ public class RegistrarEntrega extends javax.swing.JFrame {
         jLabel18.setText("Pedido:");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, 30));
 
+        codigo_lb.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        codigo_lb.setForeground(new java.awt.Color(0, 0, 0));
+        codigo_lb.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
+        jPanel1.add(codigo_lb, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 230, 80, 30));
+
+        jLabel19.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setText("Tiempo:");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, -1, 30));
+
+        estado_lbl1.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        estado_lbl1.setForeground(new java.awt.Color(0, 0, 0));
+        estado_lbl1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
+        jPanel1.add(estado_lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 280, 200, 30));
+
+        jLabel20.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel20.setText("Estado:");
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, -1, 30));
+
+        tienda_origen.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        tienda_origen.setForeground(new java.awt.Color(0, 0, 0));
+        tienda_origen.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
+        jPanel1.add(tienda_origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 330, 200, 30));
+
+        jLabel21.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel21.setText("Origen:");
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, -1, 30));
+
         marco1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
-        jPanel1.add(marco1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 290, 220));
+        jPanel1.add(marco1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 290, 260));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoventas.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
@@ -191,19 +242,16 @@ public class RegistrarEntrega extends javax.swing.JFrame {
     }//GEN-LAST:event_regresar_btActionPerformed
 
     private void registrar_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrar_btActionPerformed
-/*        if ((codigo_txt.getText().equals("")) || (nombre_txt.getText().equals("")) || (direccion_txt.getText().equals("")) || (telefono_txt.getText().equals("")) || (email_txt.getText().equals("")) || (dpi_txt.getText().equals(""))) {
+        if ((fecha_lbl.getText().equals(""))) {
 
-            javax.swing.JOptionPane.showMessageDialog(this,"Debe llenar todos los campos obligatorios \n","AVISO",javax.swing.JOptionPane.INFORMATION_MESSAGE);
-            codigo_txt.requestFocus();
-        }else if((telefono_txt.getText().length()< 8)){
-            JOptionPane.showMessageDialog(null,"El número de telefono debe contener 8 digitos");
-        }else if((dpi_txt.getText().length()< 13)){
-            JOptionPane.showMessageDialog(null,"El número de DPI esta incompleto");
+            javax.swing.JOptionPane.showMessageDialog(this,"Debe seleccionar un pedido. \n","AVISO",javax.swing.JOptionPane.INFORMATION_MESSAGE);       
+        }else if(tiempo_lbl.getText().equals("")){
+            javax.swing.JOptionPane.showMessageDialog(this,"Debe crear un tiempo entre tiendas. \n","AVISO",javax.swing.JOptionPane.INFORMATION_MESSAGE);       
         }
-        else {
-            System.out.println("entra");
-            insertDB(codigo_txt.getText(),nombre_txt.getText(),telefono_txt.getText(),nit_txt.getText(),dpi_txt.getText(),email_txt.getText(),direccion_txt.getText());
-        }*/
+        else{
+            insertRecibo(fecha, Login.tienda_actual, pedido_lbl.getText(), codigo_lb.getText());
+        }
+            
     }//GEN-LAST:event_registrar_btActionPerformed
 
     private void pedido_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedido_txtActionPerformed
@@ -211,20 +259,23 @@ public class RegistrarEntrega extends javax.swing.JFrame {
     }//GEN-LAST:event_pedido_txtActionPerformed
 
     private void pedido_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedido_btActionPerformed
-/*        int FilaSeleccionada = pedido_jt.getSelectedRow();
-        String nit = "";
-        String name = "";
-        String credito = "";
+       int FilaSeleccionada = pedido_jt.getSelectedRow();
+       String codigo = "";
+        String fecha = "";
+        String origen = "";
+       
 
         if(FilaSeleccionada>=0){
-            nit=pedido_jt.getValueAt(FilaSeleccionada,0).toString();
-            name=pedido_jt.getValueAt(FilaSeleccionada, 1).toString();
-            credito = pedido_jt.getValueAt(FilaSeleccionada, 2).toString();
+            codigo=pedido_jt.getValueAt(FilaSeleccionada,0).toString();
+            fecha=pedido_jt.getValueAt(FilaSeleccionada, 1).toString();
+            origen= pedido_jt.getValueAt(FilaSeleccionada, 2).toString();
+          
         }
-        lbl_nit.setText(nit);
-        lbl_nombre.setText(name);
-        estado_lbl.setText(credito);
-        pedido_bt.setEnabled(false);*/
+        cargarTiempo(Login.tienda_actual,origen);
+       fecha_lbl.setText(fecha);
+        pedido_lbl.setText(codigo);
+        tienda_origen.setText(origen);
+       
     }//GEN-LAST:event_pedido_btActionPerformed
 
     /**
@@ -262,9 +313,117 @@ public class RegistrarEntrega extends javax.swing.JFrame {
             }
         });
     }
+     public void KeyListenerPedido(){
+      
+        pedido_txt.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                CargarTablaPedidos();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                 CargarTablaPedidos();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                 CargarTablaPedidos();
+            }
+           
+        });
+    }
+    
+    
+    public void CargarTablaPedidos(){
+         String campo = pedido_txt.getText();
+        String where = "";
+
+        if (!"".equals(campo)) {
+            where = "&& codigo LIKE '%" + campo + "%' ";
+
+        }else{
+            where="";
+        }
+         try {
+             DefaultTableModel modelo_pedido = new DefaultTableModel(){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                return false;
+                }
+           };
+             System.out.println("++++"+where);
+           pedido_jt.setModel(modelo_pedido);
+           modelo_pedido.addColumn("Codigo");
+           modelo_pedido.addColumn("Fecha");
+            modelo_pedido.addColumn("Tienda origen");
+           modelo_pedido.addColumn("Anticipo");
+           modelo_pedido.addColumn("Total");   
+           String query_pedido = "SELECT codigo,fecha,codigo_tienda_origen,anticipo,total FROM PEDIDO WHERE codigo_tienda_destino='"+Login.tienda_actual+"' "+where;
+           System.out.println(query_pedido);
+           ResultSet rs = a.SeleccionarJT(query_pedido);
+           ResultSetMetaData rsMd = rs.getMetaData();
+           int cantidadColumnas = rsMd.getColumnCount();       
+           while(rs.next()){
+                Object[] filas = new Object[cantidadColumnas];
+                for(int i = 0; i<cantidadColumnas; i++){             
+                    filas[i]= rs.getObject(i+1);
+                }
+                modelo_pedido.addRow(filas);    
+            }
+           rs.close();
+           
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error "+ e);
+            
+        }
+    }
+    
+    public void cargarTiempo(String tienda1,String tienda2){
+          Conexion b = new Conexion();
+          String Query="SELECT tiempo,ID FROM TIEMPO_DE_ENVIO WHERE ((codigo_tienda1='"+tienda1+"' && codigo_tienda2='"+tienda2+"')||(codigo_tienda1='"+tienda2+"' && codigo_tienda2='"+tienda1+"'))";
+
+          ResultSet Result = b.SeleccionarCB(Query);
+         try {
+             while (Result.next()) {
+               if(!(Result.equals(Result.getObject("tiempo")))){
+                  tiempo_lbl.setText(String.valueOf(Result.getObject("tiempo"))); 
+                  codigo_lb.setText(String.valueOf(Result.getObject("ID"))); 
+                }
+              }
+         Result.close();
+         a.disconnectDB();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error "+e);
+        }
+
+     }
+    public void insertRecibo(LocalDate fecha,String tienda,String pedido,String tiempo){
+        System.out.println("entra a db");
+        Statement stmt = null;
+        try {
+             String query = ("INSERT INTO RECIBE VALUES('"+0+"','"+fecha+"','"+tienda+"','"+pedido+"','"+tiempo+"')");
+             a.conexionDB();
+             stmt = a.getConnection().createStatement();
+             
+             stmt.executeUpdate(query);
+             JOptionPane.showMessageDialog(null,"Se registro exitosamente.");
+             stmt.close();
+             
+        }catch(Exception e) {
+               JOptionPane.showMessageDialog(null,"Hay un error en Pedido "+e);
+         
+        }
+    }
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel codigo_lb;
     private javax.swing.JLabel estado_lbl;
+    private javax.swing.JLabel estado_lbl1;
     private javax.swing.JLabel fecha_lbl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
@@ -272,7 +431,10 @@ public class RegistrarEntrega extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
@@ -286,5 +448,6 @@ public class RegistrarEntrega extends javax.swing.JFrame {
     private javax.swing.JButton registrar_bt;
     private javax.swing.JButton regresar_bt;
     private javax.swing.JLabel tiempo_lbl;
+    private javax.swing.JLabel tienda_origen;
     // End of variables declaration//GEN-END:variables
 }

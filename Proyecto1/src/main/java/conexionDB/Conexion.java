@@ -27,7 +27,7 @@ public class Conexion {
     public static final int MYSQL_DUPLICATE_PK = 1062;
     public static boolean verificar;
     public static boolean mensaje;
-    public static boolean vacia;
+    public static boolean vacia=true;
      
 
     public Conexion() {
@@ -127,7 +127,7 @@ public class Conexion {
       public  ResultSet consulta(String query){
         Statement stmt = null;
         try {
-            getConnection();
+            
             stmt = getConnection().createStatement();
             ResultSet resultado = stmt.executeQuery(query);
             

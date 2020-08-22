@@ -271,7 +271,7 @@ public class RegistrarVentas extends javax.swing.JFrame {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -463,7 +463,8 @@ public class RegistrarVentas extends javax.swing.JFrame {
     private void venta_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venta_botonActionPerformed
         double credito_ingresado=0;
         System.out.println("ola");
-        if((credito_txt.getText().equals(""))){  
+        try {
+               if((credito_txt.getText().equals(""))){  
             credito_ingresado=0;
         }
         else credito_ingresado = Double.parseDouble(credito_txt.getText());
@@ -476,10 +477,7 @@ public class RegistrarVentas extends javax.swing.JFrame {
         
        if(!(lbl_nit.getText().equals(null))&&(total!=0)&&(verificarCredito(credito_cliente, credito_ingresado))){
           codigofactura=a.InsertFactura(query);
-       }else{
-           JOptionPane.showMessageDialog(null, "ERROR");
-       }
-       for(int i=0; i< jt_carrito.getRowCount(); i++){
+          for(int i=0; i< jt_carrito.getRowCount(); i++){
            Datos[0]=jt_carrito.getValueAt(i,0).toString();
            Datos[1]=jt_carrito.getValueAt(i,1).toString();
            Datos[2]=jt_carrito.getValueAt(i,3).toString();
@@ -487,9 +485,16 @@ public class RegistrarVentas extends javax.swing.JFrame {
            int cantidad = Integer.parseInt(Datos[0]);
            insertDBVENTA(precio,cantidad,Datos[1],codigofactura);
            updateCliente(credito_cliente, credito_ingresado, lbl_nit.getText());
+           JOptionPane.showMessageDialog(null, "Se registro la venta.");
         }
-       JOptionPane.showMessageDialog(null, "Se registro la venta.");
-     
+       }else{
+            JOptionPane.showMessageDialog(null, "Los campos no estan llenos.");
+                    
+            }
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, "Los campos no estan llenos.");
+        }
+   
        
     }//GEN-LAST:event_venta_botonActionPerformed
 
@@ -723,20 +728,6 @@ public class RegistrarVentas extends javax.swing.JFrame {
         }
     }
     
-    public void sumartotal(){
-        double t=0;
-        double p=0;
-        int rowscount=jt_carrito.getRowCount();
-        if (jt_carrito.getRowCount() > 0) {
-            for (int i = 0; i < rowscount; i++) {
-                p=Double.parseDouble(jt_carrito.getValueAt(i, 3).toString());
-                p*=Double.parseDouble(jt_carrito.getValueAt(i, 0).toString());
-                t+=p;
-            }
-        }
-        total_lbl.setText(String.valueOf(t));
-
-    }
     
      public void insertDBFACTURA(LocalDate cadena2,double cadena3,String cadena4,String cadena5){
         try {
@@ -785,6 +776,21 @@ public class RegistrarVentas extends javax.swing.JFrame {
          else return false;
      }
      
+     public void sumartotal(){
+        double t=0;
+        double p=0;
+        int rowscount=jt_carrito.getRowCount();
+        if (jt_carrito.getRowCount() > 0) {
+            for (int i = 0; i < rowscount; i++) {
+                p=Double.parseDouble(jt_carrito.getValueAt(i, 3).toString());
+                p*=Double.parseDouble(jt_carrito.getValueAt(i, 0).toString());
+                t+=p;
+            }
+        }
+        total_lbl.setText(String.valueOf(t));
+
+    }
+     
      public void updateProducto(int cantidad_tienda, int cantidad_venta,String codigo){
          int nuevacantidad = cantidad_tienda - cantidad_venta;
           Statement stmt = null;
@@ -795,12 +801,8 @@ public class RegistrarVentas extends javax.swing.JFrame {
              stmt.executeUpdate(query);
              stmt.close();
             CargarTablaProducto();
-        }catch (SQLException e) {
-             if(e.getErrorCode() == MYSQL_DUPLICATE_PK ){
-                JOptionPane.showMessageDialog(null,"Error, el codigo ya existe.");
-             }else{
+        }catch (SQLException e) {    
              JOptionPane.showMessageDialog(null,"Error "+e);
-             }
         }
      }
      
