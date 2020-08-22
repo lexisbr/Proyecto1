@@ -5,6 +5,18 @@
  */
 package interfaces;
 
+import conexionDB.Conexion;
+import static conexionDB.Conexion.MYSQL_DUPLICATE_PK;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,15 +28,32 @@ public class RegistrarPedido extends javax.swing.JFrame {
     /**
      * Creates new form RegistrarPedido
      */
-     public DefaultTableModel modelo2 = new DefaultTableModel(){
+    Conexion a = new Conexion();
+     public DefaultTableModel modelo_pedido = new DefaultTableModel(){
                 @Override
                 public boolean isCellEditable(int row, int column) {
                 return false;
                 }
            };
+    public LocalDate fecha = LocalDate.now();
     public RegistrarPedido() {
         initComponents();
         this.setLocationRelativeTo(null);
+        KeyListenerNIT();
+        KeyListenerProducto();
+        CargarTablaCliente();
+        CargarTablaProducto();
+        tienda_cb.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                cargarTiempo(Login.tienda_actual, String.valueOf(tienda_cb.getSelectedItem()));
+            }
+		});
+        modelo_pedido.addColumn("Cantidad");
+        modelo_pedido.addColumn("Codigo");
+        modelo_pedido.addColumn("Nombre");
+        modelo_pedido.addColumn("Precio");   
     }
 
     /**
@@ -40,7 +69,6 @@ public class RegistrarPedido extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        tienda_cb = new javax.swing.JComboBox<>();
         registrarpedido = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -54,7 +82,7 @@ public class RegistrarPedido extends javax.swing.JFrame {
         cantidad_txt = new javax.swing.JFormattedTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jt_producto = new javax.swing.JTable();
-        agregar_carrito = new javax.swing.JButton();
+        agregar_pedido = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         pedido_jt = new javax.swing.JTable();
@@ -76,11 +104,13 @@ public class RegistrarPedido extends javax.swing.JFrame {
         efectivo_txt = new javax.swing.JFormattedTextField();
         jLabel19 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
-        jLabel23 = new javax.swing.JLabel();
         lbl_tiempo = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
+        anticipo_lbl = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
+        tienda_cb = new javax.swing.JComboBox<>();
+        jLabel21 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -100,10 +130,6 @@ public class RegistrarPedido extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Tiempo de llegada:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, -1, 30));
-
-        tienda_cb.setBackground(new java.awt.Color(255, 255, 255));
-        tienda_cb.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(tienda_cb, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 100, 180, 30));
 
         registrarpedido.setBackground(new java.awt.Color(255, 255, 255));
         registrarpedido.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
@@ -223,18 +249,18 @@ public class RegistrarPedido extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 380, 130));
 
-        agregar_carrito.setBackground(new java.awt.Color(255, 255, 255));
-        agregar_carrito.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
-        agregar_carrito.setForeground(new java.awt.Color(0, 0, 0));
-        agregar_carrito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/supermercado (1).png"))); // NOI18N
-        agregar_carrito.setText("Agregar a carrito");
-        agregar_carrito.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
-        agregar_carrito.addActionListener(new java.awt.event.ActionListener() {
+        agregar_pedido.setBackground(new java.awt.Color(255, 255, 255));
+        agregar_pedido.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        agregar_pedido.setForeground(new java.awt.Color(0, 0, 0));
+        agregar_pedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/supermercado (1).png"))); // NOI18N
+        agregar_pedido.setText("Agregar Pedido");
+        agregar_pedido.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
+        agregar_pedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agregar_carritoActionPerformed(evt);
+                agregar_pedidoActionPerformed(evt);
             }
         });
-        jPanel1.add(agregar_carrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 580, 190, 40));
+        jPanel1.add(agregar_pedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 580, 190, 40));
 
         jLabel22.setForeground(new java.awt.Color(204, 204, 204));
         jLabel22.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
@@ -333,22 +359,22 @@ public class RegistrarPedido extends javax.swing.JFrame {
                 credito_txtKeyTyped(evt);
             }
         });
-        jPanel1.add(credito_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 510, 150, 30));
+        jPanel1.add(credito_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 470, 150, 30));
 
         jLabel16.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(51, 51, 0));
         jLabel16.setText("Credito:");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 510, -1, 30));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 470, -1, 30));
 
         jLabel17.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(51, 0, 51));
-        jLabel17.setText("Anticipo");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 470, -1, 30));
+        jLabel17.setText("Anticipo:");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 590, -1, 30));
 
         jLabel18.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(51, 51, 0));
         jLabel18.setText("Efectivo:");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 590, -1, 30));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 510, -1, 30));
 
         calcular_boton.setBackground(new java.awt.Color(255, 255, 255));
         calcular_boton.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
@@ -360,12 +386,12 @@ public class RegistrarPedido extends javax.swing.JFrame {
                 calcular_botonActionPerformed(evt);
             }
         });
-        jPanel1.add(calcular_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(568, 550, 110, 30));
+        jPanel1.add(calcular_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 550, 110, 30));
 
         efectivo_txt.setBackground(new java.awt.Color(255, 255, 255));
         efectivo_txt.setForeground(new java.awt.Color(0, 0, 0));
         efectivo_txt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        jPanel1.add(efectivo_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 590, 150, 30));
+        jPanel1.add(efectivo_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 510, 150, 30));
 
         jLabel19.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
@@ -385,23 +411,47 @@ public class RegistrarPedido extends javax.swing.JFrame {
         });
         jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 30, 130, 30));
 
-        jLabel23.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255))));
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 340, 460, 290));
-
         lbl_tiempo.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         lbl_tiempo.setForeground(new java.awt.Color(0, 0, 0));
         lbl_tiempo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
+        lbl_tiempo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_tiempoMouseClicked(evt);
+            }
+        });
         jPanel1.add(lbl_tiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 180, 30));
 
         jLabel24.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
         jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 400, 225));
 
-        jLabel21.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 460, 225));
+        anticipo_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        anticipo_lbl.setForeground(new java.awt.Color(0, 0, 0));
+        anticipo_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
+        jPanel1.add(anticipo_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 590, 150, 30));
+
+        jLabel23.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255))));
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 340, 460, 290));
 
         jLabel25.setForeground(new java.awt.Color(204, 204, 204));
         jLabel25.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(255, 255, 255))));
         jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 460, 450, 170));
+
+        tienda_cb.setBackground(new java.awt.Color(255, 255, 255));
+        tienda_cb.setForeground(new java.awt.Color(0, 0, 0));
+        tienda_cb.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tienda_cbMouseClicked(evt);
+            }
+        });
+        tienda_cb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tienda_cbActionPerformed(evt);
+            }
+        });
+        jPanel1.add(tienda_cb, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 100, 180, 30));
+
+        jLabel21.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 460, 225));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondopedido.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
@@ -413,7 +463,39 @@ public class RegistrarPedido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registrarpedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarpedidoActionPerformed
-        // TODO add your handling code here:
+        double credito_ingresado=0;
+        try {
+            if((credito_txt.getText().equals(""))){  
+            credito_ingresado=0;
+        }
+        else credito_ingresado = Double.parseDouble(credito_txt.getText());
+        double total = Double.parseDouble(total_lbl.getText());
+        double credito_cliente = Double.parseDouble(credito_lbl.getText());
+        double anticipo = Double.parseDouble(anticipo_lbl.getText());
+        String Datos[] = new String[3];
+            System.out.println("aqui");
+       if(!(lbl_nit.getText().equals(null))&&(total!=0)&&(verificarCredito(credito_cliente, credito_ingresado))){
+        for(int i=0; i< pedido_jt.getRowCount(); i++){
+           Datos[0]=pedido_jt.getValueAt(i,0).toString();
+           Datos[1]=pedido_jt.getValueAt(i,1).toString();
+           Datos[2]=pedido_jt.getValueAt(i,3).toString();  
+           int cantidad = Integer.parseInt(Datos[0]);
+           
+           updateCliente(credito_cliente, credito_ingresado, lbl_nit.getText());
+           insertPedido(fecha, cantidad, total, anticipo, Datos[1], lbl_nit.getText(), Login.tienda_actual, String.valueOf(tienda_cb.getSelectedItem()));
+           JOptionPane.showMessageDialog(null, "Se registro el pedido.");
+        }
+           
+       }
+       else{
+           JOptionPane.showMessageDialog(null, "Los campos no estan llenos");
+       }
+      
+      
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, "Error los campos no estan llenos "+e);
+        }
+        
     }//GEN-LAST:event_registrarpedidoActionPerformed
 
     private void nit_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nit_txtActionPerformed
@@ -447,11 +529,11 @@ public class RegistrarPedido extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jt_productoMouseClicked
 
-    private void agregar_carritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_carritoActionPerformed
-      /*  int FilaSeleccionada = jt_producto.getSelectedRow();
+    private void agregar_pedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_pedidoActionPerformed
+      int FilaSeleccionada = jt_producto.getSelectedRow();
         int cantidad_existencia=0;
         int cantidad_compra=0;
-        pedido_jt.setModel(modelo2);
+        pedido_jt.setModel(modelo_pedido);
 
         if(FilaSeleccionada>=0){
             if((!(cantidad_txt.getText().equals("")))){
@@ -463,9 +545,12 @@ public class RegistrarPedido extends javax.swing.JFrame {
                     Datos[1]=jt_producto.getValueAt(FilaSeleccionada,0).toString();
                     Datos[2]=jt_producto.getValueAt(FilaSeleccionada,1).toString();
                     Datos[3]=jt_producto.getValueAt(FilaSeleccionada,2).toString();
-                    modelo2.addRow(Datos);
+                    modelo_pedido.addRow(Datos);
                     sumartotal();
+                    agregar_pedido.setEnabled(false);
                     updateProducto(cantidad_existencia, cantidad_compra, Datos[1]);
+                   cargarCbTienda(Datos[2]);
+                    
                 }else{
                     JOptionPane.showMessageDialog(null,"No hay cantidad suficiente de productos.");
                 }
@@ -474,8 +559,9 @@ public class RegistrarPedido extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"Ingrese cantidad de producto");
             }
         }else{JOptionPane.showMessageDialog(null,"Seleccione producto");}
-        cantidad_txt.setText(null);*/
-    }//GEN-LAST:event_agregar_carritoActionPerformed
+        cantidad_txt.setText(null);
+        
+    }//GEN-LAST:event_agregar_pedidoActionPerformed
 
     private void credito_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_credito_txtActionPerformed
 
@@ -486,28 +572,63 @@ public class RegistrarPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_credito_txtKeyTyped
 
     private void calcular_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcular_botonActionPerformed
-       /* try {
-            double total = Double.parseDouble(total_lbl.getText());
+        double credito_ingresado =0;
+        double anticipo=0;
+        double efectivo = 0;
+        try {
+           
+           double total = Double.parseDouble(total_lbl.getText());
             double credito_cliente = Double.parseDouble(credito_lbl.getText());
-            double credito_ingresado;
-            double efectivo = 0;
-
-            if(credito_txt.getText().equals("")){
-                credito_ingresado=0;
-                efectivo = total;
-                efectivo_txt.setText(String.valueOf(efectivo));
-            }else{
+           
+            
+            if(!(credito_txt.getText().equals(""))&&!(efectivo_txt.getText().equals(""))){
                 credito_ingresado = Double.parseDouble(credito_txt.getText());
+                efectivo = Double.parseDouble(efectivo_txt.getText());
                 if(verificarCredito(credito_cliente, credito_ingresado)){
-                    efectivo = total-credito_ingresado;
-                    efectivo_txt.setText(String.valueOf(efectivo));
+                    anticipo = efectivo+credito_ingresado;
+                    if(((anticipo>=(total*0.25))&&(anticipo<=total))){
+                    anticipo_lbl.setText(String.valueOf(anticipo));
+                    }else if(anticipo>total){
+                        JOptionPane.showMessageDialog(null, "Su anticipo es mayor que el total");
+                    }else{   
+                    JOptionPane.showMessageDialog(null, "Su anticipo es insuficiente");
+                    }
+                    
                 }else{
                     JOptionPane.showMessageDialog(null, "Su credito es insuficiente");
                 }
+            }else if((credito_txt.getText().equals(""))&&!(efectivo_txt.getText().equals(""))){
+                efectivo = Double.parseDouble(efectivo_txt.getText());
+                if(efectivo>=(total*0.25)&&(efectivo<=total)){
+                    anticipo = efectivo;
+                    anticipo_lbl.setText(String.valueOf(anticipo));
+                }else if(efectivo>total){
+                        JOptionPane.showMessageDialog(null, "Su anticipo es mayor que el total");
+                }else{
+                    JOptionPane.showMessageDialog(null, "Su anticipo es insuficiente");
+                }
+            }else if((efectivo_txt.getText().equals(""))&&!(credito_txt.getText().equals(""))){
+                credito_ingresado = Double.parseDouble(credito_txt.getText());
+                if(verificarCredito(credito_cliente, credito_ingresado)){
+                if(credito_ingresado>=(total*0.25)&&(credito_ingresado<=total)){
+                    anticipo = credito_ingresado;
+                    anticipo_lbl.setText(String.valueOf(anticipo));
+                }else if(credito_ingresado>total){
+                        JOptionPane.showMessageDialog(null, "Su anticipo es mayor que el total");
+                }else{
+                    JOptionPane.showMessageDialog(null, "Su anticipo es insuficiente");
+                }
+                }else{
+                    JOptionPane.showMessageDialog(null, "Su credito es insuficiente");
+                }
+                
+            }else{
+             JOptionPane.showMessageDialog(null, "Llene los campos");
             }
+      
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No ha seleccionado todos los items");
-        }*/
+        }
 
     }//GEN-LAST:event_calcular_botonActionPerformed
 
@@ -516,6 +637,18 @@ public class RegistrarPedido extends javax.swing.JFrame {
         a.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void tienda_cbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tienda_cbMouseClicked
+        
+    }//GEN-LAST:event_tienda_cbMouseClicked
+
+    private void tienda_cbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tienda_cbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tienda_cbActionPerformed
+
+    private void lbl_tiempoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_tiempoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbl_tiempoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -551,9 +684,281 @@ public class RegistrarPedido extends javax.swing.JFrame {
             }
         });
     }
+    
+      public void KeyListenerProducto(){
+      
+        codigo_txt.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                CargarTablaProducto();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                 CargarTablaProducto();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                 CargarTablaProducto();
+            }
+           
+        });
+    }
+    
+      public void KeyListenerNIT(){
+      
+        nit_txt.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                CargarTablaCliente();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                 CargarTablaCliente();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                 CargarTablaCliente();
+            }
+           
+        });
+    }
+    
+     public void CargarTablaCliente(){
+        String campo = nit_txt.getText();
+        String where = "";
+
+        if (!"".equals(campo)) {
+            where = "WHERE nit LIKE '%" + campo + "%'";
+
+        }else{
+            where="";
+        }
+         try {
+            DefaultTableModel modelo_cliente = new DefaultTableModel(){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                return false;
+                }
+           };
+           jt_cliente.setModel(modelo_cliente);
+           modelo_cliente.addColumn("NIT");
+           modelo_cliente.addColumn("Nombre"); 
+           modelo_cliente.addColumn("Credito"); 
+           String query_cliente = "SELECT nit,nombre,credito_compra FROM CLIENTE "+where;
+           System.out.println(query_cliente);
+           ResultSet rs = a.SeleccionarJT(query_cliente);
+           ResultSetMetaData rsMd = rs.getMetaData();
+           int cantidadColumnas = rsMd.getColumnCount();
+             System.out.println("creando tabla");
+           while(rs.next()){
+                Object[] filas = new Object[cantidadColumnas];
+                for(int i = 0; i<cantidadColumnas; i++){
+                    filas[i]= rs.getObject(i+1);
+                }
+                modelo_cliente.addRow(filas);    
+            }
+           rs.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error "+ e);
+            
+        }
+    }
+     
+    
+    public void CargarTablaProducto(){
+        String campo = codigo_txt.getText();
+        String where = "";
+
+        if (!"".equals(campo)) {
+            where = "&& codigo LIKE '%" + campo + "%' ";
+
+        }else{
+            where="";
+        }
+         try {
+             DefaultTableModel modelo_producto = new DefaultTableModel(){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                return false;
+                }
+           };
+             System.out.println("++++"+where);
+           jt_producto.setModel(modelo_producto);
+           modelo_producto.addColumn("Codigo");
+           modelo_producto.addColumn("Nombre");
+           modelo_producto.addColumn("Precio");
+           modelo_producto.addColumn("Cantidad");   
+           String query_producto = "SELECT codigo,nombre,precio,cantidad FROM PRODUCTO WHERE codigo_tienda NOT IN (SELECT codigo_tienda PRODUCTO WHERE codigo_tienda='"+Login.tienda_actual+"')"+where;
+           System.out.println(query_producto);
+           ResultSet rs = a.SeleccionarJT(query_producto);
+           ResultSetMetaData rsMd = rs.getMetaData();
+           int cantidadColumnas = rsMd.getColumnCount();       
+           while(rs.next()){
+                Object[] filas = new Object[cantidadColumnas];
+                for(int i = 0; i<cantidadColumnas; i++){             
+                    filas[i]= rs.getObject(i+1);
+                }
+                modelo_producto.addRow(filas);    
+            }
+           rs.close();
+           
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error "+ e);
+            
+        }
+    }
+    
+    
+    
+    
+    public boolean verificarExistencia(int tienda, int venta){
+         if((tienda-venta)>=0) return true;
+         else return false;
+     }
+    
+    public void sumartotal(){
+        double t=0;
+        double p=0;
+        int rowscount=pedido_jt.getRowCount();
+        if (pedido_jt.getRowCount() > 0) {
+            for (int i = 0; i < rowscount; i++) {
+                p=Double.parseDouble(pedido_jt.getValueAt(i, 3).toString());
+                p*=Double.parseDouble(pedido_jt.getValueAt(i, 0).toString());
+                t+=p;
+            }
+        }
+        total_lbl.setText(String.valueOf(t));
+
+    }
+     public void updateProducto(int cantidad_tienda, int cantidad_venta,String codigo){
+         System.out.println("entra a update");
+         int nuevacantidad = cantidad_tienda - cantidad_venta;
+          Statement stmt = null;
+        try {
+             String query = ("UPDATE PRODUCTO SET cantidad = '"+nuevacantidad+"' WHERE codigo='"+codigo+"'" );
+             a.conexionDB();
+             stmt = a.getConnection().createStatement();
+             stmt.executeUpdate(query);
+             stmt.close();
+            CargarTablaProducto();
+        }catch (SQLException e) {
+             JOptionPane.showMessageDialog(null,"Error "+e);
+        }
+     }
+     
+     public void cargarCbTienda(String nombre){
+          String Query="SELECT codigo_tienda FROM PRODUCTO WHERE nombre='"+nombre+"'";
+          ResultSet Result = a.SeleccionarCB(Query);
+         try {
+             while (Result.next()) {
+               if(!(Result.equals(Login.tienda_actual))){
+                  tienda_cb.addItem(String.valueOf(Result.getObject("codigo_tienda"))); 
+                  
+                }
+              }
+         Result.close();
+         a.disconnectDB();
+             
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error "+e);
+        }
+     
+     }
+     
+   /*  public void cargarTiempo(String tienda1,String tienda2){
+         System.out.println("entra a cargar tiempo <>"+tienda1+"<> "+tienda2);
+         String Query1="SELECT * FROM TIENDA WHERE codigo LIKE 'ABC%'"; 
+         String Query="SELECT tiempo FROM TIEMPO_DE_ENVIO WHERE ((codigo_tienda1='"+tienda1+"' && codigo_tienda2='"+tienda2+"')||(codigo_tienda1='"+tienda2+"' && codigo_tienda2='"+tienda1+"'))";
+          ResultSet Result = a.consulta(Query1);
+          
+         try {
+                
+                while (Result.next()) {
+                
+                  tiempo_cb.addItem(String.valueOf(Result.getObject("codigo"))); 
+
+              }
+  
+                   
+              //  lbl_tiempo.setText(Result.getString(1));           
+             
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error en tiempo "+e);
+        }
+     
+     }*/
+     
+     
+     
+      public void cargarTiempo(String tienda1,String tienda2){
+          Conexion b = new Conexion();
+          String Query="SELECT tiempo FROM TIEMPO_DE_ENVIO WHERE ((codigo_tienda1='"+tienda1+"' && codigo_tienda2='"+tienda2+"')||(codigo_tienda1='"+tienda2+"' && codigo_tienda2='"+tienda1+"'))";
+          
+          ResultSet Result = b.SeleccionarCB(Query);
+         try {
+             while (Result.next()) {
+               if(!(Result.equals(Result.getObject("tiempo")))){
+                  lbl_tiempo.setText(String.valueOf(Result.getObject("tiempo"))); 
+                }
+              }
+         Result.close();
+         a.disconnectDB();
+             
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error "+e);
+        }
+     
+     }
+      
+     public boolean verificarCredito(double credito_cliente, double credito_ingresado){
+         if((credito_cliente-credito_ingresado)>=0) return true;
+         else return false;
+     }
+     
+     public void updateCliente(double creditocliente,double creditoingresado,String codigo){
+         double nuevocredito = creditocliente - creditoingresado;
+          Statement stmt = null;
+        try {
+             String query = ("UPDATE CLIENTE SET credito_compra= '"+nuevocredito+"' WHERE NIT='"+codigo+"'" );
+             a.conexionDB();
+             stmt = a.getConnection().createStatement();
+             stmt.executeUpdate(query);
+             stmt.close();
+            CargarTablaCliente();
+        }catch (SQLException e) {
+             if(e.getErrorCode() == MYSQL_DUPLICATE_PK ){
+                JOptionPane.showMessageDialog(null,"Error, el codigo ya existe.");
+             }else{
+             JOptionPane.showMessageDialog(null,"Error "+e);
+             }
+        }
+     }
+     
+    public void insertPedido(LocalDate fecha,int cantidad,double total,double anticipo,String producto,String cliente,String tienda1,String tienda2){
+        System.out.println("entra a db");
+        Statement stmt = null;
+        try {
+             String query = ("INSERT INTO PEDIDO(codigo_tienda_destino,codigo_tienda_origen,fecha,nit_cliente,codigo_producto,cantidad,total,anticipo) VALUES('"+tienda1+"','"+tienda2+"','"+fecha+"','"+cliente+"','"+producto+"','"+cantidad+"','"+total+"','"+anticipo+"')");
+             a.conexionDB();
+             stmt = a.getConnection().createStatement();
+             stmt.executeUpdate(query);
+             stmt.close();
+             
+        }catch(Exception e) {
+               JOptionPane.showMessageDialog(null,"Hay un error en Pedido");
+         
+        }
+
+    }
+     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton agregar_carrito;
+    private javax.swing.JButton agregar_pedido;
+    private javax.swing.JLabel anticipo_lbl;
     private javax.swing.JButton calcular_boton;
     private javax.swing.JFormattedTextField cantidad_txt;
     private javax.swing.JTextField codigo_txt;

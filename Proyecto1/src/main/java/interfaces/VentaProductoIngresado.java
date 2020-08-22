@@ -5,6 +5,15 @@
  */
 package interfaces;
 
+import conexionDB.Conexion;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jalej
@@ -14,9 +23,12 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
     /**
      * Creates new form VentaProductoIngresado
      */
+    Conexion a = new Conexion();
     public VentaProductoIngresado() {
         initComponents();
          this.setLocationRelativeTo(null);
+         KeyListenerPedido();
+         CargarPedidosIngresados();
     }
 
     /**
@@ -32,9 +44,9 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         regresar_bt = new javax.swing.JButton();
-        nit_txt = new javax.swing.JTextField();
+        pedido_txt = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        pedidosingresados_jt = new javax.swing.JTable();
+        pedido_jt = new javax.swing.JTable();
         jLabel14 = new javax.swing.JLabel();
         seleccionar_pedido = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
@@ -101,21 +113,21 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
         });
         jPanel1.add(regresar_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 30, 130, 30));
 
-        nit_txt.setBackground(new java.awt.Color(255, 255, 255));
-        nit_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        nit_txt.setForeground(new java.awt.Color(0, 0, 0));
-        nit_txt.addActionListener(new java.awt.event.ActionListener() {
+        pedido_txt.setBackground(new java.awt.Color(255, 255, 255));
+        pedido_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        pedido_txt.setForeground(new java.awt.Color(0, 0, 0));
+        pedido_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nit_txtActionPerformed(evt);
+                pedido_txtActionPerformed(evt);
             }
         });
-        jPanel1.add(nit_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 230, 30));
+        jPanel1.add(pedido_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 230, 30));
 
         jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane3.setForeground(new java.awt.Color(0, 0, 0));
 
-        pedidosingresados_jt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
-        jScrollPane3.setViewportView(pedidosingresados_jt);
+        pedido_jt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        jScrollPane3.setViewportView(pedido_jt);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 380, 120));
 
@@ -140,7 +152,7 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Tiempo de Envio:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, -1, 30));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, -1, 30));
 
         jLabel25.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
         jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 400, 225));
@@ -148,40 +160,40 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Fecha de ingreso:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, -1, 30));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, -1, 30));
 
         estado_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         estado_lbl.setForeground(new java.awt.Color(0, 0, 0));
         estado_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
-        jPanel1.add(estado_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 570, 220, 30));
+        jPanel1.add(estado_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 550, 220, 30));
 
         jLabel13.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Fecha de pedido:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, -1, 30));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, -1, 30));
 
         fechaingreso_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         fechaingreso_lbl.setForeground(new java.awt.Color(0, 0, 0));
         fechaingreso_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
-        jPanel1.add(fechaingreso_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 220, 30));
+        jPanel1.add(fechaingreso_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, 220, 30));
 
         fechapedido_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         fechapedido_lbl.setForeground(new java.awt.Color(0, 0, 0));
         fechapedido_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
-        jPanel1.add(fechapedido_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 220, 30));
+        jPanel1.add(fechapedido_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 220, 30));
 
         jLabel15.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Estado:");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 570, -1, 30));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 550, -1, 30));
 
         tiempoenvio_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         tiempoenvio_lbl.setForeground(new java.awt.Color(0, 0, 0));
         tiempoenvio_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
-        jPanel1.add(tiempoenvio_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 510, 220, 30));
+        jPanel1.add(tiempoenvio_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 490, 220, 30));
 
         jLabel24.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 400, 280));
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 400, 280));
 
         cliente_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         cliente_lbl.setForeground(new java.awt.Color(0, 0, 0));
@@ -370,12 +382,13 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_regresar_btActionPerformed
 
-    private void nit_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nit_txtActionPerformed
+    private void pedido_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedido_txtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nit_txtActionPerformed
+    }//GEN-LAST:event_pedido_txtActionPerformed
 
     private void seleccionar_pedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionar_pedidoActionPerformed
      
+        
     }//GEN-LAST:event_seleccionar_pedidoActionPerformed
 
     private void venta_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venta_botonActionPerformed
@@ -478,6 +491,69 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
             }
         });
     }
+    
+     public void KeyListenerPedido(){
+      
+        pedido_txt.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                CargarPedidosIngresados();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                 CargarPedidosIngresados();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                 CargarPedidosIngresados();
+            }
+           
+        });
+    }
+    
+    public void CargarPedidosIngresados(){
+         String campo = pedido_txt.getText();
+        String where = "";
+
+        if (!"".equals(campo)) {
+            where = "&& ID LIKE '%" + campo + "%' ";
+
+        }else{
+            where="";
+        }
+         try {
+             DefaultTableModel modelo_pedido = new DefaultTableModel(){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                return false;
+                }
+           };
+             System.out.println("++++"+where);
+           pedido_jt.setModel(modelo_pedido);
+           modelo_pedido.addColumn("Codigo ingreso");
+           modelo_pedido.addColumn("Fecha ingreso");
+            modelo_pedido.addColumn("Codigo pedido");
+           String query_pedido = "SELECT ID,fecha_entrega,codigo_tienda FROM RECIBE WHERE codigo_tienda='"+Login.tienda_actual+"' "+where;
+           System.out.println(query_pedido);
+           ResultSet rs = a.SeleccionarJT(query_pedido);
+           ResultSetMetaData rsMd = rs.getMetaData();
+           int cantidadColumnas = rsMd.getColumnCount();       
+           while(rs.next()){
+                Object[] filas = new Object[cantidadColumnas];
+                for(int i = 0; i<cantidadColumnas; i++){             
+                    filas[i]= rs.getObject(i+1);
+                }
+                modelo_pedido.addRow(filas);    
+            }
+           rs.close();
+           
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error "+ e);
+            
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel anticipo_lbl;
@@ -517,8 +593,8 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel nit_lbl;
-    private javax.swing.JTextField nit_txt;
-    private javax.swing.JTable pedidosingresados_jt;
+    private javax.swing.JTable pedido_jt;
+    private javax.swing.JTextField pedido_txt;
     private javax.swing.JTable producto_jt;
     private javax.swing.JButton regresar_bt;
     private javax.swing.JButton seleccionar_pedido;
