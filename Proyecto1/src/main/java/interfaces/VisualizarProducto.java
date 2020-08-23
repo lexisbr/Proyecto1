@@ -5,6 +5,16 @@
  */
 package interfaces;
 
+import conexionDB.Conexion;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jalej
@@ -14,8 +24,11 @@ public class VisualizarProducto extends javax.swing.JFrame {
     /**
      * Creates new form VisualizarProducto
      */
+    Conexion a = new Conexion();
     public VisualizarProducto() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        cargarTablaProducto();
     }
 
     /**
@@ -27,11 +40,312 @@ public class VisualizarProducto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        precio_txt = new javax.swing.JFormattedTextField();
+        cantidad_txt = new javax.swing.JFormattedTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
+        buscar_txt = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jt_visualizar = new javax.swing.JTable();
+        seleccionar = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        actualizar = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        codigo_txt = new javax.swing.JTextField();
+        nombre_txt = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        fabricante_txt = new javax.swing.JTextField();
+        descripcion_txt = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        tienda_txt = new javax.swing.JTextField();
+        garantia_txt = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        precio_txt.setBackground(new java.awt.Color(255, 255, 255));
+        precio_txt.setForeground(new java.awt.Color(0, 0, 0));
+        precio_txt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        jPanel1.add(precio_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 440, 230, 30));
+
+        cantidad_txt.setBackground(new java.awt.Color(255, 255, 255));
+        cantidad_txt.setForeground(new java.awt.Color(0, 0, 0));
+        cantidad_txt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        cantidad_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cantidad_txtKeyTyped(evt);
+            }
+        });
+        jPanel1.add(cantidad_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 400, 230, 30));
+
+        jLabel2.setFont(new java.awt.Font("Leelawadee", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Productos.");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/producto.png"))); // NOI18N
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        jButton7.setBackground(new java.awt.Color(255, 255, 255));
+        jButton7.setFont(new java.awt.Font("Leelawadee UI", 1, 12)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(0, 0, 0));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/regresar.png"))); // NOI18N
+        jButton7.setText("Regresar");
+        jButton7.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 30, 130, 30));
+
+        buscar_txt.setBackground(new java.awt.Color(255, 255, 255));
+        buscar_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        buscar_txt.setForeground(new java.awt.Color(0, 0, 0));
+        buscar_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscar_txtActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buscar_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 330, 30));
+
+        jLabel11.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Buscar:");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, 30));
+
+        jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane3.setForeground(new java.awt.Color(0, 0, 0));
+
+        jt_visualizar.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        jScrollPane3.setViewportView(jt_visualizar);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 530, 150));
+
+        seleccionar.setBackground(new java.awt.Color(255, 255, 255));
+        seleccionar.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        seleccionar.setForeground(new java.awt.Color(0, 0, 0));
+        seleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lupa.png"))); // NOI18N
+        seleccionar.setText("Mostrar");
+        seleccionar.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
+        seleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seleccionarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(seleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 170, 130, 60));
+
+        jLabel9.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Codigo:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, 30));
+
+        actualizar.setBackground(new java.awt.Color(255, 255, 255));
+        actualizar.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        actualizar.setForeground(new java.awt.Color(0, 0, 0));
+        actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/check.png"))); // NOI18N
+        actualizar.setText("Actualizar");
+        actualizar.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
+        actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 490, 170, 40));
+
+        jLabel12.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Precio:");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 440, -1, 30));
+
+        codigo_txt.setBackground(new java.awt.Color(255, 255, 255));
+        codigo_txt.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        codigo_txt.setForeground(new java.awt.Color(0, 0, 0));
+        codigo_txt.setEnabled(false);
+        jPanel1.add(codigo_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 230, 30));
+
+        nombre_txt.setBackground(new java.awt.Color(255, 255, 255));
+        nombre_txt.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        nombre_txt.setForeground(new java.awt.Color(0, 0, 0));
+        nombre_txt.setEnabled(false);
+        nombre_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombre_txtKeyTyped(evt);
+            }
+        });
+        jPanel1.add(nombre_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, 230, 30));
+
+        jLabel8.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Nombre:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, -1, 30));
+
+        jLabel3.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Fabricante:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, -1, 30));
+
+        fabricante_txt.setBackground(new java.awt.Color(255, 255, 255));
+        fabricante_txt.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        fabricante_txt.setForeground(new java.awt.Color(0, 0, 0));
+        fabricante_txt.setEnabled(false);
+        jPanel1.add(fabricante_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 230, 30));
+
+        descripcion_txt.setBackground(new java.awt.Color(255, 255, 255));
+        descripcion_txt.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        descripcion_txt.setForeground(new java.awt.Color(0, 0, 0));
+        descripcion_txt.setEnabled(false);
+        descripcion_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                descripcion_txtKeyTyped(evt);
+            }
+        });
+        jPanel1.add(descripcion_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 440, 230, 30));
+
+        jLabel4.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Descripcion:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, -1, 30));
+
+        jLabel7.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Cantidad:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 400, -1, 30));
+
+        jLabel6.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Tienda:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, -1, 30));
+
+        jLabel5.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Garantia:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, -1, 30));
+
+        tienda_txt.setBackground(new java.awt.Color(255, 255, 255));
+        tienda_txt.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        tienda_txt.setForeground(new java.awt.Color(0, 0, 0));
+        tienda_txt.setEnabled(false);
+        jPanel1.add(tienda_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, 230, 30));
+
+        garantia_txt.setBackground(new java.awt.Color(255, 255, 255));
+        garantia_txt.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        garantia_txt.setForeground(new java.awt.Color(0, 0, 0));
+        garantia_txt.setEnabled(false);
+        garantia_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                garantia_txtKeyTyped(evt);
+            }
+        });
+        jPanel1.add(garantia_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, 230, 30));
+
+        jLabel20.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 720, 170));
+
+        jLabel21.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 700, 225));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visuaizarfondo.jpg"))); // NOI18N
+        jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 540));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 540));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        SeleccionarVisualizar a = new SeleccionarVisualizar();
+        a.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void buscar_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buscar_txtActionPerformed
+
+    private void seleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarActionPerformed
+        int FilaSeleccionada = jt_visualizar.getSelectedRow();
+        String codigo = "";
+        String nombre = "";
+        String fabricante = "";
+        String cantidad = "";
+        String precio = "";
+        String descripcion = "";
+        String garantia = "";
+        String tienda = "";
+    
+
+        if(FilaSeleccionada>=0){
+            codigo=jt_visualizar.getValueAt(FilaSeleccionada,0).toString();
+            nombre=jt_visualizar.getValueAt(FilaSeleccionada, 1).toString();
+            fabricante = jt_visualizar.getValueAt(FilaSeleccionada, 2).toString();
+            cantidad = jt_visualizar.getValueAt(FilaSeleccionada, 3).toString();
+            precio = jt_visualizar.getValueAt(FilaSeleccionada, 4).toString();
+            tienda = jt_visualizar.getValueAt(FilaSeleccionada, 7).toString();
+            codigo_txt.setText(codigo);
+            nombre_txt.setText(nombre);
+            fabricante_txt.setText(fabricante);
+            cantidad_txt.setText(cantidad);
+            precio_txt.setText(precio);
+            tienda_txt.setText(tienda);
+            try {
+                descripcion = jt_visualizar.getValueAt(FilaSeleccionada, 5).toString();
+                garantia = jt_visualizar.getValueAt(FilaSeleccionada, 6).toString();
+                
+                descripcion_txt.setText(descripcion);
+                garantia_txt.setText(garantia);
+                
+
+            } catch (Exception e) {
+            }
+
+        }
+
+    }//GEN-LAST:event_seleccionarActionPerformed
+
+    private void nombre_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombre_txtKeyTyped
+
+    }//GEN-LAST:event_nombre_txtKeyTyped
+
+    private void descripcion_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descripcion_txtKeyTyped
+
+    }//GEN-LAST:event_descripcion_txtKeyTyped
+
+    private void garantia_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_garantia_txtKeyTyped
+
+    }//GEN-LAST:event_garantia_txtKeyTyped
+
+    private void actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarActionPerformed
+       try {
+            int cantidad = Integer.parseInt(cantidad_txt.getText());
+            double precio = Double.parseDouble(precio_txt.getText());
+            updateProducto(codigo_txt.getText(),cantidad,precio);
+            cargarTablaProducto();
+           
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"No ha seleccionado nada.");
+
+        }
+    }//GEN-LAST:event_actualizarActionPerformed
+
+    private void cantidad_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cantidad_txtKeyTyped
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+    }//GEN-LAST:event_cantidad_txtKeyTyped
 
     /**
      * @param args the command line arguments
@@ -67,7 +381,117 @@ public class VisualizarProducto extends javax.swing.JFrame {
             }
         });
     }
+      public void KeyListener(){
+      
+        buscar_txt.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                cargarTablaProducto();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                 cargarTablaProducto();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                 cargarTablaProducto();
+            }
+           
+        });
+    }
+     
+     public void cargarTablaProducto(){
+         String campo = buscar_txt.getText();
+        String where = "";
+
+        if (!"".equals(campo)) {
+            where = "WHERE codigo LIKE '%" + campo + "%' || nombre LIKE '%"+ campo +"%' || codigo_tienda LIKE '%"+ campo +"%'";
+
+        }else{
+            where="";
+        }
+         try {
+           DefaultTableModel modelo = new DefaultTableModel(){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                return false;
+                }
+           };
+           jt_visualizar.setModel(modelo);
+           modelo.addColumn("Codigo");
+           modelo.addColumn("Nombre");
+           modelo.addColumn("Fabricante"); 
+           modelo.addColumn("Cantidad");
+           modelo.addColumn("Precio");
+           modelo.addColumn("Descripcion");
+           modelo.addColumn("Garantia");
+           modelo.addColumn("Tienda");
+           String query = "SELECT * FROM PRODUCTO "+where+" ORDER BY codigo ASC";
+           System.out.println(query);
+           ResultSet rs = a.SeleccionarJT(query);
+           ResultSetMetaData rsMd = rs.getMetaData();
+           int cantidadColumnas = rsMd.getColumnCount();
+             System.out.println("creando tabla");
+           while(rs.next()){
+                Object[] filas = new Object[cantidadColumnas];
+                for(int i = 0; i<cantidadColumnas; i++){
+                    filas[i]= rs.getObject(i+1);
+                }
+                modelo.addRow(filas);    
+            }
+           rs.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error "+ e);
+            
+        }
+    }
+     
+     public void updateProducto(String codigo,int cantidad, double precio){
+        String query ="UPDATE PRODUCTO SET cantidad='"+cantidad+"',precio='"+precio+"' WHERE codigo='"+codigo+"'";
+        Statement stmt = null;
+        try {    
+             a.conexionDB();
+             stmt = a.getConnection().createStatement();
+             stmt.executeUpdate(query);   
+             JOptionPane.showMessageDialog(null,"Se ha actualizado correctamente.");
+             stmt.close();
+        }catch (SQLException e) {
+             JOptionPane.showMessageDialog(null,"Error "+e);
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton actualizar;
+    private javax.swing.JTextField buscar_txt;
+    private javax.swing.JFormattedTextField cantidad_txt;
+    private javax.swing.JTextField codigo_txt;
+    private javax.swing.JTextField descripcion_txt;
+    private javax.swing.JTextField fabricante_txt;
+    private javax.swing.JTextField garantia_txt;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jt_visualizar;
+    private javax.swing.JTextField nombre_txt;
+    private javax.swing.JFormattedTextField precio_txt;
+    private javax.swing.JButton seleccionar;
+    private javax.swing.JTextField tienda_txt;
     // End of variables declaration//GEN-END:variables
 }

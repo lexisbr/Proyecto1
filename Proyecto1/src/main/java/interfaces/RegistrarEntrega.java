@@ -50,12 +50,10 @@ public class RegistrarEntrega extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         pedido_txt = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         pedido_jt = new javax.swing.JTable();
         pedido_bt = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
-        estado_lbl = new javax.swing.JLabel();
         fecha_lbl = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         marco2 = new javax.swing.JLabel();
@@ -65,8 +63,6 @@ public class RegistrarEntrega extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         codigo_lb = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        estado_lbl1 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
         tienda_origen = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         marco1 = new javax.swing.JLabel();
@@ -124,11 +120,6 @@ public class RegistrarEntrega extends javax.swing.JFrame {
         });
         jPanel1.add(pedido_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 240, 30));
 
-        jLabel14.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Estado:");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, -1, 30));
-
         jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane3.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -154,11 +145,6 @@ public class RegistrarEntrega extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Pedido:");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, 30));
-
-        estado_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
-        estado_lbl.setForeground(new java.awt.Color(0, 0, 0));
-        estado_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
-        jPanel1.add(estado_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 280, 200, 30));
 
         fecha_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         fecha_lbl.setForeground(new java.awt.Color(0, 0, 0));
@@ -203,28 +189,18 @@ public class RegistrarEntrega extends javax.swing.JFrame {
         jLabel19.setText("Tiempo:");
         jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, -1, 30));
 
-        estado_lbl1.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
-        estado_lbl1.setForeground(new java.awt.Color(0, 0, 0));
-        estado_lbl1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
-        jPanel1.add(estado_lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 280, 200, 30));
-
-        jLabel20.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel20.setText("Estado:");
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, -1, 30));
-
         tienda_origen.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         tienda_origen.setForeground(new java.awt.Color(0, 0, 0));
         tienda_origen.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
-        jPanel1.add(tienda_origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 330, 200, 30));
+        jPanel1.add(tienda_origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 290, 200, 30));
 
         jLabel21.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Origen:");
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, -1, 30));
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, -1, 30));
 
         marco1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
-        jPanel1.add(marco1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 290, 260));
+        jPanel1.add(marco1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 290, 230));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoventas.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
@@ -359,9 +335,10 @@ public class RegistrarEntrega extends javax.swing.JFrame {
             modelo_pedido.addColumn("Tienda origen");
            modelo_pedido.addColumn("Anticipo");
            modelo_pedido.addColumn("Total");   
+           String query = "SELECT P.codigo,P.fecha,P.codigo_tienda_origen,P.anticipo,P.total FROM PEDIDO P LEFT JOIN RECIBE R ON P.codigo = R.codigo_pedido WHERE R.ID IS NULL && codigo_tienda_destino='"+Login.tienda_actual+"' "+where;
            String query_pedido = "SELECT codigo,fecha,codigo_tienda_origen,anticipo,total FROM PEDIDO WHERE codigo_tienda_destino='"+Login.tienda_actual+"' "+where;
-           System.out.println(query_pedido);
-           ResultSet rs = a.SeleccionarJT(query_pedido);
+           System.out.println(query);
+           ResultSet rs = a.SeleccionarJT(query);
            ResultSetMetaData rsMd = rs.getMetaData();
            int cantidadColumnas = rsMd.getColumnCount();       
            while(rs.next()){
@@ -422,18 +399,14 @@ public class RegistrarEntrega extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel codigo_lb;
-    private javax.swing.JLabel estado_lbl;
-    private javax.swing.JLabel estado_lbl1;
     private javax.swing.JLabel fecha_lbl;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;

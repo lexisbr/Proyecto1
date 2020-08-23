@@ -412,18 +412,18 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
         double anticipo = Double.parseDouble(anticipo_lbl.getText());
         double total = Double.parseDouble(total_lbl.getText());
         totalapagar_lbl.setText(totalPagar(anticipo, total));
-        
+        System.out.println("1+++"+credito_actualizado);
         calcularCredito(Double.parseDouble(totalPagar(anticipo, total)),estado_lbl.getText(),nit_lbl.getText(),total);
         
     }//GEN-LAST:event_seleccionar_pedidoActionPerformed
 
     private void venta_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venta_botonActionPerformed
-
+        
         try {
             
            
         double total = Double.parseDouble(total_lbl.getText());
-
+            System.out.println("4+++"+credito_actualizado);
         String query = ("INSERT INTO FACTURA VALUES('"+0+"','"+fecha+"','"+total+"','"+Login.tienda_actual+"','"+nit_lbl.getText()+"')");  
         int codigofactura =0;
 
@@ -437,7 +437,8 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
            
             int cantidad = Integer.parseInt(cantidad_txt.getText());
             insertDBVENTA(precio,cantidad,producto_lbl.getText(),codigofactura);
-            updateCliente(credito_actualizado, nit_lbl.getText());
+            System.out.println("4+++"+credito_actualizado);
+            updateCliente1(credito_actualizado, nit_lbl.getText());
             JOptionPane.showMessageDialog(null, "Se registro la venta.");
             deleteRecibo(id);
             deletePedido(pedido);
@@ -459,21 +460,23 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
     }//GEN-LAST:event_credito_txtKeyTyped
 
     private void calcular_botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcular_botonActionPerformed
-        try {
+    try {
             double total = Double.parseDouble(totalapagar_lbl.getText());      
             double credito_ingresado;
             double efectivo = 0;
-
+            
             if(credito_txt.getText().equals("")){
                 credito_ingresado=0;
                 efectivo = total;
                 efectivo_txt.setText(String.valueOf(efectivo));
+                System.out.println("2+++"+credito_actualizado);
             }else{
                 credito_ingresado = Double.parseDouble(credito_txt.getText());
                 if(verificarCredito(credito_actualizado, credito_ingresado)&&credito_ingresado<=total){
                     efectivo = total-credito_ingresado;                
                     efectivo_txt.setText(String.valueOf(efectivo));
                     credito_actualizado = credito_actualizado - credito_ingresado; 
+                    System.out.println(" 3+++ "+credito_actualizado);
                 }else if(credito_ingresado>total){
                     JOptionPane.showMessageDialog(null, "Sobrepasa el total.");
                 }else{
@@ -656,7 +659,7 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
         String[] datos;
         String query ="SELECT tiempo FROM TIEMPO_DE_ENVIO WHERE ID='"+tiempo+"'";
         
-        try {     
+        try {   
             System.out.println(query);
             ResultSet rs = a.SeleccionarCB(query);
             ResultSetMetaData rsMd = rs.getMetaData();
@@ -688,7 +691,22 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
              a.conexionDB();
              stmt = a.getConnection().createStatement();
              stmt.executeUpdate(query);
-             creditoretraso_lbl.setText("+"+nuevocredito);
+             credito_actualizado = nuevocredito;
+             
+             stmt.close();
+        }catch (SQLException e) {
+             JOptionPane.showMessageDialog(null,"Error "+e);
+        }
+        
+    }
+    public void updateCliente1(double nuevocredito, String nit){    
+          String query ="UPDATE CLIENTE SET credito_compra='"+nuevocredito+"' WHERE NIT='"+nit+"'";
+          Statement stmt = null;
+        try {    
+             a.conexionDB();
+             stmt = a.getConnection().createStatement();
+             stmt.executeUpdate(query);
+             credito_actualizado = nuevocredito;
              
              stmt.close();
         }catch (SQLException e) {
@@ -758,17 +776,19 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
               updateCliente(creditoextra,nit);
               
               credito_actualizado = creditoextra + credito;
+              creditoretraso_lbl.setText("+"+creditoextra);
           }else{
               creditoextra = (total*0.02);
               // creditoretraso_lbl.setText(String.valueOf(creditoextra));
               updateCliente(creditoextra,nit);
               
               credito_actualizado = creditoextra + credito;
+               creditoretraso_lbl.setText("+"+creditoextra);
                
           }
       }else{
           credito_actualizado=credito;
-          creditoretraso_lbl.setText("");
+          creditoretraso_lbl.setText("-");
       }
         
     }

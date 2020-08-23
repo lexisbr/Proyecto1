@@ -87,7 +87,7 @@ public class SeleccionarVisualizar extends javax.swing.JFrame {
         });
         jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 130, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoempresa(2).jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visuaizarfondo.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 260));
 
@@ -106,15 +106,15 @@ public class SeleccionarVisualizar extends javax.swing.JFrame {
             tiempotienda.setVisible(true);
             this.dispose();
         }else if(jComboBox1.getSelectedItem().equals("Producto")){
-            CrearProducto a = new CrearProducto();
+            VisualizarProducto a = new VisualizarProducto();
             a.setVisible(true);
             this.dispose();
         }else if(jComboBox1.getSelectedItem().equals("Empleado")){
-            CrearEmpleado a = new CrearEmpleado();
+            VisualizarEmpleado a = new VisualizarEmpleado();
             a.setVisible(true);
             this.dispose();
         }else if(jComboBox1.getSelectedItem().equals("Cliente")){
-            CrearCliente a = new CrearCliente();
+            VisualizarCliente a = new VisualizarCliente();
             a.setVisible(true);
             this.dispose();
         }

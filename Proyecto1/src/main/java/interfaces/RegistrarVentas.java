@@ -554,9 +554,11 @@ public class RegistrarVentas extends javax.swing.JFrame {
             efectivo_txt.setText(String.valueOf(efectivo));
         }else{
            credito_ingresado = Double.parseDouble(credito_txt.getText());
-          if(verificarCredito(credito_cliente, credito_ingresado)){
+          if((credito_ingresado<=total)&&verificarCredito(credito_cliente, credito_ingresado)){
             efectivo = total-credito_ingresado;
             efectivo_txt.setText(String.valueOf(efectivo));
+            }else if(credito_ingresado>total){
+                JOptionPane.showMessageDialog(null, "Su credito sobrepasa el total.");
             }else{
            JOptionPane.showMessageDialog(null, "Su credito es insuficiente");
             }

@@ -19,16 +19,16 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jalej
  */
-public class VisualizarEmpleado extends javax.swing.JFrame {
+public class VisualizarCliente extends javax.swing.JFrame {
 
     /**
-     * Creates new form VisualizarEmpleado
+     * Creates new form VisualizarCliente
      */
     Conexion a = new Conexion();
-    public VisualizarEmpleado() {
+    public VisualizarCliente() {
         initComponents();
         this.setLocationRelativeTo(null);
-        cargarTablaEmpleado();
+        cargarTablaCliente();
         KeyListener();
     }
 
@@ -43,36 +43,33 @@ public class VisualizarEmpleado extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
         buscar_txt = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jt_visualizar = new javax.swing.JTable();
         seleccionar = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
         nit_txt = new javax.swing.JTextField();
-        codigo_txt = new javax.swing.JTextField();
-        nombre_txt = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        credito_txt = new javax.swing.JFormattedTextField();
+        nombre_txt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         direccion_txt = new javax.swing.JTextField();
-        telefono_txt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        telefono_txt = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         correo_txt = new javax.swing.JTextField();
         dpi_txt = new javax.swing.JTextField();
+        actualizar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        actualizar = new javax.swing.JButton();
-        jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,43 +82,15 @@ public class VisualizarEmpleado extends javax.swing.JFrame {
         jLabel13.setText("*");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 360, 20, -1));
 
-        jLabel19.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel19.setText("*");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 400, 30, -1));
-
-        jLabel14.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel14.setText("*");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, 10, -1));
-
         jLabel15.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("*");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 440, 20, -1));
 
-        jLabel16.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel16.setText("*");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 320, 30, -1));
-
         jLabel17.setFont(new java.awt.Font("Leelawadee", 0, 10)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("* Campos Obligatorios");
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 293, -1, 20));
-
-        jButton7.setBackground(new java.awt.Color(255, 255, 255));
-        jButton7.setFont(new java.awt.Font("Leelawadee UI", 1, 12)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(0, 0, 0));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/regresar.png"))); // NOI18N
-        jButton7.setText("Regresar");
-        jButton7.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 30, 130, 30));
 
         buscar_txt.setBackground(new java.awt.Color(255, 255, 255));
         buscar_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
@@ -159,31 +128,39 @@ public class VisualizarEmpleado extends javax.swing.JFrame {
         });
         jPanel1.add(seleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 170, 130, 60));
 
-        jLabel9.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Codigo:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, 30));
-
-        jLabel12.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("NIT:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, -1, 30));
+        jButton7.setBackground(new java.awt.Color(255, 255, 255));
+        jButton7.setFont(new java.awt.Font("Leelawadee UI", 1, 12)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(0, 0, 0));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/regresar.png"))); // NOI18N
+        jButton7.setText("Regresar");
+        jButton7.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 30, 130, 30));
 
         nit_txt.setBackground(new java.awt.Color(255, 255, 255));
         nit_txt.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         nit_txt.setForeground(new java.awt.Color(0, 0, 0));
-        nit_txt.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                nit_txtKeyTyped(evt);
+        nit_txt.setEnabled(false);
+        jPanel1.add(nit_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 230, 30));
+
+        jLabel8.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Nombre:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, -1, 30));
+
+        credito_txt.setBackground(new java.awt.Color(255, 255, 255));
+        credito_txt.setForeground(new java.awt.Color(0, 0, 0));
+        credito_txt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        credito_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                credito_txtActionPerformed(evt);
             }
         });
-        jPanel1.add(nit_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, 230, 30));
-
-        codigo_txt.setBackground(new java.awt.Color(255, 255, 255));
-        codigo_txt.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
-        codigo_txt.setForeground(new java.awt.Color(0, 0, 0));
-        codigo_txt.setEnabled(false);
-        jPanel1.add(codigo_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 230, 30));
+        jPanel1.add(credito_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 400, 230, 30));
 
         nombre_txt.setBackground(new java.awt.Color(255, 255, 255));
         nombre_txt.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
@@ -195,11 +172,6 @@ public class VisualizarEmpleado extends javax.swing.JFrame {
         });
         jPanel1.add(nombre_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, 230, 30));
 
-        jLabel8.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Nombre:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, -1, 30));
-
         jLabel3.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Direccion:");
@@ -209,6 +181,11 @@ public class VisualizarEmpleado extends javax.swing.JFrame {
         direccion_txt.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         direccion_txt.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(direccion_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 230, 30));
+
+        jLabel4.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Telefono:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, -1, 30));
 
         telefono_txt.setBackground(new java.awt.Color(255, 255, 255));
         telefono_txt.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
@@ -220,25 +197,30 @@ public class VisualizarEmpleado extends javax.swing.JFrame {
         });
         jPanel1.add(telefono_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 440, 230, 30));
 
-        jLabel4.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Telefono:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, -1, 30));
+        jLabel7.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Credito:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 400, -1, 30));
 
-        jLabel6.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Correo:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 400, -1, 30));
+        jLabel12.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("NIT:");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, 30));
 
         jLabel5.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("DPI:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, -1, 30));
 
+        jLabel6.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Correo:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, -1, 30));
+
         correo_txt.setBackground(new java.awt.Color(255, 255, 255));
         correo_txt.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         correo_txt.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(correo_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 400, 230, 30));
+        jPanel1.add(correo_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, 230, 30));
 
         dpi_txt.setBackground(new java.awt.Color(255, 255, 255));
         dpi_txt.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
@@ -249,14 +231,6 @@ public class VisualizarEmpleado extends javax.swing.JFrame {
             }
         });
         jPanel1.add(dpi_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, 230, 30));
-
-        jLabel2.setFont(new java.awt.Font("Leelawadee", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Empleados.");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
-
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cliente.png"))); // NOI18N
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         actualizar.setBackground(new java.awt.Color(255, 255, 255));
         actualizar.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
@@ -269,74 +243,82 @@ public class VisualizarEmpleado extends javax.swing.JFrame {
                 actualizarActionPerformed(evt);
             }
         });
-        jPanel1.add(actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 440, 170, 40));
+        jPanel1.add(actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 435, 170, 40));
 
-        jLabel20.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 720, 180));
+        jLabel2.setFont(new java.awt.Font("Leelawadee", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Clientes.");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cliente.png"))); // NOI18N
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         jLabel21.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
         jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 700, 225));
 
+        jLabel20.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 720, 170));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visuaizarfondo.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 500));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 490));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 500));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        SeleccionarVisualizar a = new SeleccionarVisualizar();
-        a.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton7ActionPerformed
 
     private void buscar_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_txtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buscar_txtActionPerformed
 
     private void seleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarActionPerformed
-       int FilaSeleccionada = jt_visualizar.getSelectedRow();
-        String codigo = "";
+        int FilaSeleccionada = jt_visualizar.getSelectedRow();
         String nombre = "";
         String direccion = "";
         String telefono = "";
         String NIT = "";
         String DPI = "";
         String email = "";
-        codigo_txt.setText(codigo);
-        nombre_txt.setText(nombre);
-        telefono_txt.setText(telefono);
-        dpi_txt.setText(DPI);
-        nit_txt.setText(NIT);
-        correo_txt.setText(email);
-        direccion_txt.setText(direccion);  
-       
+        String credito = "";
+        nit_txt.setText(null);
+        nombre_txt.setText(null);
+        telefono_txt.setText(null);
+        credito_txt.setText(null);
+        dpi_txt.setText(null);
+        correo_txt.setText(null);
+        direccion_txt.setText(null);
+        
         if(FilaSeleccionada>=0){
-            codigo=jt_visualizar.getValueAt(FilaSeleccionada,0).toString();
-            nombre=jt_visualizar.getValueAt(FilaSeleccionada, 1).toString();
-            DPI=jt_visualizar.getValueAt(FilaSeleccionada, 4).toString();      
-            email = jt_visualizar.getValueAt(FilaSeleccionada, 5).toString();
-            direccion = jt_visualizar.getValueAt(FilaSeleccionada, 6).toString();
+            NIT=jt_visualizar.getValueAt(FilaSeleccionada,0).toString();
+            nombre=jt_visualizar.getValueAt(FilaSeleccionada, 1).toString();       
             telefono = jt_visualizar.getValueAt(FilaSeleccionada, 2).toString();
-            codigo_txt.setText(codigo);
+            credito = jt_visualizar.getValueAt(FilaSeleccionada, 6).toString();
+            nit_txt.setText(NIT);
             nombre_txt.setText(nombre);
             telefono_txt.setText(telefono);
-            dpi_txt.setText(DPI);
-            nit_txt.setText(NIT);
-            correo_txt.setText(email);
-            direccion_txt.setText(direccion);  
+            credito_txt.setText(credito);
+            
             try {
-                NIT=jt_visualizar.getValueAt(FilaSeleccionada, 3).toString();
-                nit_txt.setText(NIT);
+                DPI=jt_visualizar.getValueAt(FilaSeleccionada, 3).toString();
+                 
+                email = jt_visualizar.getValueAt(FilaSeleccionada, 4).toString();
+                direccion = jt_visualizar.getValueAt(FilaSeleccionada, 5).toString();
+                dpi_txt.setText(DPI);
+                correo_txt.setText(email);
+                direccion_txt.setText(direccion);
 
             } catch (Exception e) {
             }
 
         }
-
     }//GEN-LAST:event_seleccionarActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        SeleccionarVisualizar a = new SeleccionarVisualizar();
+        a.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     private void nombre_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombre_txtKeyTyped
 
@@ -350,26 +332,26 @@ public class VisualizarEmpleado extends javax.swing.JFrame {
 
     }//GEN-LAST:event_dpi_txtKeyTyped
 
-    private void nit_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nit_txtKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nit_txtKeyTyped
-
     private void actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarActionPerformed
-      try { 
-            if(!(codigo_txt.getText().equals("")||nombre_txt.getText().equals("")||telefono_txt.getText().equals("")||dpi_txt.getText().equals("")||correo_txt.getText().equals("")||direccion_txt.getText().equals("")))
-                    {
-                    updateEmpleado(codigo_txt.getText(),nombre_txt.getText(),telefono_txt.getText(),nit_txt.getText(),dpi_txt.getText(),correo_txt.getText(),direccion_txt.getText());
-                    cargarTablaEmpleado();
-                    }else{
-                JOptionPane.showMessageDialog(null,"Los campos obligatorios no estan llenos");
-            }
+       try {
+           if(!(nombre_txt.getText().equals("")||telefono_txt.getText().equals(""))){
+           double credito = Double.parseDouble(credito_txt.getText());
+            updateCliente(nit_txt.getText(),nombre_txt.getText(),telefono_txt.getText(),dpi_txt.getText(),correo_txt.getText(),direccion_txt.getText(),credito);
+            cargarTablaCliente();
+           }else{
+               JOptionPane.showMessageDialog(null,"Los campos obligatorios no estan llenos");
+           }
+            
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"No ha seleccionado nada.");
 
         }
-
     }//GEN-LAST:event_actualizarActionPerformed
+
+    private void credito_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_credito_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_credito_txtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -388,50 +370,50 @@ public class VisualizarEmpleado extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VisualizarEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VisualizarEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VisualizarEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VisualizarEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VisualizarEmpleado().setVisible(true);
+                new VisualizarCliente().setVisible(true);
             }
         });
     }
-    public void KeyListener(){
+    
+     public void KeyListener(){
       
         buscar_txt.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                cargarTablaEmpleado();
+                cargarTablaCliente();
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                 cargarTablaEmpleado();
+                 cargarTablaCliente();
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                 cargarTablaEmpleado();
+                 cargarTablaCliente();
             }
            
         });
     }
-    
-    public void cargarTablaEmpleado(){
-         String campo = buscar_txt.getText();
+     public void cargarTablaCliente(){
+        String campo = buscar_txt.getText();
         String where = "";
 
         if (!"".equals(campo)) {
-            where = "WHERE codigo LIKE '%" + campo + "%' || nombre LIKE '%"+campo+"%'";
+            where = "WHERE NIT LIKE '%" + campo + "%' || nombre LIKE '%"+campo+"%'";
 
         }else{
             where="";
@@ -444,14 +426,14 @@ public class VisualizarEmpleado extends javax.swing.JFrame {
                 }
            };
            jt_visualizar.setModel(modelo);
-           modelo.addColumn("Codigo");
+           modelo.addColumn("NIT");
            modelo.addColumn("Nombre");
            modelo.addColumn("Telefono"); 
-           modelo.addColumn("NIT");
            modelo.addColumn("DPI");
-           modelo.addColumn("Email");
-           modelo.addColumn("Direccion");        
-           String query = "SELECT * FROM EMPLEADO "+where+" ORDER BY codigo ASC";
+           modelo.addColumn("Email"); 
+           modelo.addColumn("Direccion");    
+           modelo.addColumn("Credito");          
+           String query = "SELECT * FROM CLIENTE "+where+" ORDER BY NIT ASC";
            System.out.println(query);
            ResultSet rs = a.SeleccionarJT(query);
            ResultSetMetaData rsMd = rs.getMetaData();
@@ -470,8 +452,8 @@ public class VisualizarEmpleado extends javax.swing.JFrame {
             
         }
     }
-    public void updateEmpleado(String codigo, String nombre, String telefono, String nit, String dpi, String email,String direccion){
-        String query ="UPDATE EMPLEADO SET nombre='"+nombre+"', telefono='"+telefono+"', NIT='"+nit+"', DPI='"+dpi+"',email ='"+email+"',direccion='"+direccion+"' WHERE codigo='"+codigo+"'";
+      public void updateCliente(String nit, String nombre, String telefono, String dpi, String email,String direccion, double credito){
+        String query ="UPDATE CLIENTE SET nombre='"+nombre+"', telefono='"+telefono+"', DPI='"+dpi+"',email ='"+email+"',direccion='"+direccion+"',credito_compra='"+credito+"' WHERE NIT='"+nit+"'";
         Statement stmt = null;
         try {    
              a.conexionDB();
@@ -487,8 +469,8 @@ public class VisualizarEmpleado extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton actualizar;
     private javax.swing.JTextField buscar_txt;
-    private javax.swing.JTextField codigo_txt;
     private javax.swing.JTextField correo_txt;
+    private javax.swing.JFormattedTextField credito_txt;
     private javax.swing.JTextField direccion_txt;
     private javax.swing.JTextField dpi_txt;
     private javax.swing.JButton jButton7;
@@ -497,11 +479,8 @@ public class VisualizarEmpleado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -509,8 +488,8 @@ public class VisualizarEmpleado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jt_visualizar;
