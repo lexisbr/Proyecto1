@@ -43,6 +43,8 @@ public class VisualizarTiempo extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         actualizar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jt_visualizar = new javax.swing.JTable();
@@ -71,6 +73,16 @@ public class VisualizarTiempo extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel17.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setText("*");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 410, 20, -1));
+
+        jLabel18.setFont(new java.awt.Font("Leelawadee", 0, 10)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setText("* Campos Obligatorios");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 470, -1, 20));
 
         actualizar.setBackground(new java.awt.Color(255, 255, 255));
         actualizar.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
@@ -137,6 +149,11 @@ public class VisualizarTiempo extends javax.swing.JFrame {
         tiempo_txt.setBackground(new java.awt.Color(255, 255, 255));
         tiempo_txt.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         tiempo_txt.setForeground(new java.awt.Color(0, 0, 0));
+        tiempo_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tiempo_txtActionPerformed(evt);
+            }
+        });
         tiempo_txt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tiempo_txtKeyTyped(evt);
@@ -262,6 +279,10 @@ public class VisualizarTiempo extends javax.swing.JFrame {
         if(c<'0' || c>'9') evt.consume();
     }//GEN-LAST:event_tiempo_txtKeyTyped
 
+    private void tiempo_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tiempo_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tiempo_txtActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -385,6 +406,8 @@ public class VisualizarTiempo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;

@@ -9,6 +9,7 @@ import conexionDB.Conexion;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -253,10 +254,6 @@ public class VisualizarTienda extends javax.swing.JFrame {
 
     }//GEN-LAST:event_telefono2_txtKeyTyped
 
-    private void horario_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horario_txtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_horario_txtActionPerformed
-
     private void buscar_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_txtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buscar_txtActionPerformed
@@ -321,10 +318,14 @@ public class VisualizarTienda extends javax.swing.JFrame {
     }//GEN-LAST:event_seleccionarActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        SeleccionarVisualizar a = new SeleccionarVisualizar();
+         SeleccionarVisualizar a = new SeleccionarVisualizar();
         a.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void horario_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horario_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_horario_txtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -405,6 +406,7 @@ public class VisualizarTienda extends javax.swing.JFrame {
             
         }
     }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField buscar_txt;
