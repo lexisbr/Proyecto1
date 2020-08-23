@@ -6,7 +6,6 @@
 package reportes;
 
 import conexionDB.Conexion;
-import interfaces.Login;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -17,13 +16,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jalej
  */
-public class Reporte5 extends javax.swing.JFrame {
+public class Reporte6 extends javax.swing.JFrame {
 
     /**
-     * Creates new form Reporte5
+     * Creates new form Reporte6
      */
     Conexion a = new Conexion();
-    public Reporte5() {
+    
+    public Reporte6() {
         initComponents();
         this.setLocationRelativeTo(null);
         cargarTabla();
@@ -53,12 +53,12 @@ public class Reporte5 extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Leelawadee", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Reporte 5.");
+        jLabel2.setText("Reporte 6.");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Leelawadee", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Listado de compras realizadas por un cliente.");
+        jLabel3.setText("Listado de pedidos realizados por un cliente.");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, -1, -1));
 
         reporte_jt.setModel(new javax.swing.table.DefaultTableModel(
@@ -110,25 +110,24 @@ public class Reporte5 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Reporte5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Reporte5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Reporte5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Reporte5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Reporte5().setVisible(true);
+                new Reporte6().setVisible(true);
             }
         });
     }
-    
-     public void cargarTabla(){
+    public void cargarTabla(){
       
          try {
            DefaultTableModel modelo = new DefaultTableModel(){
@@ -140,11 +139,13 @@ public class Reporte5 extends javax.swing.JFrame {
             reporte_jt.setModel(modelo);
            modelo.addColumn("NIT");
             modelo.addColumn("Nombre");
-           modelo.addColumn("Factura");
-           modelo.addColumn("Fecha"); 
-           modelo.addColumn("Total");
-           modelo.addColumn("Tienda");   
-           String query = "SELECT F.nit_cliente,C.nombre,F.codigo,F.fecha,F.total,F.codigo_tienda FROM CLIENTE C INNER JOIN FACTURA F ON C.NIT=F.nit_cliente";
+           modelo.addColumn("Pedido");
+           modelo.addColumn("Producto"); 
+           modelo.addColumn("Cantidad");
+           modelo.addColumn("Total");   
+           modelo.addColumn("Anticipo");
+           modelo.addColumn("Fecha");         
+           String query = "SELECT C.nit,C.nombre,P.codigo_producto,P.cantidad,P.total,P.anticipo,P.fecha FROM CLIENTE C INNER JOIN PEDIDO P ON C.NIT=P.nit_cliente ORDER BY C.NIT ASC";
            System.out.println(query);
            ResultSet rs = a.SeleccionarJT(query);
            ResultSetMetaData rsMd = rs.getMetaData();
