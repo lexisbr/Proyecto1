@@ -10,6 +10,8 @@ import interfaces.Login;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import static java.time.temporal.ChronoUnit.DAYS;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,8 +25,11 @@ public class Reporte2 extends javax.swing.JFrame {
      * Creates new form Reporte2
      */
     Conexion a = new Conexion();
+    public LocalDate fechaactual = LocalDate.now();
     public Reporte2() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        cargarTabla();
     }
 
     /**
@@ -52,12 +57,12 @@ public class Reporte2 extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Leelawadee", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Reporte 2.");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Leelawadee", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Pedidos a tiempo de ingresar a la tienda.");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, -1, -1));
 
         reporte_jt.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -72,7 +77,7 @@ public class Reporte2 extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(reporte_jt);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 730, 330));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 800, 330));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
@@ -80,13 +85,13 @@ public class Reporte2 extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cargar (1).png"))); // NOI18N
         jButton1.setText("Exportar");
         jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, 210, 50));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, 210, 50));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoempresa (1).jpeg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoventas.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 490));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 490));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 490));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -128,6 +133,8 @@ public class Reporte2 extends javax.swing.JFrame {
     
     
     public void cargarTabla(){
+        String [] datos;
+        int cont=0;
         try {
            DefaultTableModel modelo = new DefaultTableModel(){
                 @Override
@@ -143,20 +150,30 @@ public class Reporte2 extends javax.swing.JFrame {
            modelo.addColumn("Anticipo");
            modelo.addColumn("Producto");
            modelo.addColumn("NIT");
-           modelo.addColumn("Tienda Origen");        
+           modelo.addColumn("Tienda Origen"); 
+           modelo.addColumn("Tienda Destino"); 
+           modelo.addColumn("Tiempo"); 
+           String query1 = "SELECT P.*,T.tiempo FROM PEDIDO P INNER JOIN TIEMPO_DE_ENVIO T ON (P.codigo_tienda_origen=T.codigo_tienda1 || P.codigo_tienda_origen = T.codigo_tienda2)&&(P.codigo_tienda_destino=T.codigo_tienda1 || P.codigo_tienda_destino = T.codigo_tienda2) LEFT JOIN RECIBE R ON P.codigo = R.codigo_pedido WHERE R.ID IS NULL && P.codigo_tienda_destino='"+Login.tienda_actual+"'";
            String query = "SELECT P.* FROM PEDIDO P LEFT JOIN RECIBE R ON P.codigo = R.codigo_pedido WHERE R.ID IS NULL && codigo_tienda_destino='"+Login.tienda_actual+"'";
-           System.out.println(query);
-           ResultSet rs = a.SeleccionarJT(query);
+           System.out.println(query1);
+           ResultSet rs = a.SeleccionarJT(query1);
            ResultSetMetaData rsMd = rs.getMetaData();
            int cantidadColumnas = rsMd.getColumnCount();
              System.out.println("creando tabla");
-           while(rs.next()){
+           while(rs.next()){      
                 Object[] filas = new Object[cantidadColumnas];
+                if(verificarTiempo(rs.getString("fecha"), rs.getString("tiempo"))){
                 for(int i = 0; i<cantidadColumnas; i++){
                     filas[i]= rs.getObject(i+1);
+
                 }
-                modelo.addRow(filas);    
+                 modelo.addRow(filas);    
+                }
+               
             }
+         
+            
+           
            rs.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Error "+ e);
@@ -165,7 +182,26 @@ public class Reporte2 extends javax.swing.JFrame {
     }
     
     
+    public boolean verificarTiempo(String fecha, String tiempo){
+        LocalDate fechapedido = LocalDate.parse(fecha);
+        int dias  = (int) calcularEstado(fechapedido, fechaactual);
+        int time = Integer.parseInt(tiempo);
+        if(dias>time){
+            return false;
+        }else{
+            return true;
+        }
+       
+    }
     
+    public long calcularEstado(LocalDate fechapedido, LocalDate fechaactual){
+        long diasdiferencia = DAYS.between(fechapedido, fechaactual);
+        return diasdiferencia;
+        
+    }
+    
+    
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

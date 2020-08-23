@@ -17,15 +17,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jalej
  */
-public class Reporte1 extends javax.swing.JFrame {
+public class Reporte4 extends javax.swing.JFrame {
 
     /**
-     * Creates new form Reporte1
+     * Creates new form Reporte4
      */
     Conexion a = new Conexion();
-    public Reporte1() {
+    public Reporte4() {
         initComponents();
-        this.setLocationRelativeTo(null);
         cargarTabla();
     }
 
@@ -53,13 +52,13 @@ public class Reporte1 extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Leelawadee", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Reporte 1.");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, -1, -1));
+        jLabel2.setText("Reporte 4.");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Leelawadee", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Pedidos que llegaran a la tienda.");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, -1, -1));
+        jLabel3.setText("Pedidos que salieron de la tienda y aun estan en transito.");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, -1, -1));
 
         reporte_jt.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -82,9 +81,9 @@ public class Reporte1 extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cargar (1).png"))); // NOI18N
         jButton1.setText("Exportar");
         jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 430, 210, 50));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, 210, 50));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoventas1.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoventas.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 490));
 
@@ -110,25 +109,25 @@ public class Reporte1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Reporte1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Reporte1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Reporte1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Reporte1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Reporte1().setVisible(true);
+                new Reporte4().setVisible(true);
             }
         });
     }
     
-    public void cargarTabla(){
+      public void cargarTabla(){
       
          try {
            DefaultTableModel modelo = new DefaultTableModel(){
@@ -145,8 +144,8 @@ public class Reporte1 extends javax.swing.JFrame {
            modelo.addColumn("Anticipo");
            modelo.addColumn("Producto");
            modelo.addColumn("NIT");
-           modelo.addColumn("Tienda Origen");        
-           String query = "SELECT P.* FROM PEDIDO P LEFT JOIN RECIBE R ON P.codigo = R.codigo_pedido WHERE R.ID IS NULL && codigo_tienda_destino='"+Login.tienda_actual+"'";
+           modelo.addColumn("Tienda Destino");        
+           String query = "SELECT P.* FROM PEDIDO P LEFT JOIN RECIBE R ON P.codigo = R.codigo_pedido WHERE R.ID IS NULL && codigo_tienda_origen='"+Login.tienda_actual+"'";
            System.out.println(query);
            ResultSet rs = a.SeleccionarJT(query);
            ResultSetMetaData rsMd = rs.getMetaData();
@@ -165,6 +164,7 @@ public class Reporte1 extends javax.swing.JFrame {
             
         }
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
