@@ -19,13 +19,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jalej
  */
-public class Reporte5 extends javax.swing.JFrame {
+public class Reporte9 extends javax.swing.JFrame {
 
     /**
-     * Creates new form Reporte5
+     * Creates new form Reporte9
      */
     Conexion a = new Conexion();
-    public Reporte5() {
+    public Reporte9() {
         initComponents();
         this.setLocationRelativeTo(null);
         cargarTabla();
@@ -42,7 +42,7 @@ public class Reporte5 extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         reporte_jt = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -57,13 +57,13 @@ public class Reporte5 extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Leelawadee", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Reporte 5.");
+        jLabel2.setText("Reporte 9.");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Leelawadee", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Listado de compras realizadas por un cliente.");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, -1, -1));
+        jLabel4.setFont(new java.awt.Font("Leelawadee", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Listado de productos que jamas se han vendido en tienda actual.");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, -1));
 
         reporte_jt.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -118,15 +118,15 @@ public class Reporte5 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        generarArchivo(reporte_jt, "Listado de productos que nunca se han vendido por tienda.", 9);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         MenuReportes main = new MenuReportes();
         main.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        generarArchivo(reporte_jt, "Listado de todas las compras realizadas por un cliente.", 5);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,26 +145,26 @@ public class Reporte5 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Reporte5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte9.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Reporte5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte9.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Reporte5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte9.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Reporte5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Reporte9.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Reporte5().setVisible(true);
+                new Reporte9().setVisible(true);
             }
         });
     }
     
-     public void cargarTabla(){
-      
+    public void cargarTabla(){
+         
          try {
            DefaultTableModel modelo = new DefaultTableModel(){
                 @Override
@@ -172,14 +172,14 @@ public class Reporte5 extends javax.swing.JFrame {
                 return false;
                 }
            };
-            reporte_jt.setModel(modelo);
-           modelo.addColumn("NIT");
-            modelo.addColumn("Nombre");
-           modelo.addColumn("Factura");
-           modelo.addColumn("Fecha"); 
-           modelo.addColumn("Total");
-           modelo.addColumn("Tienda");   
-           String query = "SELECT F.nit_cliente,C.nombre,F.codigo,F.fecha,F.total,F.codigo_tienda FROM CLIENTE C INNER JOIN FACTURA F ON C.NIT=F.nit_cliente";
+           reporte_jt.setModel(modelo);
+           modelo.addColumn("Codigo");
+           modelo.addColumn("Nombre");
+           modelo.addColumn("Fabricante"); 
+           modelo.addColumn("Cantidad");
+           modelo.addColumn("Precio");  
+           modelo.addColumn("Tienda");
+           String query = "SELECT P.codigo,P.nombre,P.fabricante,P.cantidad,P.precio,P.codigo_tienda FROM PRODUCTO P LEFT JOIN VENTA V ON P.codigo=V.codigo_producto WHERE V.ID IS NULL && P.codigo_tienda ='"+Login.tienda_actual+"'";
            System.out.println(query);
            ResultSet rs = a.SeleccionarJT(query);
            ResultSetMetaData rsMd = rs.getMetaData();
@@ -198,8 +198,8 @@ public class Reporte5 extends javax.swing.JFrame {
             
         }
     }
-     
-     public void generarArchivo(JTable tabla, String titulo,int num) {
+    
+    public void generarArchivo(JTable tabla, String titulo,int num) {
         try {
             PrintWriter writer = new PrintWriter("Reportes/Reporte"+num+".html", "UTF-8");
             writer.println("<!DOCTYPE html>");
@@ -262,7 +262,7 @@ public class Reporte5 extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

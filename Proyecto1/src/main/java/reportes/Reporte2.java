@@ -7,12 +7,14 @@ package reportes;
 
 import conexionDB.Conexion;
 import interfaces.Login;
+import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import static java.time.temporal.ChronoUnit.DAYS;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -47,6 +49,8 @@ public class Reporte2 extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         reporte_jt = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,7 +89,28 @@ public class Reporte2 extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cargar (1).png"))); // NOI18N
         jButton1.setText("Exportar");
         jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, 210, 50));
+
+        jLabel6.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 153)));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 85, 810, 340));
+
+        jButton7.setBackground(new java.awt.Color(255, 255, 255));
+        jButton7.setFont(new java.awt.Font("Leelawadee UI", 1, 12)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(0, 0, 0));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/regresar.png"))); // NOI18N
+        jButton7.setText("Regresar");
+        jButton7.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 130, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoventas.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
@@ -95,6 +120,16 @@ public class Reporte2 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        generarArchivo(reporte_jt, "Listado de pedido que están en tiempo de estar en la tienda pero debe verificarse su ingreso.",2);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        MenuReportes main = new MenuReportes();
+        main.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,8 +185,8 @@ public class Reporte2 extends javax.swing.JFrame {
            modelo.addColumn("Anticipo");
            modelo.addColumn("Producto");
            modelo.addColumn("NIT");
-           modelo.addColumn("Tienda Origen"); 
            modelo.addColumn("Tienda Destino"); 
+           modelo.addColumn("Tienda Origen"); 
            modelo.addColumn("Tiempo"); 
            String query1 = "SELECT P.*,T.tiempo FROM PEDIDO P INNER JOIN TIEMPO_DE_ENVIO T ON (P.codigo_tienda_origen=T.codigo_tienda1 || P.codigo_tienda_origen = T.codigo_tienda2)&&(P.codigo_tienda_destino=T.codigo_tienda1 || P.codigo_tienda_destino = T.codigo_tienda2) LEFT JOIN RECIBE R ON P.codigo = R.codigo_pedido WHERE R.ID IS NULL && P.codigo_tienda_destino='"+Login.tienda_actual+"'";
            String query = "SELECT P.* FROM PEDIDO P LEFT JOIN RECIBE R ON P.codigo = R.codigo_pedido WHERE R.ID IS NULL && codigo_tienda_destino='"+Login.tienda_actual+"'";
@@ -200,14 +235,74 @@ public class Reporte2 extends javax.swing.JFrame {
         
     }
     
+     public void generarArchivo(JTable tabla, String titulo,int num) {
+        try {
+            PrintWriter writer = new PrintWriter("Reportes/Reporte"+num+".html", "UTF-8");
+            writer.println("<!DOCTYPE html>");
+            writer.println("<html>");
+            writer.println("<head>");   
+            writer.println("<meta charset=\"utf-8\">");
+            writer.println("<title> Reporte "+num+" </title>");
+            writer.println("</head>");
+            writer.println("<body>");
+            writer.println("<h1><center> Reporte " + num + "</center></h1>");
+            writer.println("<h2><center>" + titulo + "</center></h2>");
+            writer.println("<style type=" + "\"" + "text/css" + "\"" + ">");
+            writer.println("table, th, td {");
+            writer.println("border: 2px solid black;");
+            writer.println("border-collapse: collapse;");
+            writer.println("background-color: #0ED1F4;");
+            writer.println("}");
+            writer.println(" th, td {");
+            writer.println("padding: 10px;");
+            writer.println("text-align: left;");
+            writer.println("}");
+            writer.println(" th{");
+            writer.println("text-align: left;");
+            writer.println("}");
+            writer.println("p{");
+            writer.println("font-family: 'Courier';");
+            writer.println("font-size: 18px;");
+            writer.println("color: black;");
+            writer.println("line-height: 18px;");
+            writer.println("margin-bottom: 12px;");
+            writer.println("}");    
+            writer.println("</style>");
+            writer.println("<table style=" + "\"" + "width: 100%" + "\"" + " >");
+            writer.println("<tr>");
+            for (int i = 0; i < tabla.getColumnCount(); i++) {
+                writer.println("<th><strong>" + tabla.getColumnName(i) + "</strong></th>");
+
+            }
+            writer.println("</tr>");
+            for (int i = 0; i < tabla.getRowCount(); i++) {
+                writer.println("<tr>");
+                for (int j = 0; j < tabla.getColumnCount(); j++) {
+                    writer.println("<td><p>" + tabla.getModel().getValueAt(i, j).toString() + "</p></td>");
+
+                }
+                writer.println("<tr>");
+            }
+            writer.println("</table>");
+            writer.println("</body>");
+            writer.println("</html>");
+            writer.close();
+            JOptionPane.showMessageDialog(null, "Se genero un archivo HTML");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable reporte_jt;
