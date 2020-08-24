@@ -226,6 +226,8 @@ public class RegistrarEntrega extends javax.swing.JFrame {
         }
         else{
             insertRecibo(fecha, Login.tienda_actual, pedido_lbl.getText(), codigo_lb.getText());
+            CargarTablaPedidos();
+            limpiarPantalla();
         }
             
     }//GEN-LAST:event_registrar_btActionPerformed
@@ -392,6 +394,16 @@ public class RegistrarEntrega extends javax.swing.JFrame {
                JOptionPane.showMessageDialog(null,"Hay un error en Pedido "+e);
          
         }
+    }
+    
+    
+    public void limpiarPantalla(){
+        fecha_lbl.setText(null);
+        pedido_lbl.setText(null);
+        codigo_lb.setText(null);
+        tiempo_lbl.setText(null);
+        tienda_origen.setText(null);
+        
     }
     
     
