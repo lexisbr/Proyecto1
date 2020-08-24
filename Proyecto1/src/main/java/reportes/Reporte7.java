@@ -6,10 +6,15 @@
 package reportes;
 
 import conexionDB.Conexion;
+import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import static java.time.temporal.ChronoUnit.DAYS;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,8 +27,11 @@ public class Reporte7 extends javax.swing.JFrame {
      * Creates new form Reporte7
      */
     Conexion a = new Conexion();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public Reporte7() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        cargarTabla();
     }
 
     /**
@@ -42,10 +50,13 @@ public class Reporte7 extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        fecha2 = new javax.swing.JFormattedTextField();
+        fecha1 = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,22 +95,27 @@ public class Reporte7 extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cargar (1).png"))); // NOI18N
         jButton1.setText("Exportar");
         jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 410, 210, 50));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, 210, 50));
 
         jLabel3.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Fecha 2:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, 30));
 
-        jFormattedTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jFormattedTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
-        jPanel1.add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 200, 30));
+        fecha2.setBackground(new java.awt.Color(255, 255, 255));
+        fecha2.setForeground(new java.awt.Color(0, 0, 0));
+        fecha2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
+        jPanel1.add(fecha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 200, 30));
 
-        jFormattedTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jFormattedTextField2.setForeground(new java.awt.Color(0, 0, 0));
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
-        jPanel1.add(jFormattedTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 200, 30));
+        fecha1.setBackground(new java.awt.Color(255, 255, 255));
+        fecha1.setForeground(new java.awt.Color(0, 0, 0));
+        fecha1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
+        jPanel1.add(fecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 200, 30));
 
         jLabel5.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -117,6 +133,26 @@ public class Reporte7 extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 115, 170, 40));
 
+        jLabel6.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 153)));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 800, 200));
+
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Formato: yyyy-MM-dd");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, -1, -1));
+
+        jButton7.setBackground(new java.awt.Color(255, 255, 255));
+        jButton7.setFont(new java.awt.Font("Leelawadee UI", 1, 12)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(0, 0, 0));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/regresar.png"))); // NOI18N
+        jButton7.setText("Regresar");
+        jButton7.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 130, 30));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoventas.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 490));
@@ -127,8 +163,18 @@ public class Reporte7 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        cargarTablaIntv();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        MenuReportes main = new MenuReportes();
+        main.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        generarArchivo(reporte_jt, "Listado de los diez productos más vendidos en un intervalo de tiempo. ", 7);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,7 +211,7 @@ public class Reporte7 extends javax.swing.JFrame {
         });
     }
      public void cargarTabla(){
-      
+         
          try {
            DefaultTableModel modelo = new DefaultTableModel(){
                 @Override
@@ -178,9 +224,9 @@ public class Reporte7 extends javax.swing.JFrame {
            modelo.addColumn("Nombre");
            modelo.addColumn("Fabricante"); 
            modelo.addColumn("Cantidad");
-           modelo.addColumn("Precio");   
+           modelo.addColumn("Precio");  
            modelo.addColumn("Ventas");
-           String query = "SELECT P.*,F.fecha,COUNT(*) AS VENTAS FROM PRODUCTO P INNER JOIN VENTA V ON P.codigo=V.codigo_producto INNER JOIN FACTURA F ON V.codigo_factura=F.codigo GROUP BY P.codigo ORDER BY COUNT(*) DESC LIMIT 10;";
+           String query = "SELECT P.codigo,P.nombre,P.fabricante,P.cantidad,P.precio,COUNT(*) AS VENTAS FROM PRODUCTO P INNER JOIN VENTA V ON P.codigo=V.codigo_producto GROUP BY P.codigo ORDER BY VENTAS DESC;";
            System.out.println(query);
            ResultSet rs = a.SeleccionarJT(query);
            ResultSetMetaData rsMd = rs.getMetaData();
@@ -199,17 +245,119 @@ public class Reporte7 extends javax.swing.JFrame {
             
         }
     }
+     
+     public void cargarTablaIntv(){
+            
+         try {
+             LocalDate fecha_1 = LocalDate.parse(fecha1.getText(), formatter);
+             LocalDate fecha_2 = LocalDate.parse(fecha2.getText(), formatter);
+           DefaultTableModel modelo = new DefaultTableModel(){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                return false;
+                }
+           };
+           reporte_jt.setModel(modelo);
+           modelo.addColumn("Codigo");
+           modelo.addColumn("Nombre");
+           modelo.addColumn("Fabricante"); 
+           modelo.addColumn("Cantidad");
+           modelo.addColumn("Precio"); 
+           modelo.addColumn("Ventas");
+           String query = "SELECT P.codigo,P.nombre,P.fabricante,P.cantidad,P.precio,COUNT(*) AS VENTA FROM PRODUCTO P INNER JOIN VENTA V ON P.codigo=V.codigo_producto LEFT JOIN FACTURA F ON V.codigo_factura=F.codigo WHERE F.fecha BETWEEN '"+fecha_1+"' AND '"+fecha_2+"' GROUP BY P.codigo ORDER BY VENTA DESC LIMIT 10";
+           System.out.println(query);
+           ResultSet rs = a.SeleccionarJT(query);
+           ResultSetMetaData rsMd = rs.getMetaData();
+           int cantidadColumnas = rsMd.getColumnCount();
+             System.out.println("creando tabla");
+           while(rs.next()){
+                Object[] filas = new Object[cantidadColumnas];
+                for(int i = 0; i<cantidadColumnas; i++){
+                    filas[i]= rs.getObject(i+1);
+                }
+                modelo.addRow(filas);    
+            }
+           rs.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error "+ e);
+            
+        }
+    }
+     
+     public void generarArchivo(JTable tabla, String titulo,int num) {
+        try {
+            PrintWriter writer = new PrintWriter("Reportes/Reporte"+num+".html", "UTF-8");
+            writer.println("<!DOCTYPE html>");
+            writer.println("<html>");
+            writer.println("<head>");   
+            writer.println("<meta charset=\"utf-8\">");
+            writer.println("<title> Reporte "+num+" </title>");
+            writer.println("</head>");
+            writer.println("<body>");
+            writer.println("<h1><center> Reporte " + num + "</center></h1>");
+            writer.println("<h2><center>" + titulo + "</center></h2>");
+            writer.println("<style type=" + "\"" + "text/css" + "\"" + ">");
+            writer.println("table, th, td {");
+            writer.println("border: 2px solid black;");
+            writer.println("border-collapse: collapse;");
+            writer.println("background-color: #0ED1F4;");
+            writer.println("}");
+            writer.println(" th, td {");
+            writer.println("padding: 10px;");
+            writer.println("text-align: left;");
+            writer.println("}");
+            writer.println(" th{");
+            writer.println("text-align: left;");
+            writer.println("}");
+            writer.println("p{");
+            writer.println("font-family: 'Courier';");
+            writer.println("font-size: 18px;");
+            writer.println("color: black;");
+            writer.println("line-height: 18px;");
+            writer.println("margin-bottom: 12px;");
+            writer.println("}");    
+            writer.println("</style>");
+            writer.println("<table style=" + "\"" + "width: 100%" + "\"" + " >");
+            writer.println("<tr>");
+            for (int i = 0; i < tabla.getColumnCount(); i++) {
+                writer.println("<th><strong>" + tabla.getColumnName(i) + "</strong></th>");
+
+            }
+            writer.println("</tr>");
+            for (int i = 0; i < tabla.getRowCount(); i++) {
+                writer.println("<tr>");
+                for (int j = 0; j < tabla.getColumnCount(); j++) {
+                    writer.println("<td><p>" + tabla.getModel().getValueAt(i, j).toString() + "</p></td>");
+
+                }
+                writer.println("<tr>");
+            }
+            writer.println("</table>");
+            writer.println("</body>");
+            writer.println("</html>");
+            writer.close();
+            JOptionPane.showMessageDialog(null, "Se genero un archivo HTML");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+     
+     
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFormattedTextField fecha1;
+    private javax.swing.JFormattedTextField fecha2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable reporte_jt;

@@ -6,6 +6,7 @@
 package com.mycompany.proyecto1;
 import conexionDB.Conexion;
 import interfaces.SeleccionVersion;
+import java.io.File;
 
 /**
  *
@@ -13,6 +14,13 @@ import interfaces.SeleccionVersion;
  */
 public class Main {
     public static void main(String[] arg){
+        File directorio = new File("Reportes");
+        if (!directorio.exists()) {
+            if (directorio.mkdirs()) {
+                System.out.println("Directorio creado");
+            }
+        }
+        
         Conexion c = new Conexion();
         SeleccionVersion log = new SeleccionVersion();
         log.setVisible(true);

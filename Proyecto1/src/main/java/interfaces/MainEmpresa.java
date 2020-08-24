@@ -5,6 +5,8 @@
  */
 package interfaces;
 
+import reportes.MenuReportes;
+
 /**
  *
  * @author jalej
@@ -191,7 +193,9 @@ public class MainEmpresa extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+        MenuReportes a = new MenuReportes();
+        a.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     /**

@@ -29,6 +29,8 @@ public class RegistrarPedido extends javax.swing.JFrame {
      * Creates new form RegistrarPedido
      */
     Conexion a = new Conexion();
+    int cantidad_existencia=0;
+    int cantidad_compra=0;
      public DefaultTableModel modelo_pedido = new DefaultTableModel(){
                 @Override
                 public boolean isCellEditable(int row, int column) {
@@ -486,15 +488,16 @@ public class RegistrarPedido extends javax.swing.JFrame {
         double total = Double.parseDouble(total_lbl.getText());
         double credito_cliente = Double.parseDouble(credito_lbl.getText());
         double anticipo = Double.parseDouble(anticipo_lbl.getText());
-        String Datos[] = new String[3];
+        String Datos[] = new String[4];
             System.out.println("aqui");
        if(!(lbl_nit.getText().equals(null))&&(total!=0)&&(verificarCredito(credito_cliente, credito_ingresado))){
         for(int i=0; i< pedido_jt.getRowCount(); i++){
            Datos[0]=pedido_jt.getValueAt(i,0).toString();
            Datos[1]=pedido_jt.getValueAt(i,1).toString();
-           Datos[2]=pedido_jt.getValueAt(i,3).toString();  
+           Datos[2]=pedido_jt.getValueAt(i,3).toString();
+           Datos[3]=pedido_jt.getValueAt(i,2).toString(); 
            int cantidad = Integer.parseInt(Datos[0]);
-           
+           updateProducto(cantidad_existencia, cantidad, Datos[1]);
            updateCliente(credito_cliente, credito_ingresado, lbl_nit.getText());
            insertPedido(fecha, cantidad, total, anticipo, Datos[1], lbl_nit.getText(), Login.tienda_actual, String.valueOf(tienda_cb.getSelectedItem()));
            JOptionPane.showMessageDialog(null, "Se registro el pedido.");
@@ -507,7 +510,7 @@ public class RegistrarPedido extends javax.swing.JFrame {
       
       
         } catch (Exception e) {
-             JOptionPane.showMessageDialog(null, "Error los campos no estan llenos "+e);
+             JOptionPane.showMessageDialog(null, "Error los campos no estan llenos ");
         }
         
     }//GEN-LAST:event_registrarpedidoActionPerformed
@@ -545,8 +548,8 @@ public class RegistrarPedido extends javax.swing.JFrame {
 
     private void agregar_pedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_pedidoActionPerformed
       int FilaSeleccionada = jt_producto.getSelectedRow();
-        int cantidad_existencia=0;
-        int cantidad_compra=0;
+      cantidad_existencia=0;
+      cantidad_compra=0;
         pedido_jt.setModel(modelo_pedido);
 
         if(FilaSeleccionada>=0){
@@ -562,8 +565,8 @@ public class RegistrarPedido extends javax.swing.JFrame {
                     modelo_pedido.addRow(Datos);
                     sumartotal();
                     agregar_pedido.setEnabled(false);
-                    updateProducto(cantidad_existencia, cantidad_compra, Datos[1]);
-                   cargarCbTienda(Datos[2]);
+                    System.out.println("===="+Datos[1]);
+                   cargarCbTienda(Datos[1]);
                    seleccionar_cliente.setEnabled(false);
                     
                 }else{
@@ -666,7 +669,7 @@ public class RegistrarPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_lbl_tiempoMouseClicked
 
     private void limpiar_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiar_txtActionPerformed
-        // TODO add your handling code here:
+       limpiarPantalla();
     }//GEN-LAST:event_limpiar_txtActionPerformed
 
     /**
@@ -854,7 +857,7 @@ public class RegistrarPedido extends javax.swing.JFrame {
 
     }
      public void updateProducto(int cantidad_tienda, int cantidad_venta,String codigo){
-         System.out.println("entra a update");
+         System.out.println("entra a update +"+codigo+" <a>"+cantidad_tienda+"<b>"+cantidad_venta );
          int nuevacantidad = cantidad_tienda - cantidad_venta;
           Statement stmt = null;
         try {
@@ -870,7 +873,7 @@ public class RegistrarPedido extends javax.swing.JFrame {
      }
      
      public void cargarCbTienda(String nombre){
-          String Query="SELECT codigo_tienda FROM PRODUCTO WHERE nombre='"+nombre+"'";
+          String Query="SELECT codigo_tienda FROM PRODUCTO WHERE codigo='"+nombre+"'";
           ResultSet Result = a.SeleccionarCB(Query);
          try {
              while (Result.next()) {
@@ -883,7 +886,7 @@ public class RegistrarPedido extends javax.swing.JFrame {
          a.disconnectDB();
              
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Error "+e);
+            JOptionPane.showMessageDialog(null,"a Error "+e);
         }
      
      }
@@ -986,6 +989,13 @@ public class RegistrarPedido extends javax.swing.JFrame {
         cantidad_txt.setText(null);
         codigo_txt.setText(null);
         nit_txt.setText(null);
+        tienda_cb.removeAllItems();
+        modelo_pedido.setRowCount(0);
+        seleccionar_cliente.setEnabled(true);
+        agregar_pedido.setEnabled(true);
+        Conexion a = new Conexion();
+        CargarTablaProducto();
+        CargarTablaCliente();
     }
      
 

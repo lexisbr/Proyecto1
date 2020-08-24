@@ -6,6 +6,7 @@
 package interfaces;
 
 import conexionDB.Conexion;
+import java.io.File;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
@@ -19,7 +20,7 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     public static String usuario = "";
-    public static String tienda_actual ="ABC-3";
+    public static String tienda_actual ="ABC-1";
     public static int cont =0;
    
     String Query="SELECT CODIGO FROM TIENDA";
@@ -36,6 +37,8 @@ public class Login extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error "+e);
         }
+       
+         
     }
     
 
