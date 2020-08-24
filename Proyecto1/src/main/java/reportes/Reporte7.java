@@ -55,7 +55,7 @@ public class Reporte7 extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Leelawadee", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Reporte 6.");
+        jLabel2.setText("Reporte 7.");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, -1, -1));
 
         reporte_jt.setModel(new javax.swing.table.DefaultTableModel(
@@ -75,8 +75,8 @@ public class Reporte7 extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Leelawadee", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Listado de pedidos realizados por un cliente.");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, -1, -1));
+        jLabel4.setText("Listado de productos mas vendidos.");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
@@ -173,15 +173,14 @@ public class Reporte7 extends javax.swing.JFrame {
                 return false;
                 }
            };
-            reporte_jt.setModel(modelo);
-           modelo.addColumn("Ventas");
-            modelo.addColumn("Codigo");
+           reporte_jt.setModel(modelo);
+           modelo.addColumn("Codigo");
            modelo.addColumn("Nombre");
            modelo.addColumn("Fabricante"); 
            modelo.addColumn("Cantidad");
            modelo.addColumn("Precio");   
-          
-           String query = "SELECT C.nit,C.nombre,P.codigo_producto,P.cantidad,P.total,P.anticipo,P.fecha FROM CLIENTE C INNER JOIN PEDIDO P ON C.NIT=P.nit_cliente ORDER BY C.NIT ASC";
+           modelo.addColumn("Ventas");
+           String query = "SELECT P.*,F.fecha,COUNT(*) AS VENTAS FROM PRODUCTO P INNER JOIN VENTA V ON P.codigo=V.codigo_producto INNER JOIN FACTURA F ON V.codigo_factura=F.codigo GROUP BY P.codigo ORDER BY COUNT(*) DESC LIMIT 10;";
            System.out.println(query);
            ResultSet rs = a.SeleccionarJT(query);
            ResultSetMetaData rsMd = rs.getMetaData();

@@ -100,6 +100,7 @@ public class RegistrarPedido extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        limpiar_txt = new javax.swing.JButton();
         calcular_boton = new javax.swing.JButton();
         efectivo_txt = new javax.swing.JFormattedTextField();
         jLabel19 = new javax.swing.JLabel();
@@ -142,7 +143,7 @@ public class RegistrarPedido extends javax.swing.JFrame {
                 registrarpedidoActionPerformed(evt);
             }
         });
-        jPanel1.add(registrarpedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(725, 520, 180, 60));
+        jPanel1.add(registrarpedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 490, 180, 60));
 
         jLabel13.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
@@ -376,6 +377,19 @@ public class RegistrarPedido extends javax.swing.JFrame {
         jLabel18.setText("Efectivo:");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 510, -1, 30));
 
+        limpiar_txt.setBackground(new java.awt.Color(255, 255, 255));
+        limpiar_txt.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        limpiar_txt.setForeground(new java.awt.Color(0, 0, 0));
+        limpiar_txt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/refresh.png"))); // NOI18N
+        limpiar_txt.setText("Limpiar");
+        limpiar_txt.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
+        limpiar_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpiar_txtActionPerformed(evt);
+            }
+        });
+        jPanel1.add(limpiar_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(765, 560, 120, 60));
+
         calcular_boton.setBackground(new java.awt.Color(255, 255, 255));
         calcular_boton.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
         calcular_boton.setForeground(new java.awt.Color(0, 0, 0));
@@ -516,7 +530,7 @@ public class RegistrarPedido extends javax.swing.JFrame {
         lbl_nit.setText(nit);
         lbl_nombre.setText(name);
         credito_lbl.setText(credito);
-        seleccionar_cliente.setEnabled(false);
+        
 
     }//GEN-LAST:event_seleccionar_clienteActionPerformed
 
@@ -550,6 +564,7 @@ public class RegistrarPedido extends javax.swing.JFrame {
                     agregar_pedido.setEnabled(false);
                     updateProducto(cantidad_existencia, cantidad_compra, Datos[1]);
                    cargarCbTienda(Datos[2]);
+                   seleccionar_cliente.setEnabled(false);
                     
                 }else{
                     JOptionPane.showMessageDialog(null,"No hay cantidad suficiente de productos.");
@@ -649,6 +664,10 @@ public class RegistrarPedido extends javax.swing.JFrame {
     private void lbl_tiempoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_tiempoMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_lbl_tiempoMouseClicked
+
+    private void limpiar_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiar_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_limpiar_txtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -954,6 +973,20 @@ public class RegistrarPedido extends javax.swing.JFrame {
         }
 
     }
+    
+    public void limpiarPantalla(){
+        credito_txt.setText(null);
+        efectivo_txt.setText(null);
+        anticipo_lbl.setText(null);
+        lbl_nit.setText(null);
+        lbl_nombre.setText(null);
+        lbl_tiempo.setText(null);
+        total_lbl.setText(null);
+        credito_lbl.setText(null);
+        cantidad_txt.setText(null);
+        codigo_txt.setText(null);
+        nit_txt.setText(null);
+    }
      
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -996,6 +1029,7 @@ public class RegistrarPedido extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_nit;
     private javax.swing.JLabel lbl_nombre;
     private javax.swing.JLabel lbl_tiempo;
+    private javax.swing.JButton limpiar_txt;
     private javax.swing.JTextField nit_txt;
     private javax.swing.JTable pedido_jt;
     private javax.swing.JButton registrarpedido;
