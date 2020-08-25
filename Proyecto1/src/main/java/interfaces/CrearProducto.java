@@ -122,6 +122,9 @@ public class CrearProducto extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 garantia_txtKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                garantia_txtKeyTyped(evt);
+            }
         });
         jPanel1.add(garantia_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 230, 30));
 
@@ -271,8 +274,7 @@ public class CrearProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void garantia_txtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_garantia_txtKeyPressed
-         char c = evt.getKeyChar();
-        if(c<'0' || c>'9') evt.consume();
+       
     }//GEN-LAST:event_garantia_txtKeyPressed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -280,6 +282,11 @@ public class CrearProducto extends javax.swing.JFrame {
         a.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void garantia_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_garantia_txtKeyTyped
+          char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+    }//GEN-LAST:event_garantia_txtKeyTyped
 
     /**
      * @param args the command line arguments
