@@ -11,6 +11,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -26,7 +27,8 @@ public class RegistrarEntrega extends javax.swing.JFrame {
      * Creates new form RegistrarVenta
      */
     Conexion a = new Conexion();
-    public LocalDate fecha = LocalDate.now();
+    //public LocalDate fecha = LocalDate.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public RegistrarEntrega() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -66,6 +68,8 @@ public class RegistrarEntrega extends javax.swing.JFrame {
         tienda_origen = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         marco1 = new javax.swing.JLabel();
+        fecha1 = new javax.swing.JFormattedTextField();
+        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -202,6 +206,16 @@ public class RegistrarEntrega extends javax.swing.JFrame {
         marco1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
         jPanel1.add(marco1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 290, 230));
 
+        fecha1.setBackground(new java.awt.Color(255, 255, 255));
+        fecha1.setForeground(new java.awt.Color(0, 0, 0));
+        fecha1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
+        jPanel1.add(fecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 200, 30));
+
+        jLabel5.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Fecha actual:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, 30));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoventas.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 490));
@@ -225,9 +239,15 @@ public class RegistrarEntrega extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(this,"Debe crear un tiempo entre tiendas. \n","AVISO",javax.swing.JOptionPane.INFORMATION_MESSAGE);       
         }
         else{
-            insertRecibo(fecha, Login.tienda_actual, pedido_lbl.getText(), codigo_lb.getText());
-            CargarTablaPedidos();
-            limpiarPantalla();
+            try {
+                LocalDate fecha = LocalDate.parse(fecha1.getText(), formatter);
+                insertRecibo(fecha, Login.tienda_actual, pedido_lbl.getText(), codigo_lb.getText());
+                CargarTablaPedidos();
+                limpiarPantalla();
+            } catch (Exception e) {
+                javax.swing.JOptionPane.showMessageDialog(this,"Debe ingresar fecha. \n","AVISO",javax.swing.JOptionPane.INFORMATION_MESSAGE);  
+            }
+            
         }
             
     }//GEN-LAST:event_registrar_btActionPerformed
@@ -411,6 +431,7 @@ public class RegistrarEntrega extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel codigo_lb;
+    private javax.swing.JFormattedTextField fecha1;
     private javax.swing.JLabel fecha_lbl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
@@ -422,6 +443,7 @@ public class RegistrarEntrega extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel marco1;

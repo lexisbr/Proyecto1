@@ -14,6 +14,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -31,13 +32,14 @@ public class RegistrarPedido extends javax.swing.JFrame {
     Conexion a = new Conexion();
     int cantidad_existencia=0;
     int cantidad_compra=0;
+  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
      public DefaultTableModel modelo_pedido = new DefaultTableModel(){
                 @Override
                 public boolean isCellEditable(int row, int column) {
                 return false;
                 }
            };
-    public LocalDate fecha = LocalDate.now();
+  // public LocalDate fecha = LocalDate.now();
     public RegistrarPedido() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -68,6 +70,8 @@ public class RegistrarPedido extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        fecha1 = new javax.swing.JFormattedTextField();
+        jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -120,6 +124,16 @@ public class RegistrarPedido extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        fecha1.setBackground(new java.awt.Color(255, 255, 255));
+        fecha1.setForeground(new java.awt.Color(0, 0, 0));
+        fecha1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
+        jPanel1.add(fecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 200, 30));
+
+        jLabel5.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Fecha actual:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, -1, 30));
 
         jLabel2.setFont(new java.awt.Font("Leelawadee", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -479,8 +493,10 @@ public class RegistrarPedido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registrarpedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarpedidoActionPerformed
+       
         double credito_ingresado=0;
         try {
+            LocalDate fecha = LocalDate.parse(fecha1.getText(), formatter);
             if((credito_txt.getText().equals(""))){  
             credito_ingresado=0;
         }
@@ -978,6 +994,7 @@ public class RegistrarPedido extends javax.swing.JFrame {
     }
     
     public void limpiarPantalla(){
+        fecha1.setText(null);
         credito_txt.setText(null);
         efectivo_txt.setText(null);
         anticipo_lbl.setText(null);
@@ -1008,6 +1025,7 @@ public class RegistrarPedido extends javax.swing.JFrame {
     private javax.swing.JLabel credito_lbl;
     private javax.swing.JFormattedTextField credito_txt;
     private javax.swing.JFormattedTextField efectivo_txt;
+    private javax.swing.JFormattedTextField fecha1;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1026,6 +1044,7 @@ public class RegistrarPedido extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

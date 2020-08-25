@@ -13,6 +13,8 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -29,6 +31,7 @@ public class Reporte5 extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cargarTabla();
+        KeyListener();
     }
 
     /**
@@ -46,8 +49,10 @@ public class Reporte5 extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         reporte_jt = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        busca_txt = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -78,7 +83,7 @@ public class Reporte5 extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(reporte_jt);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 800, 330));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 800, 230));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
@@ -93,9 +98,6 @@ public class Reporte5 extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, 210, 50));
 
-        jLabel6.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 153)));
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 85, 810, 340));
-
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setFont(new java.awt.Font("Leelawadee UI", 1, 12)); // NOI18N
         jButton7.setForeground(new java.awt.Color(0, 0, 0));
@@ -108,6 +110,20 @@ public class Reporte5 extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 130, 30));
+
+        jLabel4.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("NIT:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, 30));
+
+        busca_txt.setBackground(new java.awt.Color(255, 255, 255));
+        busca_txt.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
+        busca_txt.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(busca_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 360, 30));
+        busca_txt.getAccessibleContext().setAccessibleName("");
+
+        jLabel6.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 153)));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 115, 810, 310));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoventas.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
@@ -162,9 +178,37 @@ public class Reporte5 extends javax.swing.JFrame {
             }
         });
     }
+    public void KeyListener(){
+      
+        busca_txt.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                cargarTabla();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                 cargarTabla();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                 cargarTabla();
+            }
+           
+        });
+    }
     
      public void cargarTabla(){
-      
+      String campo = busca_txt.getText();
+      String where = "";
+
+        if (!"".equals(campo)) {
+            where = "WHERE F.nit_cliente LIKE '%" + campo + "%'";
+
+        }else{
+            where="";
+        }
          try {
            DefaultTableModel modelo = new DefaultTableModel(){
                 @Override
@@ -179,7 +223,7 @@ public class Reporte5 extends javax.swing.JFrame {
            modelo.addColumn("Fecha"); 
            modelo.addColumn("Total");
            modelo.addColumn("Tienda");   
-           String query = "SELECT F.nit_cliente,C.nombre,F.codigo,F.fecha,F.total,F.codigo_tienda FROM CLIENTE C INNER JOIN FACTURA F ON C.NIT=F.nit_cliente";
+           String query = "SELECT F.nit_cliente,C.nombre,F.codigo,F.fecha,F.total,F.codigo_tienda FROM CLIENTE C INNER JOIN FACTURA F ON C.NIT=F.nit_cliente "+where+" ORDER BY F.nit_cliente ASC";
            System.out.println(query);
            ResultSet rs = a.SeleccionarJT(query);
            ResultSetMetaData rsMd = rs.getMetaData();
@@ -258,11 +302,13 @@ public class Reporte5 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField busca_txt;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
