@@ -82,6 +82,7 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         credito_txt = new javax.swing.JFormattedTextField();
+        limpiar_txt = new javax.swing.JButton();
         calcular_boton = new javax.swing.JButton();
         efectivo_txt = new javax.swing.JFormattedTextField();
         jLabel28 = new javax.swing.JLabel();
@@ -274,7 +275,7 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
                 venta_botonActionPerformed(evt);
             }
         });
-        jPanel1.add(venta_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 490, 160, 70));
+        jPanel1.add(venta_boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 450, 160, 70));
 
         jLabel23.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(51, 0, 51));
@@ -300,6 +301,19 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
             }
         });
         jPanel1.add(credito_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 470, 150, 30));
+
+        limpiar_txt.setBackground(new java.awt.Color(255, 255, 255));
+        limpiar_txt.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        limpiar_txt.setForeground(new java.awt.Color(0, 0, 0));
+        limpiar_txt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/refresh.png"))); // NOI18N
+        limpiar_txt.setText("Limpiar");
+        limpiar_txt.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
+        limpiar_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpiar_txtActionPerformed(evt);
+            }
+        });
+        jPanel1.add(limpiar_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 530, 120, 60));
 
         calcular_boton.setBackground(new java.awt.Color(255, 255, 255));
         calcular_boton.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
@@ -442,6 +456,7 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Se registro la venta.");
             deleteRecibo(id);
             deletePedido(pedido);
+            CargarPedidosIngresados();
             
 
             
@@ -488,6 +503,10 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_calcular_botonActionPerformed
+
+    private void limpiar_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiar_txtActionPerformed
+        limpiarPantalla();
+    }//GEN-LAST:event_limpiar_txtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -799,8 +818,7 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
         try {    
              a.conexionDB();
              stmt = a.getConnection().createStatement();
-             stmt.executeUpdate(query);          
-             JOptionPane.showMessageDialog(null,"Pedido borrado");
+             stmt.executeUpdate(query);             
              stmt.close();
         }catch (SQLException e) {
              JOptionPane.showMessageDialog(null,"Error "+e);
@@ -814,12 +832,31 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
              a.conexionDB();
              stmt = a.getConnection().createStatement();
              stmt.executeUpdate(query);          
-             JOptionPane.showMessageDialog(null,"Recibo borrado");
              stmt.close();
         }catch (SQLException e) {
              JOptionPane.showMessageDialog(null,"Error "+e);
         }
         
+    }
+    
+    public void limpiarPantalla(){
+        fechapedido_lbl.setText(null);
+        fechaingreso_lbl.setText(null);
+        tiempoenvio_lbl.setText(null);
+        estado_lbl.setText(null);      
+        nit_lbl.setText(null);
+        cliente_lbl.setText(null);  
+        total_lbl.setText(null);
+        anticipo_lbl.setText(null);
+        totalapagar_lbl.setText(null);
+        creditoactual_lbl.setText(null);
+        creditoretraso_lbl.setText(null);
+        cantidad_txt.setText(null);
+        producto_lbl.setText(null);
+        credito_txt.setText(null);
+        efectivo_txt.setText(null);
+        Conexion a = new Conexion();
+        CargarPedidosIngresados();
     }
     
     
@@ -865,6 +902,7 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel31;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton limpiar_txt;
     private javax.swing.JLabel nit_lbl;
     private javax.swing.JTable pedido_jt;
     private javax.swing.JTextField pedido_txt;

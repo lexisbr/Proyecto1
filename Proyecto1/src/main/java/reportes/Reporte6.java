@@ -12,6 +12,8 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -29,6 +31,7 @@ public class Reporte6 extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cargarTabla();
+        KeyListener();
     }
 
     /**
@@ -48,6 +51,8 @@ public class Reporte6 extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
+        busca_txt = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -78,7 +83,7 @@ public class Reporte6 extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(reporte_jt);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 800, 330));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 800, 240));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
@@ -94,7 +99,7 @@ public class Reporte6 extends javax.swing.JFrame {
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, 210, 50));
 
         jLabel6.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 153)));
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 85, 810, 340));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 115, 810, 310));
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setFont(new java.awt.Font("Leelawadee UI", 1, 12)); // NOI18N
@@ -108,6 +113,16 @@ public class Reporte6 extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 130, 30));
+
+        busca_txt.setBackground(new java.awt.Color(255, 255, 255));
+        busca_txt.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
+        busca_txt.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(busca_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 360, 30));
+
+        jLabel4.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("NIT:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoventas.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
@@ -162,7 +177,37 @@ public class Reporte6 extends javax.swing.JFrame {
             }
         });
     }
+    
+     public void KeyListener(){
+      
+        busca_txt.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                cargarTabla();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                 cargarTabla();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                 cargarTabla();
+            }
+           
+        });
+    }
     public void cargarTabla(){
+        String campo = busca_txt.getText();
+        String where = "";
+        
+         if (!"".equals(campo)) {
+            where = "WHERE C.NIT LIKE '%" + campo + "%'";
+
+        }else{
+            where="";
+        }
       
          try {
            DefaultTableModel modelo = new DefaultTableModel(){
@@ -179,8 +224,9 @@ public class Reporte6 extends javax.swing.JFrame {
            modelo.addColumn("Cantidad");
            modelo.addColumn("Total");   
            modelo.addColumn("Anticipo");
-           modelo.addColumn("Fecha");         
-           String query = "SELECT C.nit,C.nombre,P.codigo,P.codigo_producto,P.cantidad,P.total,P.anticipo,P.fecha FROM CLIENTE C INNER JOIN PEDIDO P ON C.NIT=P.nit_cliente ORDER BY C.NIT ASC";
+           modelo.addColumn("Fecha");
+           modelo.addColumn("Tienda Destino");
+           String query = "SELECT C.nit,C.nombre,P.codigo,P.codigo_producto,P.cantidad,P.total,P.anticipo,P.fecha,P.codigo_tienda_destino FROM CLIENTE C INNER JOIN PEDIDO P ON C.NIT=P.nit_cliente "+where+" ORDER BY C.NIT ASC";
            System.out.println(query);
            ResultSet rs = a.SeleccionarJT(query);
            ResultSetMetaData rsMd = rs.getMetaData();
@@ -259,11 +305,13 @@ public class Reporte6 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField busca_txt;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
