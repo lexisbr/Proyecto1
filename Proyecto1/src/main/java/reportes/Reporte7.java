@@ -210,6 +210,8 @@ public class Reporte7 extends javax.swing.JFrame {
             }
         });
     }
+    
+    /*Carga tabla*/
      public void cargarTabla(){
          
          try {
@@ -226,7 +228,7 @@ public class Reporte7 extends javax.swing.JFrame {
            modelo.addColumn("Cantidad");
            modelo.addColumn("Precio");  
            modelo.addColumn("Ventas");
-           String query = "SELECT P.codigo,P.nombre,P.fabricante,P.cantidad,P.precio,COUNT(*) AS VENTAS FROM PRODUCTO P INNER JOIN VENTA V ON P.codigo=V.codigo_producto GROUP BY P.codigo ORDER BY VENTAS DESC;";
+           String query = "SELECT P.codigo,P.nombre,P.fabricante,P.cantidad,P.precio,COUNT(*) AS VENTAS FROM PRODUCTO P INNER JOIN VENTA V ON P.codigo=V.codigo_producto GROUP BY P.codigo ORDER BY VENTAS DESC LIMIT 10;";
            System.out.println(query);
            ResultSet rs = a.SeleccionarJT(query);
            ResultSetMetaData rsMd = rs.getMetaData();
@@ -246,6 +248,8 @@ public class Reporte7 extends javax.swing.JFrame {
         }
     }
      
+     
+     /*Carga tabla cuando hay intervalo*/
      public void cargarTablaIntv(){
             
          try {
@@ -283,7 +287,7 @@ public class Reporte7 extends javax.swing.JFrame {
             
         }
     }
-     
+     /*genera archivo html*/
      public void generarArchivo(JTable tabla, String titulo,int num) {
         try {
             PrintWriter writer = new PrintWriter("Reportes/Reporte"+num+".html", "UTF-8");
@@ -296,6 +300,7 @@ public class Reporte7 extends javax.swing.JFrame {
             writer.println("<body>");
             writer.println("<h1><center> Reporte " + num + "</center></h1>");
             writer.println("<h2><center>" + titulo + "</center></h2>");
+            writer.println("<h3><center>" + fecha1.getText()+" a "+fecha2.getText() + "</center></h3>");
             writer.println("<style type=" + "\"" + "text/css" + "\"" + ">");
             writer.println("table, th, td {");
             writer.println("border: 2px solid black;");

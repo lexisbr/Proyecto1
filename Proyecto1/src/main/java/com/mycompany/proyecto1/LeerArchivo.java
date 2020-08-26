@@ -32,19 +32,25 @@ public class LeerArchivo {
         int i=0;
         String cadena;
         String dato="";
+        // Instancia de filereader para luego instanciar un buffered reader que nos permita leer las secuencia de caracteres
         FileReader f = new FileReader(archivo);
         BufferedReader b = new BufferedReader(f);
+        // cada linea que devuelva el buffered se guarda en string
         while((cadena = b.readLine())!=null) {
-            //System.out.println(cadena);
+            // se guarda una coma en cada salto de linea
             cadena = cadena + ",";
+            // se con la coma agregada se guarda en la variable dato
             dato = dato + cadena;
+            //lleva la cuenta de las lineas en el documento
             contlineas++;
         }
+        // Uso de clase StringTokenizer para divir cadena en tokens, en este caso usamos la coma como separador
         StringTokenizer tokens = new StringTokenizer(dato,",");
+        // inicializamos array datos con la cantidad de tokens existente
         datos = new String [tokens.countTokens()];
+        //guardamos cada token en el array datos
         while(tokens.hasMoreTokens()){
-           datos[i]=tokens.nextToken();
-          //  System.out.println(datos[i]);
+           datos[i]=tokens.nextToken();  
            i++;
         }
         Tablas();
@@ -56,64 +62,53 @@ public class LeerArchivo {
        
     }
     
+    ////////////////////////////////////////////////
+    /*METODO PARA DETECTAR EL NOMBRE DE UN ENTIDAD*/
+    ////////////////////////////////////////////////
+    
     public void Tablas(){
-        
-        int cuenta=1;
+        //Recorremos el array y vamos comparando para encontrar el nombre de cada entidad, si no encuentra lo ignora 
         try {
              for (int i = 0; i < datos.length; i++) {
-            
+            //Cuando encuentra el nombre de una entidad entra en ciclo for que manda los dato por dato para guardar en si correspondiente columna
             if (datos[i].equals("TIENDA")) {
-                continsert++;
-                System.out.println(">>>"+datos[i]+" "+(cuenta++));
-//                tienda = true;
-//                System.out.println("boolean "+tienda);
-//                if(tienda){
+                //Lleva cuenta de los inserts
+                continsert++;    
                     for (int j = (i+1); j < (i+5); j++) {
-                        System.out.println("==== "+datos[j]);
+                        //Metodo para guardar datos 
                         guardarTienda(datos[j]);
                     }
-
-//                }
+            
             }else if (datos[i].equals("TIEMPO")){
                 continsert++;
-                System.out.println(">>>"+datos[i]+" "+(cuenta++));
-                for (int j = (i+1); j < (i+4); j++) {
-                        System.out.println("==== "+datos[j]);
+                for (int j = (i+1); j < (i+4); j++) {            
                         guardarTiempo(datos[j]);
                     }
                 
                 
             }else if(datos[i].equals("PRODUCTO")){
                 continsert++;
-                 System.out.println(">>>"+datos[i]+" "+(cuenta++));
                 for (int j = (i+1); j < (i+7); j++) {
-                        System.out.println("==== "+datos[j]);
                         guardarProducto(datos[j]);
                     }
                
                 
             }else if(datos[i].equals("EMPLEADO")){
-                 System.out.println(">>>"+datos[i]+" "+(cuenta++));
                  continsert++;
                 for (int j = (i+1); j < (i+5); j++) {
-                        System.out.println("==== "+datos[j]);
                         guardarEmpleado(datos[j]);
                     }
                 
                 
             }else if(datos[i].equals("CLIENTE")){
                 continsert++;
-                 System.out.println(">>>"+datos[i]+" "+(cuenta++));
                 for (int j = (i+1); j < (i+5); j++) {
-                        System.out.println("==== "+datos[j]);
                         guardarCliente(datos[j]);
                     }
 
             }else if(datos[i].equals("PEDIDO")){
                 continsert++;
-                System.out.println(">>>"+datos[i]+" "+(cuenta++));
                 for (int j = (i+1); j < (i+10); j++) {
-                        System.out.println("==== "+datos[j]);
                         guardarPedido(datos[j]);
                     }   
             }
@@ -132,15 +127,17 @@ public class LeerArchivo {
   
     }
     
+    ///////////////////////////////////////
+    /*METODOS PARA GUARDAR DATOS EN ARRAY*/
+    ///////////////////////////////////////
+    
     public void guardarTienda(String cadenas){
+        // Va guardando token en cada posicion de array
         
         enviar[cont]=cadenas;
-//        System.out.println("contador "+cont+"- "+enviar[cont]);
         cont++;
-        
-        if(cont==4){
-            /*System.out.println("entra");
-            System.out.println(">>>>>>>>>>> "+enviar[0]+" "+enviar[1]+" "+enviar[2]+" "+enviar[3]);*/
+        //Cuando esta completa la informacion lo envia todo junto y hace el insert 
+        if(cont==4){       
             insertTienda(enviar[0],enviar[1],enviar[2],enviar[3]);
             cont=0;
         }
@@ -150,12 +147,9 @@ public class LeerArchivo {
     public void guardarTiempo(String cadenas){
         
         enviar[cont]=cadenas;
-        //System.out.println("contador "+cont+"- "+enviar[cont]);
         cont++;
         
-        if(cont==3){
-            /*System.out.println("entra");
-            System.out.println(">>>>>>>>>>> "+enviar[0]+" "+enviar[1]+" "+enviar[2]+" "+enviar[3]);*/
+        if(cont==3){   
             insertTiempo(enviar[0],enviar[1],enviar[2]);
             cont=0;
         }
@@ -190,9 +184,7 @@ public class LeerArchivo {
         System.out.println("empleado "+cont+"- "+enviar[cont]);
         cont++;
         
-        if(cont==4){
-            /*System.out.println("entra");
-            System.out.println(">>>>>>>>>>> "+enviar[0]+" "+enviar[1]+" "+enviar[2]+" "+enviar[3]);*/
+        if(cont==4){      
             insertEmpleado(enviar[0],enviar[1],enviar[2],enviar[3]);
             cont=0;
         }
@@ -201,21 +193,17 @@ public class LeerArchivo {
      
      public void guardarCliente(String cadenas){
         double credito =0;
-        enviar[cont]=cadenas;
-        System.out.println("cliente "+cont+"- "+enviar[cont]);
+        enviar[cont]=cadenas;     
         cont++;
-         
-             System.out.println("+++++++entra");  
-              if(cont==4){
-                  try {
-                    System.out.println("+++++++entra");  
+        if(cont==4){
+                  try {         
                     credito = Double.parseDouble(enviar[3]);        
                     insertCliente(enviar[0],enviar[1],enviar[2],credito);
                  } catch (Exception e) {
                     JOptionPane.showMessageDialog(null,"Hay un error en Cliente: "+enviar[1]+" En la linea "+continsert+". Verifica e intenta de nuevo.");
                  }
                   cont=0;
-            }
+        }
              
         
         
@@ -226,8 +214,7 @@ public class LeerArchivo {
         double total =0;
         double anticipo =0;
         int cantidad =0;
-        enviar[cont]=cadenas;
-        System.out.println("pedido "+cont+"- "+enviar[cont]);
+        enviar[cont]=cadenas; 
         cont++;
         
         if(cont==9){
@@ -252,15 +239,17 @@ public class LeerArchivo {
     ///////////////////////////////////////////
      
     public void insertTienda(String nombre,String direccion,String codigo,String telefono){
-        System.out.println("entra a db");
-        
+        //Recibe los datos y los inserta en su entidad correspondiente 
         try {
              String query = ("INSERT INTO TIENDA(codigo,nombre,direccion,telefono_1) VALUES('"+codigo+"','"+nombre+"','"+direccion+"','"+telefono+"')");
              Conexion c = new Conexion();
-             c.InsertarArchivo(query);    
+             c.InsertarArchivo(query);
+             //Variable booleana verificar me permite saber cuando una tupla se ha insertado bien, sino muestra error.
              if(c.verificar){
+                 //Mensaje final que avisa que los datos correctos fueron agregados
                   c.setMensaje(true);
              }else{
+                 //Mensaje que muestra que datos no fueron agregados
                  JOptionPane.showMessageDialog(null,"Hay un error en Tienda: "+codigo+" En la linea "+continsert+". Verifica e intenta de nuevo.");
              }
         }catch(Exception e) {
@@ -272,15 +261,17 @@ public class LeerArchivo {
     
     
     public void insertTiempo(String tienda1,String tienda2,String tiempo){
-        System.out.println("entra a db");
-        
+         //Recibe los datos y los inserta en su entidad correspondiente 
         try {
              String query = ("INSERT INTO TIEMPO_DE_ENVIO(tiempo,codigo_tienda1,codigo_tienda2) VALUES('"+tiempo+"','"+tienda1+"','"+tienda2+"')");
              Conexion c = new Conexion();
              c.InsertarArchivo(query);
-             if(c.verificar){              
+             //Variable booleana verificar me permite saber cuando una tupla se ha insertado bien, sino muestra error.
+             if(c.verificar){
+                 //Mensaje final que avisa que los datos correctos fueron agregados
                   c.setMensaje(true);
              }else{
+                 //Mensaje que muestra que datos no fueron agregados
                  JOptionPane.showMessageDialog(null,"Hay un error en Tiempo entre tiendas: "+tienda1+" y "+tienda2+" En la linea "+continsert+". Verifica e intenta de nuevo.");
              }
         }catch(Exception e) {
@@ -291,16 +282,18 @@ public class LeerArchivo {
     }
     
      public void insertProducto(String nombre,String fabricante,String codigo,int cantidad,double precio,String tienda){
-        System.out.println("entra a db");
-        
+         //Recibe los datos y los inserta en su entidad correspondiente 
         try {
-             String query = ("INSERT INTO PRODUCTO(nombre,fabricante,codigo,cantidad,precio,codigo_tienda) VALUES('"+nombre+"','"+fabricante+"','"+codigo+"','"+cantidad+"','"+precio+"','"+tienda+"')");
+             String query = ("INSERT INTO PRODUCTO(nombre,fabricante,codigo,cantidad,precio,codigo_tienda) VALUES('"+nombre+"','"+fabricante+"','"+codigo+"','"+cantidad+"','"+precio+"','"+tienda+"')");     
              Conexion c = new Conexion();
              c.InsertarArchivo(query); 
-             if(c.verificar){    
+             //Variable booleana verificar me permite saber cuando una tupla se ha insertado bien, sino muestra error.
+             if(c.verificar){
+                 //Mensaje final que avisa que los datos correctos fueron agregados
                   c.setMensaje(true);
                  
              }else{
+                 //Mensaje que muestra que datos no fueron agregados
                  JOptionPane.showMessageDialog(null,"Hay un error en Producto: "+codigo+" En la linea "+continsert+". Verifica e intenta de nuevo.");
              }
         }catch(Exception e) {
@@ -311,15 +304,17 @@ public class LeerArchivo {
     }
      
       public void insertEmpleado(String nombre,String codigo,String telefono,String dpi){
-        System.out.println("entra a db");
-        
+          //Recibe los datos y los inserta en su entidad correspondiente 
         try {
              String query = ("INSERT INTO EMPLEADO(nombre,codigo,telefono,DPI,email,direccion) VALUES('"+nombre+"','"+codigo+"','"+telefono+"','"+dpi+"',' ',' ')");
              Conexion c = new Conexion();
-             c.InsertarArchivo(query);  
-             if(c.verificar){     
+             c.InsertarArchivo(query); 
+             //Variable booleana verificar me permite saber cuando una tupla se ha insertado bien, sino muestra error.
+             if(c.verificar){
+                 //Mensaje final que avisa que los datos correctos fueron agregados
                  c.setMensaje(true);
              }else{
+                 //Mensaje que muestra que datos no fueron agregados
                  JOptionPane.showMessageDialog(null,"Hay un error en Empleado: "+codigo+" En la linea "+continsert+". Verifica e intenta de nuevo.");
              }
         }catch(Exception e) {
@@ -330,15 +325,17 @@ public class LeerArchivo {
     }
       
      public void insertCliente(String nombre,String nit,String telefono,double credito){
-        System.out.println("entra a db");
-        
+         //Recibe los datos y los inserta en su entidad correspondiente 
         try {
              String query = ("INSERT INTO CLIENTE(nombre,NIT,telefono,credito_compra) VALUES('"+nombre+"','"+nit+"','"+telefono+"','"+credito+"')");
              Conexion c = new Conexion();
              c.InsertarArchivo(query);
-             if(c.verificar){         
+             //Variable booleana verificar me permite saber cuando una tupla se ha insertado bien, sino muestra error.
+             if(c.verificar){
+                 //Mensaje final que avisa que los datos correctos fueron agregados
                  c.setMensaje(true);        
              }else{
+                 //Mensaje que muestra que datos no fueron agregados
                  JOptionPane.showMessageDialog(null,"Hay un error en Cliente: "+nit+" En la linea "+continsert+". Verifica e intenta de nuevo.");
              }
         }catch(Exception e) {
@@ -348,15 +345,17 @@ public class LeerArchivo {
 
     }
     public void insertPedido(String codigo,String tienda1,String tienda2,LocalDate fecha,String cliente,String producto,int cantidad,double total,double anticipo){
-        System.out.println("entra a db");
-        
+        //Recibe los datos y los inserta en su entidad correspondiente 
         try {
              String query = ("INSERT INTO PEDIDO(codigo,codigo_tienda_destino,codigo_tienda_origen,fecha,nit_cliente,codigo_producto,cantidad,total,anticipo) VALUES('"+codigo+"','"+tienda1+"','"+tienda2+"','"+fecha+"','"+cliente+"','"+producto+"','"+cantidad+"','"+total+"','"+anticipo+"')");
              Conexion c = new Conexion();
              c.InsertarArchivo(query);
+             //Variable booleana verificar me permite saber cuando una tupla se ha insertado bien, sino muestra error.
              if(c.verificar){
+                 //Mensaje final que avisa que los datos correctos fueron agregados
                  c.setMensaje(true);
-             }else{
+             } else {
+                 //Mensaje que muestra que datos no fueron agregados
                  JOptionPane.showMessageDialog(null,"Hay un error en Pedido: "+codigo+" En la linea "+continsert+". Verifica e intenta de nuevo.");
              }
         }catch(Exception e) {

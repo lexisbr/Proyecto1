@@ -329,7 +329,9 @@ public class VisualizarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_telefono_txtKeyTyped
 
     private void dpi_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dpi_txtKeyTyped
-
+        char c = evt.getKeyChar();
+        if (dpi_txt.getText().length()== 13) evt.consume();
+        if(c<'0' || c>'9') evt.consume();
     }//GEN-LAST:event_dpi_txtKeyTyped
 
     private void actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarActionPerformed
@@ -408,6 +410,7 @@ public class VisualizarCliente extends javax.swing.JFrame {
            
         });
     }
+     /*Carga tabla de clientes*/
      public void cargarTablaCliente(){
         String campo = buscar_txt.getText();
         String where = "";
@@ -452,6 +455,8 @@ public class VisualizarCliente extends javax.swing.JFrame {
             
         }
     }
+     
+     /*Actualiza datos de cliente*/
       public void updateCliente(String nit, String nombre, String telefono, String dpi, String email,String direccion, double credito){
         String query ="UPDATE CLIENTE SET nombre='"+nombre+"', telefono='"+telefono+"', DPI='"+dpi+"',email ='"+email+"',direccion='"+direccion+"',credito_compra='"+credito+"' WHERE NIT='"+nit+"'";
         Statement stmt = null;

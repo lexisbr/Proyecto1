@@ -564,6 +564,7 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
         });
     }
     
+     /*Carga pedidos en la tabla recibe*/
     public void CargarPedidosIngresados(){
          String campo = pedido_txt.getText();
         String where = "";
@@ -606,7 +607,7 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
             
         }
     }
-
+/*Carga la informacion del pedido*/
     public void cargarDataPedidos(String codigo){
         String[] datos;
         String query ="SELECT fecha,nit_cliente,codigo_producto,total,anticipo,cantidad FROM PEDIDO WHERE codigo='"+codigo+"'";
@@ -643,7 +644,7 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
         
        
     }
-    
+    /*Carga la informacion del cliente*/
      public void cargarDataCliente(String nit){
         String[] datos;
         String query ="SELECT nombre,credito_compra FROM CLIENTE WHERE NIT='"+nit+"'";
@@ -674,6 +675,7 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
        
     }
      
+     /*Carga la informacion del tiempo entre tiendas*/
     public void cargarDataTiempo(String tiempo){
         String[] datos;
         String query ="SELECT tiempo FROM TIEMPO_DE_ENVIO WHERE ID='"+tiempo+"'";
@@ -702,22 +704,7 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
         
        
     }
-    
-    public void updateCliente(double nuevocredito, String nit){    
-          String query ="UPDATE CLIENTE SET credito_compra=credito_compra+"+nuevocredito+" WHERE NIT='"+nit+"'";
-          Statement stmt = null;
-        try {    
-             a.conexionDB();
-             stmt = a.getConnection().createStatement();
-             stmt.executeUpdate(query);
-             credito_actualizado = nuevocredito;
-             
-             stmt.close();
-        }catch (SQLException e) {
-             JOptionPane.showMessageDialog(null,"Error "+e);
-        }
-        
-    }
+    /*Actualiza el credito del cliente*/
     public void updateCliente1(double nuevocredito, String nit){    
           String query ="UPDATE CLIENTE SET credito_compra='"+nuevocredito+"' WHERE NIT='"+nit+"'";
           Statement stmt = null;
@@ -733,25 +720,23 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
         }
         
     }
-     public void insertDBFACTURA(LocalDate cadena2,double cadena3,String cadena4,String cadena5){
-        try {
-             String query = ("INSERT INTO FACTURA VALUES('"+0+"','"+cadena2+"','"+cadena3+"','"+cadena4+"','"+cadena5+"')");
-             Conexion c = new Conexion();
-             c.Insertar(query);
-             System.out.println("Los valores han sido agregados a la base de datos ");
-          
-             //c.conexionDB();
-             //stmt = c.getConnection().createStatement(); 
-            // stmt.executeUpdate("INSERT INTO TIENDA VALUES('"+cadena1+"','"+cadena2+"','"+cadena3+"','"+cadena4+"','"+cadena5+"','"+cadena6+"','"+cadena7+"')");
-        }catch(Exception e) {
-                JOptionPane.showMessageDialog(null,"Error "+e);
-         
+    public void updateCliente(double nuevocredito, String nit){    
+          String query ="UPDATE CLIENTE SET credito_compra='"+nuevocredito+"' WHERE NIT='"+nit+"'";
+          Statement stmt = null;
+        try {    
+             a.conexionDB();
+             stmt = a.getConnection().createStatement();
+             stmt.executeUpdate(query);
+             credito_actualizado = nuevocredito;
+             
+             stmt.close();
+        }catch (SQLException e) {
+             JOptionPane.showMessageDialog(null,"Error "+e);
         }
         
-    
-        
     }
-     
+    
+    /*Inserta tupla en venta*/ 
     public void insertDBVENTA(double precio,int cantidad,String producto,int factura){
            Statement stmt = null;
         try {
@@ -769,12 +754,13 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
              }
         }
         }
-    
+    /*Calcula el estado del pedido*/
     public long calcularEstado(LocalDate fechapedido, LocalDate fechaactual){
         long diasdiferencia = DAYS.between(fechapedido, fechaactual);
         return diasdiferencia;
         
     }
+    /*Calcula total a pagar*/
     public String totalPagar(double anticipo, double total){
         double totalP = total - anticipo;
         String totalPP = String.valueOf(totalP);
@@ -784,7 +770,7 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
          if((credito_cliente-credito_ingresado)>=0) return true;
          else return false;
      }
-    
+    /*Calcula el credito extra*/
     public void calcularCredito(double totalP,String estado,String nit,double total){
         double creditoextra=0;
         double credito = Double.parseDouble(creditoactual_lbl.getText());
@@ -811,7 +797,7 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
       }
         
     }
-    
+    /*Borra el pedido*/
     public void deletePedido(String pedido){
          String query ="DELETE FROM PEDIDO WHERE codigo ='"+pedido+"'";
           Statement stmt = null;
@@ -825,6 +811,7 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
         }
         
     }
+    /*Borra el recibo*/
     public void deleteRecibo(String id){
         String query ="DELETE FROM RECIBE WHERE ID ='"+id+"'";
           Statement stmt = null;
@@ -838,7 +825,7 @@ public class VentaProductoIngresado extends javax.swing.JFrame {
         }
         
     }
-    
+    /*Limpiar*/
     public void limpiarPantalla(){
         fechapedido_lbl.setText(null);
         fechaingreso_lbl.setText(null);

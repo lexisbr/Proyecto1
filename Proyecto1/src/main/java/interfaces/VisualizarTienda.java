@@ -361,7 +361,7 @@ public class VisualizarTienda extends javax.swing.JFrame {
             }
         });
     }
-    
+    /*Carga tabla de tienda*/
     public void cargarTablaTienda(){
          String campo = buscar_txt.getText();
         String where = "";

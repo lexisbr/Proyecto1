@@ -166,7 +166,7 @@ public class Reporte2 extends javax.swing.JFrame {
         });
     }
     
-    
+    /*Carga tabla de pedidos*/
     public void cargarTabla(){
         String [] datos;
         int cont=0;
@@ -216,7 +216,7 @@ public class Reporte2 extends javax.swing.JFrame {
         }
     }
     
-    
+    /*Verifica si el pedido esta a tiempo de ingresar*/
     public boolean verificarTiempo(String fecha, String tiempo){
         LocalDate fechapedido = LocalDate.parse(fecha);
         int dias  = (int) calcularEstado(fechapedido, fechaactual);
@@ -228,13 +228,13 @@ public class Reporte2 extends javax.swing.JFrame {
         }
        
     }
-    
+    /*Calcula los dias de diferencia entre la fecha actual y la fecha del pedido*/
     public long calcularEstado(LocalDate fechapedido, LocalDate fechaactual){
         long diasdiferencia = DAYS.between(fechapedido, fechaactual);
         return diasdiferencia;
         
     }
-    
+    /*Genera reportes en html*/
      public void generarArchivo(JTable tabla, String titulo,int num) {
         try {
             PrintWriter writer = new PrintWriter("Reportes/Reporte"+num+".html", "UTF-8");
