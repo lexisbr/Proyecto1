@@ -307,7 +307,7 @@ public class CrearTienda extends javax.swing.JFrame {
             }
         });
     }
-    
+    /*Insertar datos de tienda*/
     public void insertDB(String cadena1,String cadena2,String cadena3,String cadena4,String cadena5,String cadena6,String cadena7){
         try {
              String query = ("INSERT INTO TIENDA VALUES('"+cadena1+"','"+cadena2+"','"+cadena3+"','"+cadena4+"','"+cadena5+"','"+cadena6+"','"+cadena7+"')");

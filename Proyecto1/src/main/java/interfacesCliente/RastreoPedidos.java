@@ -52,6 +52,7 @@ public class RastreoPedidos extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -67,12 +68,12 @@ public class RastreoPedidos extends javax.swing.JFrame {
         pagofinal_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         pagofinal_lbl.setForeground(new java.awt.Color(0, 0, 0));
         pagofinal_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
-        jPanel1.add(pagofinal_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 120, 30));
+        jPanel1.add(pagofinal_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 160, 30));
 
         tiemporestante_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         tiemporestante_lbl.setForeground(new java.awt.Color(0, 0, 0));
         tiemporestante_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
-        jPanel1.add(tiemporestante_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, 120, 30));
+        jPanel1.add(tiemporestante_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, 160, 30));
 
         jLabel12.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
@@ -120,6 +121,19 @@ public class RastreoPedidos extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/producto.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 15, -1, -1));
 
+        jButton7.setBackground(new java.awt.Color(255, 255, 255));
+        jButton7.setFont(new java.awt.Font("Leelawadee UI", 1, 12)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(0, 0, 0));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/regresar.png"))); // NOI18N
+        jButton7.setText("Regresar");
+        jButton7.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 130, 30));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoventas3.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 420));
@@ -135,8 +149,10 @@ public class RastreoPedidos extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String campo = buscar_txt.getText();
-
+        tiemporestante_lbl.setText("");
+        pagofinal_lbl.setText("");
         if (!"".equals(campo)) {
+            if(verificarPedido(campo)){
             try {
              DefaultTableModel modelo_pedido = new DefaultTableModel(){
                 @Override
@@ -168,17 +184,30 @@ public class RastreoPedidos extends javax.swing.JFrame {
             }
            rs.close();
            
+           if(tiemporestante_lbl.getText().equals("")){
+               tiemporestante_lbl.setText("PEDIDO EN TIENDA");
+           }
+           
            
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,"Error "+ e);
+            JOptionPane.showMessageDialog(null,"Pedido no existe");
             
         }
-
+            }else{
+                JOptionPane.showMessageDialog(null,"Pedido no existe");
+            }
+            
         }else{
             JOptionPane.showMessageDialog(null,"Ingrese el codigo de su pedido.");
         }
          
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        MainCliente log = new MainCliente();
+        log.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,7 +243,26 @@ public class RastreoPedidos extends javax.swing.JFrame {
             }
         });
     }
+    public boolean verificarPedido(String codigo){
+         String query_pedido = "SELECT * FROM PEDIDO WHERE codigo = '"+codigo+"'";
+         ResultSet rs = a.consulta(query_pedido);
+         try {
+             if(rs.next()){
+                 return true;
+             }else{
+                 return false;
+             }
+            
+        } catch (Exception e) {
+            return false;
+        }
+         
+    }
     
+    
+    
+    
+    /*Calcula dias restantes para la llegada del pedido*/
    public void diasRestantes(String tiempo, String fechapedido){
        LocalDate fechap = LocalDate.parse(fechapedido);
         long diasdiferencia = DAYS.between(fechap, fecha);
@@ -228,11 +276,14 @@ public class RastreoPedidos extends javax.swing.JFrame {
             tiemporestante_lbl.setText("Con retraso");
         }    
    }
-   
+   /*Calcula el pago final*/
    public void calcularPago(double anticipo,double total){
        double pagototal = total -anticipo;
-       
+       if(pagototal>0){
        pagofinal_lbl.setText(String.valueOf(pagototal));
+       }else{
+           pagofinal_lbl.setText("0");
+       }
        
        
    }
@@ -240,6 +291,7 @@ public class RastreoPedidos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField buscar_txt;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

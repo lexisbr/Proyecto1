@@ -805,7 +805,7 @@ public class RegistrarPedido extends javax.swing.JFrame {
         }
     }
      
-    
+    /*Carga la tabla de productos*/
     public void CargarTablaProducto(){
         String campo = codigo_txt.getText();
         String where = "";
@@ -851,12 +851,13 @@ public class RegistrarPedido extends javax.swing.JFrame {
     
     
     
-    
+    /*Verifica que hayan suficiente cantidad para vender*/
     public boolean verificarExistencia(int tienda, int venta){
          if((tienda-venta)>=0) return true;
          else return false;
      }
     
+    /*Suma el total de los productos*/
     public void sumartotal(){
         double t=0;
         double p=0;
@@ -871,6 +872,8 @@ public class RegistrarPedido extends javax.swing.JFrame {
         total_lbl.setText(String.valueOf(t));
 
     }
+    
+    /*Actualiza las existencias de producto*/
      public void updateProducto(int cantidad_tienda, int cantidad_venta,String codigo){
          System.out.println("entra a update +"+codigo+" <a>"+cantidad_tienda+"<b>"+cantidad_venta );
          int nuevacantidad = cantidad_tienda - cantidad_venta;
@@ -887,6 +890,7 @@ public class RegistrarPedido extends javax.swing.JFrame {
         }
      }
      
+     /*Carga el combobox con las tiendas*/
      public void cargarCbTienda(String nombre){
           String Query="SELECT codigo_tienda FROM PRODUCTO WHERE codigo='"+nombre+"'";
           ResultSet Result = a.SeleccionarCB(Query);
@@ -905,7 +909,7 @@ public class RegistrarPedido extends javax.swing.JFrame {
         }
      
      }
-       
+       /*Cargar tiempo entre tiendas*/
       public void cargarTiempo(String tienda1,String tienda2){
           Conexion b = new Conexion();
           String Query="SELECT tiempo FROM TIEMPO_DE_ENVIO WHERE ((codigo_tienda1='"+tienda1+"' && codigo_tienda2='"+tienda2+"')||(codigo_tienda1='"+tienda2+"' && codigo_tienda2='"+tienda1+"'))";
@@ -925,12 +929,12 @@ public class RegistrarPedido extends javax.swing.JFrame {
         }
      
      }
-      
+      /*Verifica que haya suficiente credito del cliente*/
      public boolean verificarCredito(double credito_cliente, double credito_ingresado){
          if((credito_cliente-credito_ingresado)>=0) return true;
          else return false;
      }
-     
+     /*Actualiza el credito del cliente */
      public void updateCliente(double creditocliente,double creditoingresado,String codigo){
          double nuevocredito = creditocliente - creditoingresado;
           Statement stmt = null;
@@ -949,18 +953,14 @@ public class RegistrarPedido extends javax.swing.JFrame {
              }
         }
      }
-     
+     /*Crea el pedido*/
     public void insertPedido(LocalDate fecha,int cantidad,double total,double anticipo,String producto,String cliente,String tienda1,String tienda2){
         System.out.println("entra a db");
         Statement stmt = null;
         try {
-             String query = ("INSERT INTO PEDIDO(codigo_tienda_destino,codigo_tienda_origen,fecha,nit_cliente,codigo_producto,cantidad,total,anticipo) VALUES('"+tienda1+"','"+tienda2+"','"+fecha+"','"+cliente+"','"+producto+"','"+cantidad+"','"+total+"','"+anticipo+"')");
-             a.conexionDB();
+             String query = ("INSERT INTO PEDIDO(codigo_tienda_destino,codigo_tienda_origen,fecha,nit_cliente,codigo_producto,cantidad,total,anticipo) VALUES('"+tienda1+"','"+tienda2+"','"+fecha+"','"+cliente+"','"+producto+"','"+cantidad+"','"+total+"','"+anticipo+"')");    
              int codigo = a.InsertFactura(query);
-             JOptionPane.showMessageDialog(null,"Codigo de pedido: <> "+String.valueOf(codigo)+" <>");
-            /* stmt = a.getConnection().createStatement();
-             stmt.executeUpdate(query);
-             stmt.close();*/
+             JOptionPane.showMessageDialog(null,"Codigo de pedido: "+String.valueOf(codigo));     
              
         }catch(Exception e) {
                JOptionPane.showMessageDialog(null,"Hay un error en Pedido");
@@ -968,7 +968,7 @@ public class RegistrarPedido extends javax.swing.JFrame {
         }
 
     }
-    
+    /*Limpiar pantalla*/
     public void limpiarPantalla(){
         fecha1.setText(null);
         credito_txt.setText(null);

@@ -20,7 +20,7 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     public static String usuario = "";
-    public static String tienda_actual ="ABC-1";
+    public static String tienda_actual ="";
     public static int cont =0;
    
     String Query="SELECT CODIGO FROM TIENDA";
@@ -244,7 +244,7 @@ public class Login extends javax.swing.JFrame {
     public String getTienda(){
         return (String) cb_tiendas.getSelectedItem();
     }
-    
+    /*Verificar si el usuario existe*/
     public boolean verificarUsuario(String codigo){
          ResultSet Result = a.consulta("SELECT nombre FROM EMPLEADO WHERE codigo LIKE '"+codigo+"'");
          try {

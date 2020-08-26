@@ -664,7 +664,7 @@ public class RegistrarVentas extends javax.swing.JFrame {
            
         });
     }
-    
+    /*Carga los clientes existentes*/
     public void CargarTablaCliente(){
         String campo = nit_txt.getText();
         String where = "";
@@ -705,7 +705,7 @@ public class RegistrarVentas extends javax.swing.JFrame {
             
         }
     }
-    
+     /*Carga los productos existentes*/
     public void CargarTablaProducto(){
         String campo = codigo_txt.getText();
         String where = "";
@@ -748,27 +748,7 @@ public class RegistrarVentas extends javax.swing.JFrame {
             
         }
     }
-    
-    
-     public void insertDBFACTURA(LocalDate cadena2,double cadena3,String cadena4,String cadena5){
-        try {
-             String query = ("INSERT INTO FACTURA VALUES('"+0+"','"+cadena2+"','"+cadena3+"','"+cadena4+"','"+cadena5+"')");
-             Conexion c = new Conexion();
-             c.Insertar(query);
-             System.out.println("Los valores han sido agregados a la base de datos ");
-          
-             //c.conexionDB();
-             //stmt = c.getConnection().createStatement(); 
-            // stmt.executeUpdate("INSERT INTO TIENDA VALUES('"+cadena1+"','"+cadena2+"','"+cadena3+"','"+cadena4+"','"+cadena5+"','"+cadena6+"','"+cadena7+"')");
-        }catch(Exception e) {
-                JOptionPane.showMessageDialog(null,"Error "+e);
-         
-        }
-        
-    
-        
-    }
-     
+   /*Inserta tupla en tabla venta*/
      public void insertDBVENTA(double cadena1,int cadena2,String cadena3,int cadena4){
            Statement stmt = null;
         try {
@@ -784,19 +764,22 @@ public class RegistrarVentas extends javax.swing.JFrame {
              }else{
              JOptionPane.showMessageDialog(null,"Error "+e);
              }
-        }
-        }
-        
+        } 
+     }
+     
+     /*Verifica existencias de producto*/   
      public boolean verificarExistencia(int tienda, int venta){
          if((tienda-venta)>=0) return true;
          else return false;
      }
      
+     /*Verifica el credito del cliente*/
      public boolean verificarCredito(double credito_cliente, double credito_ingresado){
          if((credito_cliente-credito_ingresado)>=0) return true;
          else return false;
      }
      
+     /*Suma el total de los productos*/
      public void sumartotal(){
         double t=0;
         double p=0;
@@ -812,6 +795,7 @@ public class RegistrarVentas extends javax.swing.JFrame {
 
     }
      
+     /*Actualiza las existencias de los productos*/
      public void updateProducto(int cantidad_tienda, int cantidad_venta,String codigo){
          int nuevacantidad = cantidad_tienda - cantidad_venta;
           Statement stmt = null;
@@ -826,7 +810,7 @@ public class RegistrarVentas extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(null,"Error "+e);
         }
      }
-     
+     /*Actualiza el credito del cliente*/
      public void updateCliente(double creditocliente,double creditoingresado,String codigo){
          double nuevocredito = creditocliente - creditoingresado;
           Statement stmt = null;
@@ -846,7 +830,7 @@ public class RegistrarVentas extends javax.swing.JFrame {
         }
      }
      
-     
+     /*Limpia pantalla*/
       public void limpiarPantalla(){
         //fecha1.setText(null);
         credito_txt.setText(null);

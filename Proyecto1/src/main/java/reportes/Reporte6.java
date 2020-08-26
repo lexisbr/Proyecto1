@@ -198,6 +198,8 @@ public class Reporte6 extends javax.swing.JFrame {
            
         });
     }
+     
+     /*Carga tabla*/
     public void cargarTabla(){
         String campo = busca_txt.getText();
         String where = "";
@@ -245,7 +247,7 @@ public class Reporte6 extends javax.swing.JFrame {
             
         }
     }
-    
+    /*genera archivo html*/
     public void generarArchivo(JTable tabla, String titulo,int num) {
         try {
             PrintWriter writer = new PrintWriter("Reportes/Reporte"+num+".html", "UTF-8");

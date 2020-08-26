@@ -5,6 +5,7 @@
  */
 package interfaces;
 
+import interfacesCliente.MainCliente;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,7 +44,7 @@ public class SeleccionVersion extends javax.swing.JFrame {
         jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox1.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione su version", "Cliente ", "Empleado" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione su version", "Cliente", "Empleado" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -74,14 +75,17 @@ public class SeleccionVersion extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-                if (jComboBox1.getSelectedItem().equals("Cliente ")) {
-                    JOptionPane.showMessageDialog(null, "Bienvenido Cliente");
+                if (jComboBox1.getSelectedItem().equals("Cliente")) {                
+                    MainCliente a = new MainCliente();
+                    a.setVisible(true);
+                    this.dispose();
                 }else if(jComboBox1.getSelectedItem().equals("Empleado")){
                     Login log = new Login();
                     log.setVisible(true);
                     this.dispose();
                 }else{
                     JOptionPane.showMessageDialog(null, "Seleccione su version");
+                    
                 }
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -410,6 +410,7 @@ public class VisualizarCliente extends javax.swing.JFrame {
            
         });
     }
+     /*Carga tabla de clientes*/
      public void cargarTablaCliente(){
         String campo = buscar_txt.getText();
         String where = "";
@@ -454,6 +455,8 @@ public class VisualizarCliente extends javax.swing.JFrame {
             
         }
     }
+     
+     /*Actualiza datos de cliente*/
       public void updateCliente(String nit, String nombre, String telefono, String dpi, String email,String direccion, double credito){
         String query ="UPDATE CLIENTE SET nombre='"+nombre+"', telefono='"+telefono+"', DPI='"+dpi+"',email ='"+email+"',direccion='"+direccion+"',credito_compra='"+credito+"' WHERE NIT='"+nit+"'";
         Statement stmt = null;

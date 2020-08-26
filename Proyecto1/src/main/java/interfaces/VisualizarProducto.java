@@ -402,7 +402,7 @@ public class VisualizarProducto extends javax.swing.JFrame {
            
         });
     }
-     
+     /*Carga tabla de productos*/
      public void cargarTablaProducto(){
          String campo = buscar_txt.getText();
         String where = "";
@@ -448,7 +448,7 @@ public class VisualizarProducto extends javax.swing.JFrame {
             
         }
     }
-     
+     /*Actualiza datos de producto*/
      public void updateProducto(String codigo,int cantidad, double precio){
         String query ="UPDATE PRODUCTO SET cantidad='"+cantidad+"',precio='"+precio+"' WHERE codigo='"+codigo+"'";
         Statement stmt = null;

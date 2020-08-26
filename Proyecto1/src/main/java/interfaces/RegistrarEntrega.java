@@ -332,7 +332,7 @@ public class RegistrarEntrega extends javax.swing.JFrame {
         });
     }
     
-    
+    /*Carga tabla de pedidos*/
     public void CargarTablaPedidos(){
          String campo = pedido_txt.getText();
         String where = "";
@@ -377,7 +377,7 @@ public class RegistrarEntrega extends javax.swing.JFrame {
             
         }
     }
-    
+    /*Carga el tiempo entre tienda*/
     public void cargarTiempo(String tienda1,String tienda2){
           Conexion b = new Conexion();
           String Query="SELECT tiempo,ID FROM TIEMPO_DE_ENVIO WHERE ((codigo_tienda1='"+tienda1+"' && codigo_tienda2='"+tienda2+"')||(codigo_tienda1='"+tienda2+"' && codigo_tienda2='"+tienda1+"'))";
@@ -398,6 +398,7 @@ public class RegistrarEntrega extends javax.swing.JFrame {
         }
 
      }
+    /*Crea un recibo de que el producto ya ingreso*/
     public void insertRecibo(LocalDate fecha,String tienda,String pedido,String tiempo){
         System.out.println("entra a db");
         Statement stmt = null;
@@ -416,7 +417,7 @@ public class RegistrarEntrega extends javax.swing.JFrame {
         }
     }
     
-    
+    /*Metodo para limpiar*/
     public void limpiarPantalla(){
         fecha_lbl.setText(null);
         pedido_lbl.setText(null);

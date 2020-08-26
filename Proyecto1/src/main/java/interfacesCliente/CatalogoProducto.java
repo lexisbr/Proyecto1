@@ -59,6 +59,7 @@ public class CatalogoProducto extends javax.swing.JFrame {
         opciones_cb = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -106,6 +107,19 @@ public class CatalogoProducto extends javax.swing.JFrame {
         jLabel21.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
         jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 640, 330));
 
+        jButton7.setBackground(new java.awt.Color(255, 255, 255));
+        jButton7.setFont(new java.awt.Font("Leelawadee UI", 1, 12)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(0, 0, 0));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/regresar.png"))); // NOI18N
+        jButton7.setText("Regresar");
+        jButton7.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 130, 30));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoventas3.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 420));
@@ -118,6 +132,12 @@ public class CatalogoProducto extends javax.swing.JFrame {
     private void buscar_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_txtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buscar_txtActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        MainCliente log = new MainCliente();
+        log.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,7 +193,7 @@ public class CatalogoProducto extends javax.swing.JFrame {
            
         });
     }
-    
+    /*Carga tabla de productos*/
     public void cargarTablaProducto(){
          String campo = buscar_txt.getText();
          String opcion = String.valueOf(opciones_cb.getSelectedItem());
@@ -231,6 +251,7 @@ public class CatalogoProducto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField buscar_txt;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

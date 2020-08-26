@@ -155,7 +155,7 @@ public class CargarInfo extends javax.swing.JFrame {
             }
         });
     }
-    
+    /*Metodo que manda a verifcar si existe algo en la base de datos*/
     public void verificar(){
        String[] tabla = {"CLIENTE","EMPLEADO","PRODUCTO","TIEMPO_DE_ENVIO","TIENDA","VENTA","FACTURA","RECIBO","PEDIDO"};        
        Conexion a = new Conexion();

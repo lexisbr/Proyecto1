@@ -162,7 +162,7 @@ public class Reporte9 extends javax.swing.JFrame {
             }
         });
     }
-    
+    /*Carga tabla*/
     public void cargarTabla(){
          
          try {
@@ -198,7 +198,7 @@ public class Reporte9 extends javax.swing.JFrame {
             
         }
     }
-    
+    /*Genera reporte en html*/
     public void generarArchivo(JTable tabla, String titulo,int num) {
         try {
             PrintWriter writer = new PrintWriter("Reportes/Reporte"+num+".html", "UTF-8");
