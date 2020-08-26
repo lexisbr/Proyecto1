@@ -210,6 +210,8 @@ public class Reporte8 extends javax.swing.JFrame {
             }
         });
     }
+    
+    /*Cargar tabla*/
      public void cargarTabla(){
          
          try {
@@ -246,7 +248,7 @@ public class Reporte8 extends javax.swing.JFrame {
             
         }
     }
-     
+     /*Carga tabla cuando hay intervalo*/
       public void cargarTablaIntv(){
             
          try {
@@ -285,7 +287,7 @@ public class Reporte8 extends javax.swing.JFrame {
             
         }
     }
-      
+      /*Genera archivo html*/
       public void generarArchivo(JTable tabla, String titulo,int num) {
         try {
             PrintWriter writer = new PrintWriter("Reportes/Reporte"+num+".html", "UTF-8");

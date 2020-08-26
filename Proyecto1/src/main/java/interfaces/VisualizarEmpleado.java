@@ -425,7 +425,7 @@ public class VisualizarEmpleado extends javax.swing.JFrame {
            
         });
     }
-    
+    /*Carga tabla de empleado*/
     public void cargarTablaEmpleado(){
          String campo = buscar_txt.getText();
         String where = "";
@@ -470,6 +470,8 @@ public class VisualizarEmpleado extends javax.swing.JFrame {
             
         }
     }
+    
+    /*Actualiza datos de empleado*/
     public void updateEmpleado(String codigo, String nombre, String telefono, String nit, String dpi, String email,String direccion){
         String query ="UPDATE EMPLEADO SET nombre='"+nombre+"', telefono='"+telefono+"', NIT='"+nit+"', DPI='"+dpi+"',email ='"+email+"',direccion='"+direccion+"' WHERE codigo='"+codigo+"'";
         Statement stmt = null;

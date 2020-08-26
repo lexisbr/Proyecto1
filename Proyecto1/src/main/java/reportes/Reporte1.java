@@ -162,7 +162,7 @@ public class Reporte1 extends javax.swing.JFrame {
             }
         });
     }
-    
+    /*Carga tabla de pedidos*/
     public void cargarTabla(){
       
          try {
@@ -201,7 +201,7 @@ public class Reporte1 extends javax.swing.JFrame {
             
         }
     }
-    
+    /*Genera reporte en html*/
     public void generarArchivo(JTable tabla, String titulo,int num) {
         try {
             PrintWriter writer = new PrintWriter("Reportes/Reporte"+num+".html", "UTF-8");

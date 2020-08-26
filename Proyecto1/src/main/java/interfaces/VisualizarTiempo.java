@@ -337,7 +337,7 @@ public class VisualizarTiempo extends javax.swing.JFrame {
            
         });
     }
-    
+    /*Carga tabla con tiempos de envio*/
     public void cargarTablaTiempo(){
         String campo = buscar_txt.getText();
         String where = "";
@@ -379,7 +379,7 @@ public class VisualizarTiempo extends javax.swing.JFrame {
             
         }
     }
-
+/*Actualiza el tiempo de envio*/
     public void updateTiempo(String codigo,int tiempo){
         String query ="UPDATE TIEMPO_DE_ENVIO SET tiempo='"+tiempo+"' WHERE ID='"+codigo+"'";
           Statement stmt = null;

@@ -353,6 +353,7 @@ public class CrearCliente extends javax.swing.JFrame {
             }
         });
     }
+    /*Inserta datos de cliente*/
     public void insertDB(String cadena1,String cadena2,String cadena3,String cadena4,String cadena5,String cadena6,Double cadena7){
         try {
              String query = ("INSERT INTO CLIENTE VALUES('"+cadena1+"','"+cadena2+"','"+cadena3+"','"+cadena4+"','"+cadena5+"','"+cadena6+"','"+cadena7+"')");
@@ -368,7 +369,7 @@ public class CrearCliente extends javax.swing.JFrame {
          
         }
     }
-    
+    /*Metodo para limpiar*/
      public void vaciar(){
         credito_txt.setText(null);
         nombre_txt.setText(null);

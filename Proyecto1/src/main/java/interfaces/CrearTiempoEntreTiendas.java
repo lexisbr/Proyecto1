@@ -225,7 +225,7 @@ public class CrearTiempoEntreTiendas extends javax.swing.JFrame {
             }
         });
     }
-    
+    /*Insertar tiempo*/
     public void insertarDB(String cadena1, String cadena2){
         try {
              String query = ("INSERT INTO TIEMPO_DE_ENVIO VALUES('"+0+"','"+cadena2+"','"+Login.tienda_actual+"','"+cadena1+"')");

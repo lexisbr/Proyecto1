@@ -119,7 +119,7 @@ public class CargarArchivoForm extends javax.swing.JFrame {
         main.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
-
+    /*Metodo que carga venta para seleccionar archivo*/
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         file = new JFileChooser("C:/Users/jalej/Documents/NetBeansProjects/Proyecto1/Proyecto1");
         file.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);

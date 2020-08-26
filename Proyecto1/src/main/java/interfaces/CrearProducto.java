@@ -323,6 +323,7 @@ public class CrearProducto extends javax.swing.JFrame {
             }
         });
     }
+    /*Metodo para insertar datos de producto*/
     public void insertDB(String cadena1,String cadena2,String cadena3,int cadena4,double cadena5,String cadena6,int cadena7, String cadena8){
         try {
              String query = ("INSERT INTO PRODUCTO VALUES('"+cadena1+"','"+cadena2+"','"+cadena3+"','"+cadena4+"','"+cadena5+"','"+cadena6+"','"+cadena7+"','"+cadena8+"')");
