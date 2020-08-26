@@ -298,6 +298,7 @@ public class Reporte8 extends javax.swing.JFrame {
             writer.println("<body>");
             writer.println("<h1><center> Reporte " + num + "</center></h1>");
             writer.println("<h2><center>" + titulo + "</center></h2>");
+             writer.println("<h3><center>" + fecha1.getText()+" a "+fecha2.getText() + "</center></h3>");
             writer.println("<style type=" + "\"" + "text/css" + "\"" + ">");
             writer.println("table, th, td {");
             writer.println("border: 2px solid black;");

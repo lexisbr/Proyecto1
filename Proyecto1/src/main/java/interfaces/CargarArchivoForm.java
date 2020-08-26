@@ -126,8 +126,7 @@ public class CargarArchivoForm extends javax.swing.JFrame {
         int returnVal = file.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             jTextField1.setText(file.getSelectedFile().getName());
-            jButton1.setEnabled(true);
-            // JOptionPane.showMessageDialog(null, file.getSelectedFile().getName()); 
+            jButton1.setEnabled(true);        
         } else {
             jButton2.setEnabled(false);
         }

@@ -500,8 +500,8 @@ public class RegistrarVentas extends javax.swing.JFrame {
            insertDBVENTA(precio,cantidad,Datos[1],codigofactura);
            updateProducto(cantidad_existencia, cantidad, Datos[1]);
            updateCliente(credito_cliente, credito_ingresado, lbl_nit.getText());
-           JOptionPane.showMessageDialog(null, "Se registro la venta.");
         }
+          JOptionPane.showMessageDialog(null, "Se registro la venta.");
        }else{
             JOptionPane.showMessageDialog(null, "Los campos no estan llenos.");
                     

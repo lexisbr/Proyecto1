@@ -29,7 +29,7 @@ public class VisualizarEmpleado extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cargarTablaEmpleado();
-       
+        KeyListener();
     }
 
     /**

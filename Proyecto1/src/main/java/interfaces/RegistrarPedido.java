@@ -39,7 +39,6 @@ public class RegistrarPedido extends javax.swing.JFrame {
                 return false;
                 }
            };
-  // public LocalDate fecha = LocalDate.now();
     public RegistrarPedido() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -906,32 +905,7 @@ public class RegistrarPedido extends javax.swing.JFrame {
         }
      
      }
-     
-   /*  public void cargarTiempo(String tienda1,String tienda2){
-         System.out.println("entra a cargar tiempo <>"+tienda1+"<> "+tienda2);
-         String Query1="SELECT * FROM TIENDA WHERE codigo LIKE 'ABC%'"; 
-         String Query="SELECT tiempo FROM TIEMPO_DE_ENVIO WHERE ((codigo_tienda1='"+tienda1+"' && codigo_tienda2='"+tienda2+"')||(codigo_tienda1='"+tienda2+"' && codigo_tienda2='"+tienda1+"'))";
-          ResultSet Result = a.consulta(Query1);
-          
-         try {
-                
-                while (Result.next()) {
-                
-                  tiempo_cb.addItem(String.valueOf(Result.getObject("codigo"))); 
-
-              }
-  
-                   
-              //  lbl_tiempo.setText(Result.getString(1));           
-             
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Error en tiempo "+e);
-        }
-     
-     }*/
-     
-     
-     
+       
       public void cargarTiempo(String tienda1,String tienda2){
           Conexion b = new Conexion();
           String Query="SELECT tiempo FROM TIEMPO_DE_ENVIO WHERE ((codigo_tienda1='"+tienda1+"' && codigo_tienda2='"+tienda2+"')||(codigo_tienda1='"+tienda2+"' && codigo_tienda2='"+tienda1+"'))";
@@ -982,9 +956,11 @@ public class RegistrarPedido extends javax.swing.JFrame {
         try {
              String query = ("INSERT INTO PEDIDO(codigo_tienda_destino,codigo_tienda_origen,fecha,nit_cliente,codigo_producto,cantidad,total,anticipo) VALUES('"+tienda1+"','"+tienda2+"','"+fecha+"','"+cliente+"','"+producto+"','"+cantidad+"','"+total+"','"+anticipo+"')");
              a.conexionDB();
-             stmt = a.getConnection().createStatement();
+             int codigo = a.InsertFactura(query);
+             JOptionPane.showMessageDialog(null,"Codigo de pedido: <> "+String.valueOf(codigo)+" <>");
+            /* stmt = a.getConnection().createStatement();
              stmt.executeUpdate(query);
-             stmt.close();
+             stmt.close();*/
              
         }catch(Exception e) {
                JOptionPane.showMessageDialog(null,"Hay un error en Pedido");

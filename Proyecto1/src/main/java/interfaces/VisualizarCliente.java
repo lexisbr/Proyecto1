@@ -329,7 +329,9 @@ public class VisualizarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_telefono_txtKeyTyped
 
     private void dpi_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dpi_txtKeyTyped
-
+        char c = evt.getKeyChar();
+        if (dpi_txt.getText().length()== 13) evt.consume();
+        if(c<'0' || c>'9') evt.consume();
     }//GEN-LAST:event_dpi_txtKeyTyped
 
     private void actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarActionPerformed
