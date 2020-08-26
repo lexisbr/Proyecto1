@@ -55,9 +55,9 @@ public class CrearProducto extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -207,9 +207,6 @@ public class CrearProducto extends javax.swing.JFrame {
         jLabel20.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
         jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 90, 730, 140));
 
-        jLabel21.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 240, 730, 120));
-
         jLabel18.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 407, 285, 45));
 
@@ -225,6 +222,9 @@ public class CrearProducto extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, 130, 30));
+
+        jLabel21.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 240, 730, 120));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoempresa(2).jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
