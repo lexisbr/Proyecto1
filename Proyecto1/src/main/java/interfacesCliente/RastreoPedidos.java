@@ -5,6 +5,16 @@
  */
 package interfacesCliente;
 
+import conexionDB.Conexion;
+import interfaces.Login;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import static java.time.temporal.ChronoUnit.DAYS;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jalej
@@ -14,8 +24,11 @@ public class RastreoPedidos extends javax.swing.JFrame {
     /**
      * Creates new form RastreoPedidos
      */
+    Conexion a = new Conexion();
+    public LocalDate fecha = LocalDate.now();
     public RastreoPedidos() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -27,21 +40,145 @@ public class RastreoPedidos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        pagofinal_lbl = new javax.swing.JLabel();
+        tiemporestante_lbl = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        buscar_txt = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jt_visualizar = new javax.swing.JTable();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel13.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Pago para recogerlo:");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, -1, 30));
+
+        pagofinal_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        pagofinal_lbl.setForeground(new java.awt.Color(0, 0, 0));
+        pagofinal_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
+        jPanel1.add(pagofinal_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 120, 30));
+
+        tiemporestante_lbl.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        tiemporestante_lbl.setForeground(new java.awt.Color(0, 0, 0));
+        tiemporestante_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204), null));
+        jPanel1.add(tiemporestante_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, 120, 30));
+
+        jLabel12.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Dias restantes para llegar:");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, -1, 30));
+
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Leelawadee", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setText("Buscar");
+        jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, 140, 30));
+
+        buscar_txt.setBackground(new java.awt.Color(255, 255, 255));
+        buscar_txt.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        buscar_txt.setForeground(new java.awt.Color(0, 0, 0));
+        buscar_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscar_txtActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buscar_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 350, 30));
+
+        jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane3.setForeground(new java.awt.Color(0, 0, 0));
+
+        jt_visualizar.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        jScrollPane3.setViewportView(jt_visualizar);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 620, 120));
+
+        jLabel21.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(255, 255, 255), null, new java.awt.Color(153, 153, 153)));
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 640, 330));
+
+        jLabel2.setFont(new java.awt.Font("Leelawadee", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Pedido:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 25, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/producto.png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 15, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoventas3.jpg"))); // NOI18N
+        jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 420));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buscar_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buscar_txtActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String campo = buscar_txt.getText();
+
+        if (!"".equals(campo)) {
+            try {
+             DefaultTableModel modelo_pedido = new DefaultTableModel(){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                return false;
+                }
+           }; 
+           jt_visualizar.setModel(modelo_pedido);
+           modelo_pedido.addColumn("Producto");
+           modelo_pedido.addColumn("Total");
+           modelo_pedido.addColumn("Anticipo");
+           modelo_pedido.addColumn("Fecha");
+           modelo_pedido.addColumn("Tienda Destino");
+           modelo_pedido.addColumn("Tienda Origen");
+           modelo_pedido.addColumn("Tiempo de Envio");
+           String query = "SELECT X.nombre,P.total,P.anticipo,P.fecha,T.nombre,P.codigo_tienda_origen,D.tiempo FROM PEDIDO P LEFT JOIN RECIBE R ON P.codigo = R.codigo_pedido INNER JOIN TIENDA T ON T.codigo=P.codigo_tienda_destino INNER JOIN TIEMPO_DE_ENVIO D ON (P.codigo_tienda_origen=D.codigo_tienda1 || P.codigo_tienda_origen = D.codigo_tienda2)&&(P.codigo_tienda_destino=D.codigo_tienda1 || P.codigo_tienda_destino = D.codigo_tienda2) INNER JOIN PRODUCTO X ON X.codigo=P.codigo_producto WHERE R.ID IS NULL && P.codigo ='" +campo+"'";
+           System.out.println(query);
+           ResultSet rs = a.SeleccionarJT(query);
+           ResultSetMetaData rsMd = rs.getMetaData();
+           int cantidadColumnas = rsMd.getColumnCount();       
+           while(rs.next()){
+                Object[] filas = new Object[cantidadColumnas];
+                diasRestantes(rs.getString("tiempo"),rs.getString("fecha"));
+                calcularPago(rs.getDouble("anticipo"), rs.getDouble("total"));
+                for(int i = 0; i<cantidadColumnas; i++){             
+                    filas[i]= rs.getObject(i+1);
+                }
+                modelo_pedido.addRow(filas);    
+            }
+           rs.close();
+           
+           
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error "+ e);
+            
+        }
+
+        }else{
+            JOptionPane.showMessageDialog(null,"Ingrese el codigo de su pedido.");
+        }
+         
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -77,7 +214,42 @@ public class RastreoPedidos extends javax.swing.JFrame {
             }
         });
     }
+    
+   public void diasRestantes(String tiempo, String fechapedido){
+       LocalDate fechap = LocalDate.parse(fechapedido);
+        long diasdiferencia = DAYS.between(fechap, fecha);
+        int diasr=0;
+        int diasd = (int) diasdiferencia;
+        int diase = Integer.parseInt(tiempo);
+        if(diasd<=diase){
+            diasr = diase -diasd;
+            tiemporestante_lbl.setText(String.valueOf(diasr));
+        }else{
+            tiemporestante_lbl.setText("Con retraso");
+        }    
+   }
+   
+   public void calcularPago(double anticipo,double total){
+       double pagototal = total -anticipo;
+       
+       pagofinal_lbl.setText(String.valueOf(pagototal));
+       
+       
+   }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField buscar_txt;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jt_visualizar;
+    private javax.swing.JLabel pagofinal_lbl;
+    private javax.swing.JLabel tiemporestante_lbl;
     // End of variables declaration//GEN-END:variables
 }
